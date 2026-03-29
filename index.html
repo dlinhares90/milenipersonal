@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mileni Rosa | Personal Trainer • Especialista em Lipedema</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:    #c2586e;
+      --rose-lt: #e8899a;
+      --rose-bg: #fdf0f3;
+      --plum:    #7b3f5e;
+      --blush:   #f5d6de;
+      --cream:   #fdf8f5;
+      --charcoal:#2d2d2d;
+      --gray:    #6b6b6b;
+      --light:   #f9f4f6;
+      --white:   #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--charcoal);
+      background: var(--cream);
+      line-height: 1.7;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 6vw;
+      background: rgba(253,248,245,.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--blush);
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(194,88,110,.12); }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--rose);
+      letter-spacing: -.02em;
+    }
+    .nav-logo span { color: var(--plum); font-style: italic; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: .88rem; font-weight: 500;
+      color: var(--charcoal); letter-spacing: .04em; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--rose); }
+    .nav-cta {
+      background: var(--rose); color: #fff !important;
+      padding: .5rem 1.4rem; border-radius: 50px;
+      font-size: .82rem !important;
+      transition: background .2s, transform .2s !important;
+    }
+    .nav-cta:hover { background: var(--plum) !important; transform: translateY(-1px); color:#fff !important; }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 6vw 4rem;
+      gap: 4rem;
+      background: linear-gradient(135deg, var(--cream) 0%, var(--rose-bg) 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, var(--blush) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--blush); color: var(--plum);
+      font-size: .78rem; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; padding: .4rem 1rem; border-radius: 50px;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 700; line-height: 1.15;
+      color: var(--charcoal); margin-bottom: 1rem;
+    }
+    .hero h1 em { color: var(--rose); font-style: italic; }
+    .hero-sub {
+      font-size: 1.1rem; color: var(--gray); max-width: 480px;
+      margin-bottom: 2rem; line-height: 1.8;
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block; padding: .9rem 2rem;
+      background: var(--rose); color: #fff;
+      border-radius: 50px; font-weight: 600; font-size: .95rem;
+      text-decoration: none; transition: all .3s;
+      box-shadow: 0 4px 20px rgba(194,88,110,.35);
+    }
+    .btn-primary:hover { background: var(--plum); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(123,63,94,.35); }
+    .btn-outline {
+      display: inline-block; padding: .9rem 2rem;
+      border: 2px solid var(--rose); color: var(--rose);
+      border-radius: 50px; font-weight: 600; font-size: .95rem;
+      text-decoration: none; transition: all .3s;
+    }
+    .btn-outline:hover { background: var(--rose); color: #fff; transform: translateY(-2px); }
+    .hero-stats {
+      display: flex; gap: 2rem; margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+    .hero-stat strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; color: var(--rose);
+    }
+    .hero-stat span { font-size: .82rem; color: var(--gray); font-weight: 500; }
+    .hero-image-wrap {
+      position: relative; display: flex; justify-content: center;
+    }
+    .hero-card {
+      width: 100%; max-width: 400px;
+      background: var(--white);
+      border-radius: 2rem; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(194,88,110,.18);
+      position: relative;
+    }
+    .hero-card-img {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      background: linear-gradient(160deg, var(--blush) 0%, var(--rose-lt) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem;
+    }
+    .hero-card-badge {
+      position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(8px);
+      border-radius: 1rem; padding: 1rem 1.2rem;
+      display: flex; align-items: center; gap: .8rem;
+    }
+    .hero-card-badge-icon {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--rose); display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .hero-card-badge p { font-size: .82rem; color: var(--gray); margin: 0; }
+    .hero-card-badge strong { font-size: .92rem; color: var(--charcoal); }
+
+    /* ─── SECTION SHARED ──────────────────────────────── */
+    section { padding: 6rem 6vw; }
+    .section-tag {
+      display: inline-block;
+      background: var(--blush); color: var(--plum);
+      font-size: .75rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; padding: .35rem .9rem; border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      line-height: 1.25; color: var(--charcoal);
+      margin-bottom: 1rem;
+    }
+    .section-title em { color: var(--rose); font-style: italic; }
+    .section-sub {
+      font-size: 1.05rem; color: var(--gray); max-width: 600px; line-height: 1.8;
+    }
+    .center { text-align: center; }
+    .center .section-sub { margin: 0 auto; }
+
+    /* ─── LIPEDEMA INFO ───────────────────────────────── */
+    .lipedema { background: var(--white); }
+    .lipedema-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start; margin-top: 3.5rem;
+    }
+    .lipedema-intro p {
+      font-size: 1.02rem; color: var(--gray);
+      line-height: 1.9; margin-bottom: 1.2rem;
+    }
+    .lipedema-intro p strong { color: var(--charcoal); }
+    .highlight-box {
+      background: var(--rose-bg);
+      border-left: 4px solid var(--rose);
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .highlight-box p {
+      font-size: .95rem; color: var(--plum); font-weight: 500; margin: 0;
+    }
+    .cards-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .info-card {
+      background: var(--light);
+      border-radius: 1.2rem; padding: 1.4rem;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .info-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(194,88,110,.14); }
+    .info-card .card-icon { font-size: 1.8rem; margin-bottom: .6rem; }
+    .info-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; color: var(--plum); margin-bottom: .4rem;
+    }
+    .info-card p { font-size: .85rem; color: var(--gray); line-height: 1.7; }
+
+    /* ─── STAGES ──────────────────────────────────────── */
+    .stages { background: var(--light); }
+    .stages-list {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .stage-card {
+      background: var(--white); border-radius: 1.5rem;
+      padding: 2rem 1.5rem; text-align: center;
+      border: 2px solid transparent;
+      transition: all .3s; position: relative; overflow: hidden;
+    }
+    .stage-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--rose-bg), transparent);
+      opacity: 0; transition: opacity .3s;
+    }
+    .stage-card:hover { border-color: var(--rose-lt); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(194,88,110,.15); }
+    .stage-card:hover::before { opacity: 1; }
+    .stage-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--rose); color: #fff;
+      font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700;
+      margin-bottom: 1rem; position: relative; z-index: 1;
+    }
+    .stage-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--plum); margin-bottom: .6rem;
+      position: relative; z-index: 1;
+    }
+    .stage-card p {
+      font-size: .87rem; color: var(--gray); line-height: 1.7;
+      position: relative; z-index: 1;
+    }
+    .stage-tag {
+      display: inline-block; margin-top: .8rem;
+      background: var(--blush); color: var(--rose);
+      font-size: .75rem; font-weight: 600; letter-spacing: .06em;
+      padding: .25rem .7rem; border-radius: 50px;
+      position: relative; z-index: 1;
+    }
+
+    /* ─── SYMPTOMS ────────────────────────────────────── */
+    .symptoms { background: var(--white); }
+    .symptoms-wrapper {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; margin-top: 3rem; align-items: start;
+    }
+    .symptom-group h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; color: var(--plum); margin-bottom: 1.2rem;
+      padding-bottom: .6rem;
+      border-bottom: 2px solid var(--blush);
+    }
+    .symptom-list { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
+    .symptom-list li {
+      display: flex; align-items: flex-start; gap: .8rem;
+      font-size: .94rem; color: var(--gray); line-height: 1.6;
+    }
+    .symptom-list li::before {
+      content: '•'; color: var(--rose);
+      font-size: 1.2rem; line-height: 1.3; flex-shrink: 0;
+    }
+    .symptom-list li strong { color: var(--charcoal); }
+    .alert-card {
+      background: linear-gradient(135deg, var(--rose-bg), #fff3f6);
+      border-radius: 1.5rem; padding: 2rem;
+      border: 1px solid var(--blush);
+      margin-top: 1.5rem;
+    }
+    .alert-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--rose); margin-bottom: .8rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .alert-card p { font-size: .9rem; color: var(--gray); line-height: 1.8; }
+
+    /* ─── APPROACH ────────────────────────────────────── */
+    .approach { background: var(--light); }
+    .approach-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .approach-card {
+      background: var(--white); border-radius: 1.5rem;
+      padding: 2rem; position: relative; overflow: hidden;
+      transition: all .3s;
+    }
+    .approach-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(194,88,110,.15); }
+    .approach-num {
+      position: absolute; top: 1.2rem; right: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 700; color: var(--blush);
+      line-height: 1;
+    }
+    .approach-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .approach-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: var(--plum); margin-bottom: .6rem;
+    }
+    .approach-card p { font-size: .88rem; color: var(--gray); line-height: 1.75; }
+
+    /* ─── SERVICES ────────────────────────────────────── */
+    .services { background: var(--white); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem; margin-top: 3rem;
+    }
+    .service-card {
+      border-radius: 1.5rem; overflow: hidden;
+      border: 1.5px solid var(--blush);
+      transition: all .3s;
+    }
+    .service-card:hover { border-color: var(--rose-lt); box-shadow: 0 16px 48px rgba(194,88,110,.16); transform: translateY(-4px); }
+    .service-header {
+      background: linear-gradient(135deg, var(--rose-bg), var(--blush));
+      padding: 1.8rem 1.8rem 1.2rem;
+    }
+    .service-icon { font-size: 2.2rem; margin-bottom: .6rem; }
+    .service-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: var(--plum);
+    }
+    .service-body { padding: 1.5rem 1.8rem; }
+    .service-body p { font-size: .9rem; color: var(--gray); line-height: 1.8; margin-bottom: 1rem; }
+    .service-features { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .service-features li {
+      font-size: .84rem; color: var(--gray);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .service-features li::before {
+      content: '✓'; color: var(--rose); font-weight: 700; flex-shrink: 0;
+    }
+
+    /* ─── FAQ ─────────────────────────────────────────── */
+    .faq { background: var(--light); }
+    .faq-list { max-width: 760px; margin: 3rem auto 0; display: flex; flex-direction: column; gap: .8rem; }
+    .faq-item {
+      background: var(--white); border-radius: 1rem;
+      border: 1.5px solid var(--blush); overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; text-align: left;
+      background: none; border: none; cursor: pointer;
+      padding: 1.3rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+      font-family: 'Inter', sans-serif; font-size: .96rem; font-weight: 600;
+      color: var(--charcoal); transition: color .2s;
+    }
+    .faq-q:hover { color: var(--rose); }
+    .faq-q svg {
+      width: 20px; height: 20px; flex-shrink: 0;
+      color: var(--rose); transition: transform .3s;
+    }
+    .faq-item.open .faq-q svg { transform: rotate(180deg); }
+    .faq-a {
+      display: none; padding: 0 1.5rem 1.3rem;
+      font-size: .91rem; color: var(--gray); line-height: 1.85;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ─── TESTIMONIALS ────────────────────────────────── */
+    .testimonials { background: var(--white); }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem; margin-top: 3rem;
+    }
+    .testimonial-card {
+      background: var(--light); border-radius: 1.5rem;
+      padding: 2rem;
+    }
+    .stars { color: #f5a623; font-size: 1rem; margin-bottom: 1rem; letter-spacing: .1em; }
+    .testimonial-card blockquote {
+      font-size: .94rem; color: var(--charcoal);
+      line-height: 1.8; font-style: italic; margin-bottom: 1.2rem;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: .8rem; }
+    .author-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose), var(--plum));
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: .9rem; flex-shrink: 0;
+    }
+    .author-info strong { display: block; font-size: .9rem; color: var(--charcoal); }
+    .author-info span { font-size: .8rem; color: var(--gray); }
+
+    /* ─── CTA ─────────────────────────────────────────── */
+    .cta {
+      background: linear-gradient(135deg, var(--plum) 0%, var(--rose) 100%);
+      text-align: center; padding: 6rem 6vw;
+    }
+    .cta .section-tag { background: rgba(255,255,255,.2); color: #fff; }
+    .cta .section-title { color: #fff; }
+    .cta .section-sub { color: rgba(255,255,255,.82); margin: 0 auto 2.5rem; }
+    .cta .btn-primary {
+      background: #fff; color: var(--rose);
+      box-shadow: 0 4px 24px rgba(0,0,0,.2);
+    }
+    .cta .btn-primary:hover { background: var(--blush); color: var(--plum); }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--charcoal); color: rgba(255,255,255,.6);
+      padding: 3rem 6vw; text-align: center;
+    }
+    footer .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: #fff; font-weight: 700;
+      margin-bottom: .5rem;
+    }
+    footer .footer-logo span { color: var(--rose-lt); font-style: italic; }
+    footer p { font-size: .85rem; }
+    footer a { color: var(--rose-lt); text-decoration: none; }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 7rem; }
+      .hero-sub { max-width: 100%; }
+      .hero-buttons { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-image-wrap { order: -1; }
+      .hero-card { max-width: 300px; }
+      .lipedema-grid, .symptoms-wrapper { grid-template-columns: 1fr; }
+      .approach-grid { grid-template-columns: 1fr 1fr; }
+      .cards-grid { grid-template-columns: 1fr; }
+      nav .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .approach-grid { grid-template-columns: 1fr; }
+      .stages-list { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">Mileni <span>Rosa</span></div>
+  <ul class="nav-links">
+    <li><a href="#lipedema">Lipedema</a></li>
+    <li><a href="#estagios">Estágios</a></li>
+    <li><a href="#abordagem">Método</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contato" class="nav-cta">Fale comigo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-tag">Personal Trainer Especializada</span>
+    <h1>Movimento que <em>respeita</em> o seu corpo</h1>
+    <p class="hero-sub">
+      Sou Mileni Rosa, personal trainer especializada em mulheres com lipedema.
+      Meu trabalho é criar um espaço seguro onde você pode se exercitar com
+      autonomia, reduzir sintomas e reconectar com o próprio corpo — sem culpa e
+      sem comparação.
+    </p>
+    <div class="hero-buttons">
+      <a href="#contato" class="btn-primary">Iniciar minha jornada</a>
+      <a href="#lipedema" class="btn-outline">O que é lipedema?</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <strong>+200</strong>
+        <span>Alunas atendidas</span>
+      </div>
+      <div class="hero-stat">
+        <strong>8+</strong>
+        <span>Anos de experiência</span>
+      </div>
+      <div class="hero-stat">
+        <strong>4</strong>
+        <span>Estágios atendidos</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-image-wrap">
+    <div class="hero-card">
+      <div class="hero-card-img">🌸</div>
+      <div class="hero-card-badge">
+        <div class="hero-card-badge-icon">💪</div>
+        <div>
+          <strong>Método exclusivo para lipedema</strong>
+          <p>Exercícios adaptados e seguros</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIPEDEMA -->
+<section class="lipedema" id="lipedema">
+  <div>
+    <span class="section-tag">Entenda a condição</span>
+    <h2 class="section-title">O que é o <em>Lipedema?</em></h2>
+  </div>
+  <div class="lipedema-grid">
+    <div class="lipedema-intro">
+      <p>
+        O <strong>lipedema</strong> é uma doença crônica do tecido adiposo que afeta
+        quase exclusivamente mulheres. Caracteriza-se pelo acúmulo desproporcional
+        de gordura — principalmente em coxas, quadris, glúteos e, em alguns casos,
+        nos braços — que não responde à dieta nem aos exercícios convencionais.
+      </p>
+      <p>
+        Segundo estimativas, <strong>entre 11% e 17% das mulheres</strong> no mundo
+        têm lipedema, tornando-o uma das condições mais comuns e mais subdiagnosticadas
+        da medicina feminina. Muitas são diagnosticadas apenas após anos de luta
+        contra a balança e o preconceito médico.
+      </p>
+      <div class="highlight-box">
+        <p>
+          ⚠️ Lipedema <strong>não é obesidade</strong>. É uma condição clínica com
+          base genética e hormonal que exige abordagem especializada.
+        </p>
+      </div>
+      <p>
+        O tecido adiposo do lipedema é diferente da gordura comum: é inflamado,
+        doloroso e repleto de nódulos. Ele aprisiona líquido linfático, causando
+        sensação de peso, dor ao toque e facilidade para hematomas.
+        Por isso, <strong>o exercício precisa ser cuidadosamente adaptado</strong>
+        para ser aliado e não agressor.
+      </p>
+    </div>
+    <div class="cards-grid">
+      <div class="info-card">
+        <div class="card-icon">🧬</div>
+        <h4>Origem Genética</h4>
+        <p>Tem forte componente hereditário. Costuma se manifestar ou agravar em momentos hormonais: puberdade, gravidez, menopausa.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">🌊</div>
+        <h4>Sistema Linfático</h4>
+        <p>O fluxo linfático fica comprometido, gerando retenção, inflamação e sensação de pernas pesadas ao longo do dia.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">💊</div>
+        <h4>Não tem cura, mas tem controle</h4>
+        <p>Com o tratamento certo — exercício, drenagem, nutrição e cuidado emocional — é possível ter qualidade de vida excelente.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">⚖️</div>
+        <h4>Diagnóstico Diferencial</h4>
+        <p>Precisa ser distinguido de linfedema, obesidade e outras condições. O diagnóstico é clínico e deve ser feito por médico especialista.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAGES -->
+<section class="stages" id="estagios">
+  <div class="center">
+    <span class="section-tag">Classificação clínica</span>
+    <h2 class="section-title">Os <em>4 estágios</em> do lipedema</h2>
+    <p class="section-sub">
+      O lipedema é classificado em estágios conforme a textura da pele, o tamanho
+      dos nódulos e a progressão da condição. Cada estágio exige adaptações
+      específicas no programa de exercícios.
+    </p>
+  </div>
+  <div class="stages-list">
+    <div class="stage-card">
+      <div class="stage-num">1</div>
+      <h3>Estágio I</h3>
+      <p>
+        A superfície da pele permanece lisa, mas sob ela o tecido adiposo já
+        mostra nódulos finos e distribuição desproporcional. Dor ao pressionar
+        já pode estar presente.
+      </p>
+      <span class="stage-tag">Pele lisa • Nódulos finos</span>
+    </div>
+    <div class="stage-card">
+      <div class="stage-num">2</div>
+      <h3>Estágio II</h3>
+      <p>
+        A pele apresenta aspecto de "casca de laranja" ou "colchão". Os nódulos
+        são maiores e palpáveis. O volume nas pernas aumenta visivelmente e a
+        dor é mais frequente.
+      </p>
+      <span class="stage-tag">Casca de laranja • Nódulos médios</span>
+    </div>
+    <div class="stage-card">
+      <div class="stage-num">3</div>
+      <h3>Estágio III</h3>
+      <p>
+        Formação de grandes nódulos e dobras de pele. A gordura endurecida pode
+        restringir a mobilidade. Hematomas espontâneos e dor intensa são comuns.
+      </p>
+      <span class="stage-tag">Dobras • Nódulos grandes</span>
+    </div>
+    <div class="stage-card">
+      <div class="stage-num">4</div>
+      <h3>Estágio IV</h3>
+      <p>
+        Combina lipedema avançado com linfedema (lipolinfedema). Acúmulo
+        significativo também nos braços. Requer abordagem multidisciplinar
+        intensiva.
+      </p>
+      <span class="stage-tag">Lipolinfedema • Multidisciplinar</span>
+    </div>
+  </div>
+</section>
+
+<!-- SYMPTOMS -->
+<section class="symptoms" id="sintomas">
+  <div class="center">
+    <span class="section-tag">Reconheça os sinais</span>
+    <h2 class="section-title">Sintomas e <em>diagnóstico</em></h2>
+    <p class="section-sub">
+      Muitas mulheres passam anos sendo mal diagnosticadas. Conhecer os sinais
+      é o primeiro passo para buscar o cuidado adequado.
+    </p>
+  </div>
+  <div class="symptoms-wrapper">
+    <div class="symptom-group">
+      <h3>Sintomas físicos</h3>
+      <ul class="symptom-list">
+        <li><strong>Proporção corporal desproporcional</strong> — cintura fina com membros inferiores muito volumosos</li>
+        <li><strong>Dor espontânea ou ao toque</strong> na região afetada, mesmo sem pressão intensa</li>
+        <li><strong>Hematomas fáceis</strong> — surgem com mínimo impacto ou sem causa aparente</li>
+        <li><strong>Sensação de peso e cansaço</strong> nas pernas, especialmente ao fim do dia</li>
+        <li><strong>Pele sensível</strong> com textura nodular palpável sob a superfície</li>
+        <li><strong>Sinal de Stemmer negativo</strong> — diferentemente do linfedema puro</li>
+        <li><strong>Edema bilateral</strong> que não melhora com elevação das pernas</li>
+        <li><strong>Coxins de gordura</strong> nos joelhos e tornozelos (sinal característico)</li>
+      </ul>
+      <div class="alert-card">
+        <h4>⚡ Sinal de alerta importante</h4>
+        <p>
+          Se você faz dieta restrita e exercício intenso há anos e o volume nas
+          pernas simplesmente <strong>não diminui</strong>, enquanto o resto do corpo
+          até emagrece — isso pode ser um indicativo forte de lipedema.
+          Procure um angiologista ou dermatologista especializado.
+        </p>
+      </div>
+    </div>
+    <div class="symptom-group">
+      <h3>Impacto emocional</h3>
+      <ul class="symptom-list">
+        <li><strong>Vergonha e baixa autoestima</strong> por não conseguir resultados com dieta e exercício</li>
+        <li><strong>Ansiedade antes de atividades físicas</strong> por medo de dor ou julgamento</li>
+        <li><strong>Relação difícil com o espelho</strong> e com roupas</li>
+        <li><strong>Isolamento social</strong> para evitar ambientes como piscinas e academias</li>
+        <li><strong>Frustração com profissionais de saúde</strong> que minimizaram os sintomas</li>
+        <li><strong>Crises de choro</strong> relacionadas ao corpo sem saber o motivo</li>
+      </ul>
+      <h3 style="margin-top:2rem;">O que NÃO causa lipedema</h3>
+      <ul class="symptom-list">
+        <li>Falta de força de vontade ou disciplina</li>
+        <li>Comer errado ou excessivamente</li>
+        <li>Sedentarismo isolado</li>
+        <li>Falta de higiene ou cuidado pessoal</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="approach" id="abordagem">
+  <div class="center">
+    <span class="section-tag">Meu método</span>
+    <h2 class="section-title">Como trabalho com <em>você</em></h2>
+    <p class="section-sub">
+      Minha abordagem combina ciência do exercício atualizada com escuta ativa e
+      respeito total ao seu corpo — porque movimento não deve doer nem humilhar.
+    </p>
+  </div>
+  <div class="approach-grid">
+    <div class="approach-card">
+      <span class="approach-num">01</span>
+      <div class="approach-icon">🔍</div>
+      <h3>Avaliação Individualizada</h3>
+      <p>
+        Antes de qualquer treino, faço uma anamnese completa: histórico clínico,
+        estágio do lipedema, nível de dor atual, limitações articulares, objetivos
+        pessoais e relação emocional com o exercício.
+      </p>
+    </div>
+    <div class="approach-card">
+      <span class="approach-num">02</span>
+      <div class="approach-icon">🏊</div>
+      <h3>Exercícios Adaptados</h3>
+      <p>
+        Priorizo atividades de baixo impacto e alta benefício: hidroginástica,
+        natação, pilates, yoga terapêutico e musculação adaptada. Intensidade
+        progressiva e sempre dentro da janela de tolerância à dor.
+      </p>
+    </div>
+    <div class="approach-card">
+      <span class="approach-num">03</span>
+      <div class="approach-icon">🌿</div>
+      <h3>Controle da Inflamação</h3>
+      <p>
+        Orientações sobre exercícios que ativam o sistema linfático sem sobrecarregar
+        o tecido inflamado. Trabalho em conjunto com nutricionistas e fisioterapeutas
+        especializados.
+      </p>
+    </div>
+    <div class="approach-card">
+      <span class="approach-num">04</span>
+      <div class="approach-icon">💚</div>
+      <h3>Saúde Emocional</h3>
+      <p>
+        Incluo trabalho de reconexão corporal, autocompaixão no movimento e
+        estratégias para desconstruir o pensamento de "punição pelo corpo".
+        Você merece se exercitar com prazer.
+      </p>
+    </div>
+    <div class="approach-card">
+      <span class="approach-num">05</span>
+      <div class="approach-icon">📊</div>
+      <h3>Monitoramento Contínuo</h3>
+      <p>
+        Acompanho a evolução por meio de fichas de dor, medidas de circunferência,
+        qualidade do sono e energia. Os critérios de sucesso vão além da balança.
+      </p>
+    </div>
+    <div class="approach-card">
+      <span class="approach-num">06</span>
+      <div class="approach-icon">🤝</div>
+      <h3>Equipe Multidisciplinar</h3>
+      <p>
+        Indico e me comunico com angiologistas, fisioterapeutas linfáticos,
+        nutricionistas e psicólogos para garantir que seu cuidado seja completo
+        e integrado.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servicos">
+  <div class="center">
+    <span class="section-tag">Como posso te ajudar</span>
+    <h2 class="section-title">Serviços <em>disponíveis</em></h2>
+    <p class="section-sub">
+      Cada modalidade foi pensada para diferentes momentos da sua jornada com
+      o lipedema — do diagnóstico recente à manutenção avançada.
+    </p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-icon">🎯</div>
+        <h3>Personal Presencial</h3>
+      </div>
+      <div class="service-body">
+        <p>Treinos individuais ou em dupla com acompanhamento completo e adaptação em tempo real.</p>
+        <ul class="service-features">
+          <li>Avaliação funcional inicial</li>
+          <li>Treino 100% personalizado para seu estágio</li>
+          <li>Controle de intensidade e dor em tempo real</li>
+          <li>Relatório mensal de evolução</li>
+          <li>Canal de comunicação direto</li>
+        </ul>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-icon">📱</div>
+        <h3>Assessoria Online</h3>
+      </div>
+      <div class="service-body">
+        <p>Para quem quer treinar em casa ou em qualquer cidade com a segurança de uma especialista.</p>
+        <ul class="service-features">
+          <li>Anamnese detalhada por videoconferência</li>
+          <li>Plano de treino semanal personalizado</li>
+          <li>Vídeos demonstrativos para cada exercício</li>
+          <li>Check-in semanal e ajustes contínuos</li>
+          <li>Suporte via aplicativo</li>
+        </ul>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-icon">💧</div>
+        <h3>Hidroterapia Especializada</h3>
+      </div>
+      <div class="service-body">
+        <p>A água é a aliada mais poderosa no lipedema. Sessões focadas em ativação linfática e redução de dor.</p>
+        <ul class="service-features">
+          <li>Exercícios de baixíssimo impacto articular</li>
+          <li>Ativação do retorno venoso e linfático</li>
+          <li>Redução de edema e sensação de peso</li>
+          <li>Fortalecimento sem sobrecarga</li>
+          <li>Adaptado para todos os estágios</li>
+        </ul>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-icon">🧘</div>
+        <h3>Pilates Terapêutico</h3>
+      </div>
+      <div class="service-body">
+        <p>Método controlado que fortalece sem inflamar, melhora postura e proporciona bem-estar real.</p>
+        <ul class="service-features">
+          <li>Trabalho de core sem impacto nos membros</li>
+          <li>Melhora da mobilidade articular</li>
+          <li>Conscientização corporal e respiração</li>
+          <li>Redução de tensão muscular compensatória</li>
+          <li>Sessões em aparelhos ou solo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="center">
+    <span class="section-tag">Histórias reais</span>
+    <h2 class="section-title">O que dizem <em>minhas alunas</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>
+        "Passei 15 anos acreditando que era preguiçosa porque não emagrecia com
+        dieta e academia. A Mileni foi a primeira profissional que me viu de
+        verdade. Hoje faço 3 treinos por semana sem dor e com alegria."
+      </blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">AM</div>
+        <div class="author-info">
+          <strong>Ana Marta, 38 anos</strong>
+          <span>Lipedema estágio II — 14 meses de acompanhamento</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>
+        "Eu chorava toda vez que tentava me exercitar por causa da dor e da
+        vergonha. O trabalho da Mileni vai muito além do exercício — ela me
+        devolveu minha autoestima e minha vontade de cuidar de mim."
+      </blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">CR</div>
+        <div class="author-info">
+          <strong>Carla Regina, 44 anos</strong>
+          <span>Lipedema estágio III — 8 meses de acompanhamento</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>
+        "Fui diagnosticada há 2 anos e comecei com a Mileni logo depois. A
+        hidroterapia mudou completamente minha qualidade de vida. Minhas pernas
+        pesam menos e meu humor melhorou absurdamente."
+      </blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">FS</div>
+        <div class="author-info">
+          <strong>Fernanda S., 31 anos</strong>
+          <span>Lipedema estágio I — 6 meses de acompanhamento</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="center">
+    <span class="section-tag">Perguntas frequentes</span>
+    <h2 class="section-title">Dúvidas <em>comuns</em></h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Posso me exercitar mesmo com dor no lipedema?
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a">
+        Sim — mas com cuidado. O exercício correto <strong>reduz</strong> a dor crônica
+        do lipedema ao longo do tempo, melhorando o fluxo linfático e diminuindo a
+        inflamação. O que precisamos evitar é o exercício de alta intensidade e
+        alto impacto, que pode aumentar a inflamação e o desconforto. Minha
+        abordagem começa sempre abaixo do seu limiar de dor e progride com
+        muito respeito ao seu corpo.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Exercício vai diminuir o volume das minhas pernas?
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a">
+        Essa é uma pergunta muito comum — e merece uma resposta honesta. O
+        exercício <strong>não elimina</strong> o tecido adiposo patológico do lipedema
+        da mesma forma que reduziria a gordura comum. Porém, ele traz benefícios
+        enormes: reduz o edema associado, melhora a mobilidade, diminui a dor,
+        fortalece a musculatura ao redor do tecido afetado e melhora muito a
+        qualidade de vida. Em casos mais avançados, a cirurgia de lipoaspiração
+        linfpoupadora pode ser indicada por um médico especialista.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Quais exercícios devo EVITAR com lipedema?
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a">
+        De forma geral, devem ser evitados ou altamente adaptados: corrida de
+        alto impacto (principalmente em superfícies duras), jumping, exercícios
+        que gerem muito calor local (como HIIT intenso sem adaptação), e qualquer
+        atividade que cause dor intensa ou hematomas. Mas tudo depende do seu
+        estágio e tolerância — por isso a avaliação individualizada é essencial.
+        O que é contraindicado para uma pode ser ótimo para outra.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Preciso de diagnóstico médico antes de começar?
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a">
+        Ter um diagnóstico formal é <strong>muito importante</strong> para direcionar
+        melhor o tratamento. Recomendo buscar um angiologista, dermatologista ou
+        médico especializado em lipedema. Mas se você está no processo de diagnóstico
+        ou tem forte suspeita clínica, podemos começar com cautela máxima enquanto
+        você finaliza a investigação médica. Nunca trabalho sem uma anamnese
+        detalhada prévia.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Atendo online — serve para quem mora em outra cidade?
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a">
+        Sim! A assessoria online foi criada justamente para atender mulheres de
+        todo o Brasil que não têm acesso a profissionais especializados em lipedema
+        na sua cidade — o que infelizmente ainda é a maioria. A metodologia é
+        adaptada para casa ou academia, com suporte contínuo e acompanhamento
+        tão próximo quanto no presencial.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        O que é o sistema linfático e por que ele importa no lipedema?
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a">
+        O sistema linfático é uma rede de vasos que coletam o líquido entre as
+        células (linfa) e o devolvem à circulação sanguínea. No lipedema, esse
+        sistema fica sobrecarregado pelo excesso de tecido adiposo inflamado,
+        levando ao acúmulo de linfa e consequente edema. Exercícios como
+        caminhada, natação e pilates estimulam a contração muscular que "bombeia"
+        esse sistema, reduzindo o acúmulo de líquido e a sensação de peso.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contato">
+  <span class="section-tag">Vamos começar?</span>
+  <h2 class="section-title">Você não precisa fazer isso <em>sozinha</em></h2>
+  <p class="section-sub">
+    Dê o primeiro passo. Uma conversa pode mudar completamente a sua relação
+    com o exercício e com o seu próprio corpo.
+  </p>
+  <a href="https://wa.me/5500000000000" class="btn-primary">
+    💬 &nbsp;Falar com a Mileni no WhatsApp
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Mileni <span>Rosa</span></div>
+  <p>Personal Trainer • Especialista em Mulheres com Lipedema</p>
+  <p style="margin-top:.5rem;">
+    CREF: 000000-G/XX &nbsp;|&nbsp;
+    <a href="mailto:contato@mileni.com.br">contato@mileni.com.br</a>
+  </p>
+  <p style="margin-top:1.5rem; font-size:.78rem; opacity:.5;">
+    As informações deste site têm caráter educativo e não substituem diagnóstico ou tratamento médico.
+  </p>
+</footer>
+
+<script>
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // FAQ toggle
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Scroll-in animation
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.info-card, .stage-card, .approach-card, .service-card, .testimonial-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
