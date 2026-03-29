@@ -432,22 +432,143 @@
     footer p { font-size: .85rem; }
     footer a { color: var(--rose-lt); text-decoration: none; }
 
-    /* ─── RESPONSIVE ──────────────────────────────────── */
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 7rem; }
-      .hero-sub { max-width: 100%; }
-      .hero-buttons { justify-content: center; }
-      .hero-stats { justify-content: center; }
-      .hero-image-wrap { order: -1; }
-      .hero-card { max-width: 300px; }
-      .lipedema-grid, .symptoms-wrapper { grid-template-columns: 1fr; }
-      .approach-grid { grid-template-columns: 1fr 1fr; }
-      .cards-grid { grid-template-columns: 1fr; }
-      nav .nav-links { display: none; }
+    /* ─── HAMBURGER ───────────────────────────────────── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column; justify-content: center; gap: 5px;
+      width: 36px; height: 36px; cursor: pointer;
+      background: none; border: none; padding: 4px;
     }
+    .nav-hamburger span {
+      display: block; width: 100%; height: 2px;
+      background: var(--charcoal); border-radius: 2px;
+      transition: all .3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile-menu {
+      display: none;
+      position: fixed; top: 62px; left: 0; right: 0; z-index: 99;
+      background: rgba(253,248,245,.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--blush);
+      padding: 1.2rem 6vw 1.5rem;
+      flex-direction: column; gap: .2rem;
+      box-shadow: 0 8px 32px rgba(194,88,110,.12);
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a {
+      text-decoration: none; font-size: 1rem; font-weight: 500;
+      color: var(--charcoal); padding: .75rem 0;
+      border-bottom: 1px solid var(--blush);
+      letter-spacing: .04em; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-mobile-menu a:last-child { border-bottom: none; }
+    .nav-mobile-menu a:hover, .nav-mobile-menu a.cta { color: var(--rose); }
+    .nav-mobile-menu a.cta {
+      margin-top: .6rem;
+      display: block; text-align: center;
+      background: var(--rose); color: #fff !important;
+      border-radius: 50px; padding: .85rem;
+      font-weight: 600; border-bottom: none;
+    }
+
+    /* ─── RESPONSIVE — TABLET (≤ 900px) ──────────────── */
+    @media (max-width: 900px) {
+      nav .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      section { padding: 4rem 5vw; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 6rem 5vw 3rem;
+        gap: 2.5rem;
+        min-height: auto;
+      }
+      .hero::before { display: none; }
+      .hero-sub { max-width: 100%; font-size: 1rem; }
+      .hero-buttons { justify-content: center; }
+      .hero-stats { justify-content: center; gap: 1.5rem; }
+      .hero-image-wrap { order: -1; }
+      .hero-card { max-width: 280px; }
+      .hero-card-img { aspect-ratio: 4/3; font-size: 4rem; }
+
+      .lipedema-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+
+      .symptoms-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .approach-grid { grid-template-columns: 1fr 1fr; }
+
+      .services-grid { grid-template-columns: 1fr 1fr; }
+
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      .lipedema-grid { margin-top: 2rem; }
+      .stages-list { margin-top: 2rem; }
+    }
+
+    /* ─── RESPONSIVE — MOBILE (≤ 600px) ──────────────── */
     @media (max-width: 600px) {
-      .approach-grid { grid-template-columns: 1fr; }
-      .stages-list { grid-template-columns: 1fr 1fr; }
+      section { padding: 3rem 4vw; }
+
+      .hero { padding: 5.5rem 4vw 2.5rem; gap: 2rem; }
+      .hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
+      .hero-sub { font-size: .95rem; }
+      .hero-card { max-width: 240px; }
+      .hero-card-img { font-size: 3rem; }
+      .hero-card-badge { padding: .75rem 1rem; }
+      .hero-card-badge strong { font-size: .82rem; }
+      .hero-card-badge p { font-size: .75rem; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-outline {
+        width: 100%; max-width: 300px;
+        text-align: center; padding: .85rem 1.5rem;
+      }
+      .hero-stats { gap: 1rem; }
+      .hero-stat strong { font-size: 1.6rem; }
+
+      .section-title { font-size: clamp(1.6rem, 6vw, 2rem); }
+      .section-sub { font-size: .95rem; }
+
+      .cards-grid { grid-template-columns: 1fr; }
+
+      .stages-list { grid-template-columns: 1fr; gap: 1rem; }
+      .stage-card { padding: 1.5rem 1.2rem; }
+
+      .approach-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .approach-card { padding: 1.5rem; }
+
+      .services-grid { grid-template-columns: 1fr; }
+
+      .symptom-group h3 { font-size: 1.1rem; }
+      .symptom-list li { font-size: .88rem; }
+
+      .faq-q { font-size: .88rem; padding: 1rem 1.2rem; }
+      .faq-a { padding: 0 1.2rem 1rem; font-size: .86rem; }
+
+      .testimonials-grid { gap: 1.2rem; }
+      .testimonial-card { padding: 1.4rem; }
+      .testimonial-card blockquote { font-size: .88rem; }
+
+      .cta { padding: 3.5rem 4vw; }
+      .cta .btn-primary { width: 100%; max-width: 320px; }
+
+      .highlight-box { padding: 1rem 1.2rem; }
+      .alert-card { padding: 1.4rem; }
+    }
+
+    /* ─── RESPONSIVE — SMALL (≤ 380px) ───────────────── */
+    @media (max-width: 380px) {
+      .hero-card { max-width: 200px; }
+      .hero h1 { font-size: 1.9rem; }
+      .hero-stats { flex-direction: column; gap: .8rem; align-items: center; }
+      .nav-logo { font-size: 1.2rem; }
     }
   </style>
 </head>
@@ -464,7 +585,18 @@
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contato" class="nav-cta">Fale comigo</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mobile-menu" id="mobileMenu">
+  <a href="#lipedema" onclick="closeMobile()">Lipedema</a>
+  <a href="#estagios" onclick="closeMobile()">Estágios</a>
+  <a href="#abordagem" onclick="closeMobile()">Método</a>
+  <a href="#servicos" onclick="closeMobile()">Serviços</a>
+  <a href="#faq" onclick="closeMobile()">FAQ</a>
+  <a href="#contato" class="cta" onclick="closeMobile()">Fale comigo</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1007,6 +1139,24 @@
   // Nav scroll effect
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      closeMobile();
+    }
   });
 
   // FAQ toggle
