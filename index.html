@@ -432,6 +432,89 @@
     footer p { font-size: .85rem; }
     footer a { color: var(--rose-lt); text-decoration: none; }
 
+    /* ─── SOBRE ───────────────────────────────────────── */
+    .sobre { background: var(--white); }
+    .sobre-grid {
+      display: grid; grid-template-columns: 1fr 1.15fr;
+      gap: 5rem; align-items: center; margin-top: 3.5rem;
+    }
+    .sobre-photo-wrap { position: relative; }
+    .sobre-photo-frame {
+      position: relative; border-radius: 2rem; overflow: hidden;
+      box-shadow: 0 32px 80px rgba(194,88,110,.22);
+      max-width: 420px;
+    }
+    .sobre-photo-frame img {
+      width: 100%; display: block; object-fit: cover;
+      aspect-ratio: 3/4;
+    }
+    .sobre-photo-deco {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      width: 180px; height: 180px;
+      background: var(--blush); border-radius: 50%;
+      z-index: -1;
+    }
+    .sobre-photo-deco2 {
+      position: absolute; top: -1.5rem; left: -1.5rem;
+      width: 100px; height: 100px;
+      background: var(--rose-bg); border-radius: 50%;
+      z-index: -1;
+    }
+    .sobre-badge-float {
+      position: absolute; bottom: 2rem; left: -2rem;
+      background: var(--white);
+      border-radius: 1rem; padding: .9rem 1.2rem;
+      box-shadow: 0 8px 32px rgba(194,88,110,.18);
+      display: flex; align-items: center; gap: .7rem;
+      min-width: 210px;
+    }
+    .sobre-badge-float .badge-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose), var(--plum));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .sobre-badge-float strong { display: block; font-size: .85rem; color: var(--charcoal); }
+    .sobre-badge-float span { font-size: .75rem; color: var(--gray); }
+
+    .sobre-content { display: flex; flex-direction: column; gap: 1.4rem; }
+    .sobre-credentials {
+      display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: .4rem;
+    }
+    .cred-pill {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: var(--light); border: 1.5px solid var(--blush);
+      border-radius: 50px; padding: .4rem 1rem;
+      font-size: .8rem; font-weight: 600; color: var(--plum);
+    }
+    .cred-pill span { font-size: .95rem; }
+    .sobre-text {
+      font-size: 1rem; color: var(--gray); line-height: 1.9;
+    }
+    .sobre-text strong { color: var(--charcoal); }
+    .sobre-quote {
+      background: linear-gradient(135deg, var(--rose-bg), #fff3f6);
+      border-left: 4px solid var(--rose);
+      border-radius: 0 1rem 1rem 0;
+      padding: 1.2rem 1.5rem;
+      font-size: 1rem; font-style: italic;
+      color: var(--plum); font-weight: 500; line-height: 1.7;
+    }
+    .sobre-pillars {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: .8rem; margin-top: .4rem;
+    }
+    .pilar-item {
+      background: var(--light); border-radius: 1rem;
+      padding: 1rem 1.1rem;
+      display: flex; align-items: flex-start; gap: .7rem;
+    }
+    .pilar-item .pilar-icon {
+      font-size: 1.3rem; flex-shrink: 0; margin-top: .1rem;
+    }
+    .pilar-item h4 { font-size: .88rem; color: var(--plum); font-weight: 600; margin-bottom: .2rem; }
+    .pilar-item p { font-size: .78rem; color: var(--gray); line-height: 1.6; margin: 0; }
+
     /* ─── HAMBURGER ───────────────────────────────────── */
     .nav-hamburger {
       display: none;
@@ -498,6 +581,10 @@
       .hero-card { max-width: 280px; }
       .hero-card-img { aspect-ratio: 4/3; font-size: 4rem; }
 
+      .sobre-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .sobre-photo-frame { max-width: 320px; margin: 0 auto; }
+      .sobre-badge-float { left: 0; bottom: 1rem; min-width: 190px; }
+      .sobre-pillars { grid-template-columns: 1fr 1fr; }
       .lipedema-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .cards-grid { grid-template-columns: 1fr 1fr; }
 
@@ -537,6 +624,8 @@
       .section-sub { font-size: .95rem; }
 
       .cards-grid { grid-template-columns: 1fr; }
+      .sobre-pillars { grid-template-columns: 1fr; }
+      .sobre-badge-float { position: static; margin-top: 1rem; width: 100%; }
 
       .stages-list { grid-template-columns: 1fr; gap: 1rem; }
       .stage-card { padding: 1.5rem 1.2rem; }
@@ -578,6 +667,7 @@
 <nav id="navbar">
   <div class="nav-logo">Mileni <span>Rosa</span></div>
   <ul class="nav-links">
+    <li><a href="#sobre">Sobre mim</a></li>
     <li><a href="#lipedema">Lipedema</a></li>
     <li><a href="#estagios">Estágios</a></li>
     <li><a href="#abordagem">Método</a></li>
@@ -590,6 +680,7 @@
   </button>
 </nav>
 <div class="nav-mobile-menu" id="mobileMenu">
+  <a href="#sobre" onclick="closeMobile()">Sobre mim</a>
   <a href="#lipedema" onclick="closeMobile()">Lipedema</a>
   <a href="#estagios" onclick="closeMobile()">Estágios</a>
   <a href="#abordagem" onclick="closeMobile()">Método</a>
@@ -630,12 +721,94 @@
   </div>
   <div class="hero-image-wrap">
     <div class="hero-card">
-      <div class="hero-card-img">🌸</div>
+      <img src="mileni.jpeg" alt="Mileni Scheffer" style="width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;display:block;" />
       <div class="hero-card-badge">
         <div class="hero-card-badge-icon">💪</div>
         <div>
           <strong>Método exclusivo para lipedema</strong>
           <p>Exercícios adaptados e seguros</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div>
+    <span class="section-tag">Conheça sua personal</span>
+    <h2 class="section-title">Quem é <em>Mileni Scheffer?</em></h2>
+  </div>
+  <div class="sobre-grid">
+    <div class="sobre-photo-wrap">
+      <div class="sobre-photo-frame">
+        <img src="mileni.jpeg" alt="Mileni Scheffer — Personal Trainer especializada em lipedema" />
+      </div>
+      <div class="sobre-photo-deco"></div>
+      <div class="sobre-photo-deco2"></div>
+      <div class="sobre-badge-float">
+        <div class="badge-icon">🏅</div>
+        <div>
+          <strong>Metodologia Mtor</strong>
+          <span>Formação certificada</span>
+        </div>
+      </div>
+    </div>
+    <div class="sobre-content">
+      <div class="sobre-credentials">
+        <span class="cred-pill"><span>🎓</span> Metodologia Mtor</span>
+        <span class="cred-pill"><span>🔬</span> Especialista em Bioquímica</span>
+        <span class="cred-pill"><span>🩺</span> Olhar Clínico</span>
+        <span class="cred-pill"><span>👩</span> Saúde da Mulher</span>
+        <span class="cred-pill"><span>💜</span> Especialista em Lipedema</span>
+      </div>
+      <div class="sobre-quote">
+        "Treinar vai muito além do músculo — é entender o corpo de dentro para fora, respeitando cada hormônio, cada dor e cada história."
+      </div>
+      <p class="sobre-text">
+        Sou <strong>Mileni Scheffer</strong>, personal trainer com mais de <strong>2 anos de experiência</strong>
+        em atendimento especializado na saúde da mulher. Formada na <strong>Metodologia Mtor</strong> —
+        referência no tratamento de lipedema pelo movimento —, meu trabalho vai além do exercício
+        convencional.
+      </p>
+      <p class="sobre-text">
+        Com <strong>especialização em bioquímica</strong> e um olhar clínico apurado, avalio cada
+        aluna de forma integral: hormônios, inflamação, histórico médico e bem-estar emocional.
+        Acredito que o treino mais eficaz é aquele que nasce <strong>de dentro para fora</strong>,
+        respeitando o que o seu corpo comunica a cada sessão.
+      </p>
+      <p class="sobre-text">
+        Meu foco é <strong>promover saúde e diminuir a dor</strong> causada pelo lipedema — porque
+        você merece se mover com leveza, sem culpa e sem comparação.
+      </p>
+      <div class="sobre-pillars">
+        <div class="pilar-item">
+          <span class="pilar-icon">🧬</span>
+          <div>
+            <h4>Avaliação hormonal</h4>
+            <p>Treino baseado no ciclo e perfil hormonal de cada mulher</p>
+          </div>
+        </div>
+        <div class="pilar-item">
+          <span class="pilar-icon">🔬</span>
+          <div>
+            <h4>Base bioquímica</h4>
+            <p>Entendimento profundo da inflamação e do metabolismo do lipedema</p>
+          </div>
+        </div>
+        <div class="pilar-item">
+          <span class="pilar-icon">💜</span>
+          <div>
+            <h4>Redução de dor</h4>
+            <p>Protocolos específicos para diminuir o desconforto crônico</p>
+          </div>
+        </div>
+        <div class="pilar-item">
+          <span class="pilar-icon">🌿</span>
+          <div>
+            <h4>Metodologia Mtor</h4>
+            <p>Formação certificada com foco em movimento terapêutico feminino</p>
+          </div>
         </div>
       </div>
     </div>
