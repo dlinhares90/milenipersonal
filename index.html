@@ -319,12 +319,14 @@
     }
     .symptom-list { list-style: none; display: flex; flex-direction: column; gap: .7rem; }
     .symptom-list li {
-      display: flex; align-items: flex-start; gap: .8rem;
+      position: relative;
+      padding-left: 1.3rem;
       font-size: .94rem; color: var(--gray); line-height: 1.6;
     }
     .symptom-list li::before {
       content: '•'; color: var(--rose);
-      font-size: 1.2rem; line-height: 1.3; flex-shrink: 0;
+      font-size: 1.3rem; line-height: 1;
+      position: absolute; left: 0; top: .15rem;
     }
     .symptom-list li strong { color: var(--charcoal); }
     .alert-card {
