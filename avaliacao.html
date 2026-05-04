@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avaliação Inicial | Mileni Rosa Personal</title>
+  <meta name="description" content="Formulário de avaliação inicial — Mileni Rosa Personal Trainer. Preencha seus dados para iniciarmos o acompanhamento." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#c2586e" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💗</text></svg>" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:    #c2586e;
+      --rose-lt: #e8899a;
+      --rose-bg: #fdf0f3;
+      --plum:    #7b3f5e;
+      --blush:   #f5d6de;
+      --cream:   #fdf8f5;
+      --charcoal:#2d2d2d;
+      --gray:    #6b6b6b;
+      --light:   #f9f4f6;
+      --white:   #ffffff;
+      --error:   #c0392b;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--charcoal);
+      background: var(--cream);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .logo {
+      font-family: 'Lora', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--rose);
+      letter-spacing: -.02em;
+      text-decoration: none;
+    }
+    .logo span { color: var(--plum); font-style: italic; }
+
+    h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--plum);
+      font-weight: 700;
+      margin: 1.5rem 0 .5rem;
+      line-height: 1.2;
+    }
+    .subtitle {
+      color: var(--gray);
+      font-size: .95rem;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* Progresso */
+    .progress {
+      display: flex;
+      gap: .4rem;
+      margin: 2rem auto 1.5rem;
+      max-width: 480px;
+    }
+    .progress-step {
+      flex: 1;
+      height: 6px;
+      background: var(--blush);
+      border-radius: 3px;
+      transition: background .3s;
+    }
+    .progress-step.active { background: var(--rose); }
+    .progress-label {
+      text-align: center;
+      font-size: .82rem;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    /* Card do formulário */
+    .form-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 30px rgba(194,88,110,.08);
+      border: 1px solid var(--blush);
+    }
+    @media (min-width: 640px) {
+      .form-card { padding: 2.5rem 2.5rem; }
+    }
+
+    .step { display: none; animation: fadeIn .3s ease; }
+    .step.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-title {
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      color: var(--plum);
+      font-weight: 600;
+      margin-bottom: .25rem;
+    }
+    .step-hint {
+      color: var(--gray);
+      font-size: .9rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .field {
+      margin-bottom: 1.4rem;
+    }
+    .field label {
+      display: block;
+      font-size: .92rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: .45rem;
+    }
+    .field .help {
+      font-size: .8rem;
+      color: var(--gray);
+      margin-top: .35rem;
+      font-weight: 400;
+    }
+    .req { color: var(--rose); }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: .8rem 1rem;
+      border: 1.5px solid var(--blush);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--charcoal);
+      background: var(--white);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(194,88,110,.12);
+    }
+    textarea { min-height: 90px; resize: vertical; }
+
+    /* Radios e checkboxes */
+    .options { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .option {
+      flex: 1 1 calc(50% - .25rem);
+      min-width: 130px;
+    }
+    .option input { position: absolute; opacity: 0; pointer-events: none; }
+    .option label {
+      display: block;
+      padding: .7rem 1rem;
+      border: 1.5px solid var(--blush);
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 500;
+      font-size: .92rem;
+      transition: all .2s;
+      margin: 0;
+    }
+    .option input:checked + label {
+      background: var(--rose-bg);
+      border-color: var(--rose);
+      color: var(--plum);
+      font-weight: 600;
+    }
+
+    /* Upload de arquivos */
+    .file-field {
+      border: 2px dashed var(--blush);
+      border-radius: 12px;
+      padding: 1.25rem 1rem;
+      text-align: center;
+      background: var(--cream);
+      transition: all .2s;
+      cursor: pointer;
+      position: relative;
+    }
+    .file-field:hover { border-color: var(--rose-lt); background: var(--rose-bg); }
+    .file-field input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .file-icon { font-size: 1.6rem; display: block; margin-bottom: .25rem; }
+    .file-text { font-size: .92rem; font-weight: 600; color: var(--plum); }
+    .file-sub { font-size: .78rem; color: var(--gray); margin-top: .15rem; }
+    .file-name {
+      display: none;
+      margin-top: .5rem;
+      font-size: .85rem;
+      color: var(--rose);
+      font-weight: 600;
+      word-break: break-all;
+    }
+    .file-field.has-file { border-style: solid; border-color: var(--rose); background: var(--rose-bg); }
+    .file-field.has-file .file-name { display: block; }
+
+    /* Consentimento */
+    .consent {
+      background: var(--rose-bg);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--rose);
+    }
+    .consent label {
+      display: flex;
+      gap: .75rem;
+      cursor: pointer;
+      font-size: .88rem;
+      line-height: 1.55;
+      color: var(--charcoal);
+      font-weight: 400;
+    }
+    .consent input[type="checkbox"] {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      margin-top: 2px;
+      accent-color: var(--rose);
+      cursor: pointer;
+    }
+
+    /* Navegação */
+    .nav-buttons {
+      display: flex;
+      gap: .75rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    button {
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: .85rem 1.75rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: all .2s;
+      letter-spacing: .02em;
+    }
+    .btn-primary {
+      background: var(--rose);
+      color: var(--white);
+      flex: 1;
+      min-width: 140px;
+    }
+    .btn-primary:hover { background: var(--plum); transform: translateY(-1px); }
+    .btn-primary:disabled { background: var(--rose-lt); cursor: not-allowed; transform: none; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--plum);
+      border: 1.5px solid var(--blush);
+    }
+    .btn-secondary:hover { border-color: var(--rose); color: var(--rose); }
+
+    .error-msg {
+      color: var(--error);
+      font-size: .82rem;
+      margin-top: .35rem;
+      display: none;
+    }
+    .field.has-error input,
+    .field.has-error select,
+    .field.has-error textarea { border-color: var(--error); }
+    .field.has-error .error-msg { display: block; }
+
+    /* Tela de sucesso */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .success-screen.active { display: block; }
+    .success-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+    .success-screen h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.6rem;
+      color: var(--plum);
+      margin-bottom: .75rem;
+    }
+    .success-screen p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: var(--gray);
+      font-size: .8rem;
+      margin-top: 2rem;
+      padding: 0 1rem;
+    }
+    .footer-note a { color: var(--rose); text-decoration: none; }
+
+    /* Loading */
+    .spinner {
+      display: inline-block;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,.4);
+      border-top-color: var(--white);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      vertical-align: -3px;
+      margin-right: .5rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <header class="header">
+    <a href="index.html" class="logo">Mileni <span>Rosa</span></a>
+    <h1>Avaliação Inicial</h1>
+    <p class="subtitle">Para montar o seu plano com cuidado e personalização, preciso te conhecer um pouco melhor. Leva uns 5 minutos. 💗</p>
+  </header>
+
+  <div class="progress" id="progress">
+    <div class="progress-step active"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+  </div>
+  <div class="progress-label" id="progressLabel">Etapa 1 de 5</div>
+
+  <div class="form-card">
+    <!-- Form Netlify -->
+    <form
+      id="avaliacaoForm"
+      name="avaliacao"
+      method="POST"
+      enctype="multipart/form-data"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      action="/obrigada"
+    >
+      <input type="hidden" name="form-name" value="avaliacao" />
+      <p style="display:none;"><label>Não preencher: <input name="bot-field" /></label></p>
+
+      <!-- ETAPA 1 — DADOS PESSOAIS -->
+      <section class="step active" data-step="1">
+        <h2 class="step-title">Dados pessoais</h2>
+        <p class="step-hint">Vamos começar pelo básico.</p>
+
+        <div class="field" data-required>
+          <label for="nome">Nome completo <span class="req">*</span></label>
+          <input type="text" id="nome" name="nome" autocomplete="name" required />
+          <div class="error-msg">Por favor, informe seu nome.</div>
+        </div>
+
+        <div class="field" data-required>
+          <label for="nascimento">Data de nascimento <span class="req">*</span></label>
+          <input type="date" id="nascimento" name="data_nascimento" required />
+          <div class="error-msg">Informe sua data de nascimento.</div>
+        </div>
+
+        <div class="field" data-required>
+          <label for="email">E-mail (que você acessa) <span class="req">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="email" required />
+          <div class="error-msg">Informe um e-mail válido.</div>
+        </div>
+
+        <div class="field">
+          <label for="whatsapp">WhatsApp (com DDD)</label>
+          <input type="text" id="whatsapp" name="whatsapp" inputmode="tel" placeholder="(11) 99999-9999" />
+          <div class="help">Opcional, mas ajuda no contato direto.</div>
+        </div>
+      </section>
+
+      <!-- ETAPA 2 — SAÚDE -->
+      <section class="step" data-step="2">
+        <h2 class="step-title">Sua saúde</h2>
+        <p class="step-hint">Essas informações me ajudam a adaptar tudo com segurança.</p>
+
+        <div class="field">
+          <label for="lesoes">Lesões, dores ou limitações</label>
+          <textarea id="lesoes" name="lesoes_dores" placeholder="Ex: dor no joelho direito, hérnia lombar, fascite... Se não tiver, escreva 'nenhuma'."></textarea>
+        </div>
+
+        <div class="field">
+          <label>Já foi gestante?</label>
+          <div class="options">
+            <div class="option">
+              <input type="radio" id="gest-sim" name="gestante" value="Sim" />
+              <label for="gest-sim">Sim</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="gest-nao" name="gestante" value="Não" />
+              <label for="gest-nao">Não</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Patologia ginecológica?</label>
+          <div class="help" style="margin-top:0;margin-bottom:.5rem;">Endometriose, adenomiose, SOP, etc. Pode marcar mais de uma.</div>
+          <div class="options">
+            <div class="option">
+              <input type="checkbox" id="pat-endo" name="patologia_endometriose" value="Endometriose" />
+              <label for="pat-endo">Endometriose</label>
+            </div>
+            <div class="option">
+              <input type="checkbox" id="pat-adeno" name="patologia_adenomiose" value="Adenomiose" />
+              <label for="pat-adeno">Adenomiose</label>
+            </div>
+            <div class="option">
+              <input type="checkbox" id="pat-sop" name="patologia_sop" value="SOP" />
+              <label for="pat-sop">SOP</label>
+            </div>
+            <div class="option">
+              <input type="checkbox" id="pat-nenhuma" name="patologia_nenhuma" value="Nenhuma" />
+              <label for="pat-nenhuma">Nenhuma</label>
+            </div>
+          </div>
+          <div class="field" style="margin-top:.75rem;margin-bottom:0;">
+            <input type="text" id="patologia-outra" name="patologia_outra" placeholder="Outra? Descreva aqui..." />
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Faz uso de alguma medicação tarja preta?</label>
+          <div class="options">
+            <div class="option">
+              <input type="radio" id="tp-sim" name="medicacao_tarja_preta" value="Sim" />
+              <label for="tp-sim">Sim</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="tp-nao" name="medicacao_tarja_preta" value="Não" />
+              <label for="tp-nao">Não</label>
+            </div>
+          </div>
+          <div class="field" style="margin-top:.75rem;margin-bottom:0;">
+            <input type="text" name="medicacao_qual" placeholder="Se sim, qual(is)?" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="exames">Exames de sangue recentes</label>
+          <div class="file-field" id="exames-drop">
+            <input type="file" id="exames" name="exames_sangue" accept=".pdf,.jpg,.jpeg,.png,.heic" />
+            <span class="file-icon">📄</span>
+            <span class="file-text">Anexar exame (PDF ou foto)</span>
+            <span class="file-sub">Opcional — até 8MB</span>
+            <span class="file-name"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ETAPA 3 — TREINO E ROTINA -->
+      <section class="step" data-step="3">
+        <h2 class="step-title">Treino e rotina</h2>
+        <p class="step-hint">Pra eu encaixar tudo na sua realidade.</p>
+
+        <div class="field">
+          <label for="tempo-disponivel">Tempo disponível para os treinos</label>
+          <select id="tempo-disponivel" name="tempo_disponivel">
+            <option value="">Selecione...</option>
+            <option>30 minutos</option>
+            <option>45 minutos</option>
+            <option>1 hora</option>
+            <option>1h30</option>
+            <option>Mais de 1h30</option>
+          </select>
+          <div class="help">Quantos minutos por sessão você consegue dedicar.</div>
+        </div>
+
+        <div class="field">
+          <label>Quanto tempo já é adepta à atividade física?</label>
+          <div class="options">
+            <div class="option">
+              <input type="radio" id="t1" name="tempo_atividade" value="Estou começando agora" />
+              <label for="t1">Começando agora</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="t2" name="tempo_atividade" value="Menos de 6 meses" />
+              <label for="t2">Menos de 6 meses</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="t3" name="tempo_atividade" value="6 meses a 2 anos" />
+              <label for="t3">6 meses a 2 anos</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="t4" name="tempo_atividade" value="Mais de 2 anos" />
+              <label for="t4">Mais de 2 anos</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Tem acompanhamento nutricional?</label>
+          <div class="options">
+            <div class="option">
+              <input type="radio" id="n-sim" name="nutricional" value="Sim" />
+              <label for="n-sim">Sim</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="n-nao" name="nutricional" value="Não" />
+              <label for="n-nao">Não</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="agua">Quantidade de água ingerida por dia</label>
+          <input type="text" id="agua" name="agua_dia" placeholder="Ex: 2 litros, 1,5L, 6 copos..." />
+        </div>
+
+        <div class="field">
+          <label>O ciclo menstrual afeta sua rotina de treinos?</label>
+          <div class="options">
+            <div class="option">
+              <input type="radio" id="c1" name="ciclo_afeta" value="Sim, muito" />
+              <label for="c1">Sim, muito</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="c2" name="ciclo_afeta" value="Um pouco" />
+              <label for="c2">Um pouco</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="c3" name="ciclo_afeta" value="Não afeta" />
+              <label for="c3">Não afeta</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="c4" name="ciclo_afeta" value="Não se aplica" />
+              <label for="c4">Não se aplica</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Gostaria de algum treino extra para fazer em casa?</label>
+          <div class="help" style="margin-top:0;margin-bottom:.5rem;">Ex: alongamento, mobilidade, respiração.</div>
+          <div class="options">
+            <div class="option">
+              <input type="checkbox" id="ex-along" name="extra_alongamento" value="Alongamento" />
+              <label for="ex-along">Alongamento</label>
+            </div>
+            <div class="option">
+              <input type="checkbox" id="ex-mob" name="extra_mobilidade" value="Mobilidade" />
+              <label for="ex-mob">Mobilidade</label>
+            </div>
+            <div class="option">
+              <input type="checkbox" id="ex-resp" name="extra_respiracao" value="Respiração" />
+              <label for="ex-resp">Respiração</label>
+            </div>
+            <div class="option">
+              <input type="checkbox" id="ex-nao" name="extra_nao" value="Não preciso" />
+              <label for="ex-nao">Não preciso</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ETAPA 4 — FOTOS -->
+      <section class="step" data-step="4">
+        <h2 class="step-title">Fotos para avaliação</h2>
+        <p class="step-hint">Frente, lado e costas — incluindo os pés. Pode usar biquíni ou top + bermudinha (o que ficar mais confortável). As fotos são confidenciais e usadas só para sua avaliação.</p>
+
+        <div class="field">
+          <label>Foto de frente</label>
+          <div class="file-field">
+            <input type="file" name="foto_frente" accept="image/*" capture="environment" />
+            <span class="file-icon">📸</span>
+            <span class="file-text">Tirar / escolher foto</span>
+            <span class="file-sub">Mostre dos pés à cabeça</span>
+            <span class="file-name"></span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Foto de lado</label>
+          <div class="file-field">
+            <input type="file" name="foto_lado" accept="image/*" capture="environment" />
+            <span class="file-icon">📸</span>
+            <span class="file-text">Tirar / escolher foto</span>
+            <span class="file-sub">Perfil completo, com pés</span>
+            <span class="file-name"></span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Foto de costas</label>
+          <div class="file-field">
+            <input type="file" name="foto_costas" accept="image/*" capture="environment" />
+            <span class="file-icon">📸</span>
+            <span class="file-text">Tirar / escolher foto</span>
+            <span class="file-sub">Costas inteiras, com pés</span>
+            <span class="file-name"></span>
+          </div>
+        </div>
+
+        <div class="help" style="text-align:center;margin-top:.5rem;">
+          Se preferir, você pode pular esta etapa e me enviar as fotos depois pelo WhatsApp.
+        </div>
+      </section>
+
+      <!-- ETAPA 5 — CONSENTIMENTO -->
+      <section class="step" data-step="5">
+        <h2 class="step-title">Quase lá!</h2>
+        <p class="step-hint">Algo mais que você queira me contar?</p>
+
+        <div class="field">
+          <label for="observacoes">Observações livres</label>
+          <textarea id="observacoes" name="observacoes" placeholder="Objetivos, expectativas, restrições alimentares, qualquer coisa que considere importante..."></textarea>
+        </div>
+
+        <div class="consent">
+          <label>
+            <input type="checkbox" id="consent" name="consentimento" value="Sim" required />
+            <span>
+              Autorizo o uso das informações e fotos enviadas <strong>exclusivamente para minha avaliação física e prescrição de treino</strong>, em conformidade com a LGPD. Sei que meus dados serão tratados de forma confidencial e não compartilhados com terceiros. <span class="req">*</span>
+            </span>
+          </label>
+        </div>
+
+        <div class="error-msg" id="consent-error">É preciso autorizar para enviar.</div>
+      </section>
+
+      <!-- Navegação -->
+      <div class="nav-buttons">
+        <button type="button" class="btn-secondary" id="btnBack" style="display:none;">← Voltar</button>
+        <button type="button" class="btn-primary" id="btnNext">Continuar →</button>
+        <button type="submit" class="btn-primary" id="btnSubmit" style="display:none;">Enviar avaliação 💗</button>
+      </div>
+    </form>
+
+    <!-- Tela de sucesso (in-page fallback se não redirecionar) -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">💗</div>
+      <h2>Recebido com carinho!</h2>
+      <p>Obrigada por confiar. Vou analisar suas respostas e em breve entro em contato pelo e-mail ou WhatsApp informado.</p>
+      <a href="index.html" class="btn-primary" style="display:inline-block;text-decoration:none;padding:.85rem 2rem;">Voltar ao site</a>
+    </div>
+  </div>
+
+  <p class="footer-note">
+    Suas informações são confidenciais. Em caso de dúvida, fale comigo direto:
+    <a href="https://wa.me/5500000000000" target="_blank" rel="noopener">WhatsApp</a>
+  </p>
+</div>
+
+<script>
+  const form = document.getElementById('avaliacaoForm');
+  const steps = form.querySelectorAll('.step');
+  const progressSteps = document.querySelectorAll('#progress .progress-step');
+  const progressLabel = document.getElementById('progressLabel');
+  const btnBack = document.getElementById('btnBack');
+  const btnNext = document.getElementById('btnNext');
+  const btnSubmit = document.getElementById('btnSubmit');
+  const total = steps.length;
+  let current = 1;
+
+  function render() {
+    steps.forEach(s => s.classList.toggle('active', +s.dataset.step === current));
+    progressSteps.forEach((p, i) => p.classList.toggle('active', i < current));
+    progressLabel.textContent = `Etapa ${current} de ${total}`;
+    btnBack.style.display = current === 1 ? 'none' : 'inline-block';
+    btnNext.style.display = current === total ? 'none' : 'inline-block';
+    btnSubmit.style.display = current === total ? 'inline-block' : 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function validateStep(stepNum) {
+    const step = form.querySelector(`.step[data-step="${stepNum}"]`);
+    const requiredFields = step.querySelectorAll('[data-required]');
+    let valid = true;
+    requiredFields.forEach(f => {
+      const input = f.querySelector('input, select, textarea');
+      const hasValue = input && input.value.trim() !== '';
+      const validEmail = input.type !== 'email' || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(input.value);
+      if (!hasValue || !validEmail) {
+        f.classList.add('has-error');
+        valid = false;
+      } else {
+        f.classList.remove('has-error');
+      }
+    });
+    return valid;
+  }
+
+  btnNext.addEventListener('click', () => {
+    if (!validateStep(current)) return;
+    if (current < total) { current++; render(); }
+  });
+
+  btnBack.addEventListener('click', () => {
+    if (current > 1) { current--; render(); }
+  });
+
+  // Feedback visual nos uploads
+  document.querySelectorAll('.file-field').forEach(field => {
+    const input = field.querySelector('input[type="file"]');
+    const nameEl = field.querySelector('.file-name');
+    input.addEventListener('change', () => {
+      if (input.files && input.files[0]) {
+        nameEl.textContent = '✓ ' + input.files[0].name;
+        field.classList.add('has-file');
+      } else {
+        nameEl.textContent = '';
+        field.classList.remove('has-file');
+      }
+    });
+  });
+
+  // Validação do consentimento + estado de envio
+  form.addEventListener('submit', (e) => {
+    const consent = document.getElementById('consent');
+    const consentError = document.getElementById('consent-error');
+    if (!consent.checked) {
+      e.preventDefault();
+      consentError.style.display = 'block';
+      return;
+    }
+    btnSubmit.disabled = true;
+    btnSubmit.innerHTML = '<span class="spinner"></span>Enviando...';
+  });
+
+  render();
+</script>
+
+</body>
+</html>
