@@ -343,8 +343,9 @@
 <div class="page">
   <header class="header">
     <a href="index.html" class="logo">Mileni <span>Rosa</span></a>
-    <h1>Avaliação Inicial</h1>
-    <p class="subtitle">Para montar o seu plano com cuidado e personalização, preciso te conhecer um pouco melhor. Leva uns 5 minutos. 💗</p>
+    <h1 id="pageTitle">Avaliação Inicial</h1>
+    <p class="subtitle" id="pageSubtitle">Para montar o seu plano com cuidado e personalização, preciso te conhecer um pouco melhor. Leva uns 5 minutos. 💗</p>
+    <div id="accessBadge" style="display:none;margin-top:1rem;font-size:.78rem;color:var(--plum);background:var(--rose-bg);padding:.4rem 1rem;border-radius:999px;letter-spacing:.05em;border:1px solid var(--blush);"></div>
   </header>
 
   <div class="progress" id="progress">
@@ -368,6 +369,7 @@
       action="/obrigada"
     >
       <input type="hidden" name="form-name" value="avaliacao" />
+      <input type="hidden" name="Código de acesso" id="accessCode" value="" />
       <p style="display:none;"><label>Não preencher: <input name="bot-field" /></label></p>
 
       <!-- ETAPA 1 — DADOS PESSOAIS -->
@@ -675,6 +677,28 @@
 </div>
 
 <script>
+  // Leitura do código de acesso na URL: ?c=maria-2026 ou ?c=ABC123&n=Maria
+  (function readAccessCode() {
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('c') || params.get('code') || '';
+    const name = params.get('n') || params.get('nome') || '';
+    if (code) {
+      document.getElementById('accessCode').value = code;
+      const badge = document.getElementById('accessBadge');
+      badge.textContent = '✦ Acesso personalizado · ' + code.toUpperCase();
+      badge.style.display = 'inline-block';
+    }
+    if (name) {
+      const firstName = decodeURIComponent(name).split(' ')[0];
+      const title = document.getElementById('pageTitle');
+      const subtitle = document.getElementById('pageSubtitle');
+      title.textContent = 'Olá, ' + firstName + ' 💗';
+      subtitle.textContent = 'Que bom te ver por aqui! Pra montar seu plano com cuidado, preciso te conhecer um pouco melhor. Leva uns 5 minutos.';
+      const nomeInput = document.getElementById('nome');
+      if (nomeInput && !nomeInput.value) nomeInput.value = decodeURIComponent(name);
+    }
+  })();
+
   const form = document.getElementById('avaliacaoForm');
   const steps = form.querySelectorAll('.step');
   const progressSteps = document.querySelectorAll('#progress .progress-step');
