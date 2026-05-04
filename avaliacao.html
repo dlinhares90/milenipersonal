@@ -377,25 +377,25 @@
 
         <div class="field" data-required>
           <label for="nome">Nome completo <span class="req">*</span></label>
-          <input type="text" id="nome" name="nome" autocomplete="name" required />
+          <input type="text" id="nome" name="Nome" autocomplete="name" required />
           <div class="error-msg">Por favor, informe seu nome.</div>
         </div>
 
         <div class="field" data-required>
           <label for="nascimento">Data de nascimento <span class="req">*</span></label>
-          <input type="date" id="nascimento" name="data_nascimento" required />
+          <input type="date" id="nascimento" name="Data de nascimento" required />
           <div class="error-msg">Informe sua data de nascimento.</div>
         </div>
 
         <div class="field" data-required>
           <label for="email">E-mail (que você acessa) <span class="req">*</span></label>
-          <input type="email" id="email" name="email" autocomplete="email" required />
+          <input type="email" id="email" name="E-mail" autocomplete="email" required />
           <div class="error-msg">Informe um e-mail válido.</div>
         </div>
 
         <div class="field">
           <label for="whatsapp">WhatsApp (com DDD)</label>
-          <input type="text" id="whatsapp" name="whatsapp" inputmode="tel" placeholder="(11) 99999-9999" />
+          <input type="text" id="whatsapp" name="WhatsApp" inputmode="tel" placeholder="(11) 99999-9999" />
           <div class="help">Opcional, mas ajuda no contato direto.</div>
         </div>
       </section>
@@ -407,18 +407,18 @@
 
         <div class="field">
           <label for="lesoes">Lesões, dores ou limitações</label>
-          <textarea id="lesoes" name="lesoes_dores" placeholder="Ex: dor no joelho direito, hérnia lombar, fascite... Se não tiver, escreva 'nenhuma'."></textarea>
+          <textarea id="lesoes" name="Lesões e dores" placeholder="Ex: dor no joelho direito, hérnia lombar, fascite... Se não tiver, escreva 'nenhuma'."></textarea>
         </div>
 
         <div class="field">
           <label>Já foi gestante?</label>
           <div class="options">
             <div class="option">
-              <input type="radio" id="gest-sim" name="gestante" value="Sim" />
+              <input type="radio" id="gest-sim" name="Já foi gestante" value="Sim" />
               <label for="gest-sim">Sim</label>
             </div>
             <div class="option">
-              <input type="radio" id="gest-nao" name="gestante" value="Não" />
+              <input type="radio" id="gest-nao" name="Já foi gestante" value="Não" />
               <label for="gest-nao">Não</label>
             </div>
           </div>
@@ -427,26 +427,27 @@
         <div class="field">
           <label>Patologia ginecológica?</label>
           <div class="help" style="margin-top:0;margin-bottom:.5rem;">Endometriose, adenomiose, SOP, etc. Pode marcar mais de uma.</div>
-          <div class="options">
+          <div class="options" data-group="patologias">
             <div class="option">
-              <input type="checkbox" id="pat-endo" name="patologia_endometriose" value="Endometriose" />
+              <input type="checkbox" id="pat-endo" data-group-item value="Endometriose" />
               <label for="pat-endo">Endometriose</label>
             </div>
             <div class="option">
-              <input type="checkbox" id="pat-adeno" name="patologia_adenomiose" value="Adenomiose" />
+              <input type="checkbox" id="pat-adeno" data-group-item value="Adenomiose" />
               <label for="pat-adeno">Adenomiose</label>
             </div>
             <div class="option">
-              <input type="checkbox" id="pat-sop" name="patologia_sop" value="SOP" />
+              <input type="checkbox" id="pat-sop" data-group-item value="SOP" />
               <label for="pat-sop">SOP</label>
             </div>
             <div class="option">
-              <input type="checkbox" id="pat-nenhuma" name="patologia_nenhuma" value="Nenhuma" />
+              <input type="checkbox" id="pat-nenhuma" data-group-item value="Nenhuma" />
               <label for="pat-nenhuma">Nenhuma</label>
             </div>
           </div>
+          <input type="hidden" name="Patologias ginecológicas" id="patologias-out" />
           <div class="field" style="margin-top:.75rem;margin-bottom:0;">
-            <input type="text" id="patologia-outra" name="patologia_outra" placeholder="Outra? Descreva aqui..." />
+            <input type="text" id="patologia-outra" name="Outra patologia" placeholder="Outra? Descreva aqui..." />
           </div>
         </div>
 
@@ -454,23 +455,23 @@
           <label>Faz uso de alguma medicação tarja preta?</label>
           <div class="options">
             <div class="option">
-              <input type="radio" id="tp-sim" name="medicacao_tarja_preta" value="Sim" />
+              <input type="radio" id="tp-sim" name="Medicação tarja preta" value="Sim" />
               <label for="tp-sim">Sim</label>
             </div>
             <div class="option">
-              <input type="radio" id="tp-nao" name="medicacao_tarja_preta" value="Não" />
+              <input type="radio" id="tp-nao" name="Medicação tarja preta" value="Não" />
               <label for="tp-nao">Não</label>
             </div>
           </div>
           <div class="field" style="margin-top:.75rem;margin-bottom:0;">
-            <input type="text" name="medicacao_qual" placeholder="Se sim, qual(is)?" />
+            <input type="text" name="Qual medicação" placeholder="Se sim, qual(is)?" />
           </div>
         </div>
 
         <div class="field">
           <label for="exames">Exames de sangue recentes</label>
           <div class="file-field" id="exames-drop">
-            <input type="file" id="exames" name="exames_sangue" accept=".pdf,.jpg,.jpeg,.png,.heic" />
+            <input type="file" id="exames" name="Exames de sangue" accept=".pdf,.jpg,.jpeg,.png,.heic" />
             <span class="file-icon">📄</span>
             <span class="file-text">Anexar exame (PDF ou foto)</span>
             <span class="file-sub">Opcional — até 8MB</span>
@@ -486,7 +487,7 @@
 
         <div class="field">
           <label for="tempo-disponivel">Tempo disponível para os treinos</label>
-          <select id="tempo-disponivel" name="tempo_disponivel">
+          <select id="tempo-disponivel" name="Tempo disponível por treino">
             <option value="">Selecione...</option>
             <option>30 minutos</option>
             <option>45 minutos</option>
@@ -501,19 +502,19 @@
           <label>Quanto tempo já é adepta à atividade física?</label>
           <div class="options">
             <div class="option">
-              <input type="radio" id="t1" name="tempo_atividade" value="Estou começando agora" />
+              <input type="radio" id="t1" name="Tempo praticando atividade física" value="Estou começando agora" />
               <label for="t1">Começando agora</label>
             </div>
             <div class="option">
-              <input type="radio" id="t2" name="tempo_atividade" value="Menos de 6 meses" />
+              <input type="radio" id="t2" name="Tempo praticando atividade física" value="Menos de 6 meses" />
               <label for="t2">Menos de 6 meses</label>
             </div>
             <div class="option">
-              <input type="radio" id="t3" name="tempo_atividade" value="6 meses a 2 anos" />
+              <input type="radio" id="t3" name="Tempo praticando atividade física" value="6 meses a 2 anos" />
               <label for="t3">6 meses a 2 anos</label>
             </div>
             <div class="option">
-              <input type="radio" id="t4" name="tempo_atividade" value="Mais de 2 anos" />
+              <input type="radio" id="t4" name="Tempo praticando atividade física" value="Mais de 2 anos" />
               <label for="t4">Mais de 2 anos</label>
             </div>
           </div>
@@ -523,11 +524,11 @@
           <label>Tem acompanhamento nutricional?</label>
           <div class="options">
             <div class="option">
-              <input type="radio" id="n-sim" name="nutricional" value="Sim" />
+              <input type="radio" id="n-sim" name="Acompanhamento nutricional" value="Sim" />
               <label for="n-sim">Sim</label>
             </div>
             <div class="option">
-              <input type="radio" id="n-nao" name="nutricional" value="Não" />
+              <input type="radio" id="n-nao" name="Acompanhamento nutricional" value="Não" />
               <label for="n-nao">Não</label>
             </div>
           </div>
@@ -535,26 +536,26 @@
 
         <div class="field">
           <label for="agua">Quantidade de água ingerida por dia</label>
-          <input type="text" id="agua" name="agua_dia" placeholder="Ex: 2 litros, 1,5L, 6 copos..." />
+          <input type="text" id="agua" name="Água por dia" placeholder="Ex: 2 litros, 1,5L, 6 copos..." />
         </div>
 
         <div class="field">
           <label>O ciclo menstrual afeta sua rotina de treinos?</label>
           <div class="options">
             <div class="option">
-              <input type="radio" id="c1" name="ciclo_afeta" value="Sim, muito" />
+              <input type="radio" id="c1" name="Ciclo menstrual afeta treino" value="Sim, muito" />
               <label for="c1">Sim, muito</label>
             </div>
             <div class="option">
-              <input type="radio" id="c2" name="ciclo_afeta" value="Um pouco" />
+              <input type="radio" id="c2" name="Ciclo menstrual afeta treino" value="Um pouco" />
               <label for="c2">Um pouco</label>
             </div>
             <div class="option">
-              <input type="radio" id="c3" name="ciclo_afeta" value="Não afeta" />
+              <input type="radio" id="c3" name="Ciclo menstrual afeta treino" value="Não afeta" />
               <label for="c3">Não afeta</label>
             </div>
             <div class="option">
-              <input type="radio" id="c4" name="ciclo_afeta" value="Não se aplica" />
+              <input type="radio" id="c4" name="Ciclo menstrual afeta treino" value="Não se aplica" />
               <label for="c4">Não se aplica</label>
             </div>
           </div>
@@ -563,24 +564,25 @@
         <div class="field">
           <label>Gostaria de algum treino extra para fazer em casa?</label>
           <div class="help" style="margin-top:0;margin-bottom:.5rem;">Ex: alongamento, mobilidade, respiração.</div>
-          <div class="options">
+          <div class="options" data-group="extras">
             <div class="option">
-              <input type="checkbox" id="ex-along" name="extra_alongamento" value="Alongamento" />
+              <input type="checkbox" id="ex-along" data-group-item value="Alongamento" />
               <label for="ex-along">Alongamento</label>
             </div>
             <div class="option">
-              <input type="checkbox" id="ex-mob" name="extra_mobilidade" value="Mobilidade" />
+              <input type="checkbox" id="ex-mob" data-group-item value="Mobilidade" />
               <label for="ex-mob">Mobilidade</label>
             </div>
             <div class="option">
-              <input type="checkbox" id="ex-resp" name="extra_respiracao" value="Respiração" />
+              <input type="checkbox" id="ex-resp" data-group-item value="Respiração" />
               <label for="ex-resp">Respiração</label>
             </div>
             <div class="option">
-              <input type="checkbox" id="ex-nao" name="extra_nao" value="Não preciso" />
+              <input type="checkbox" id="ex-nao" data-group-item value="Não preciso" />
               <label for="ex-nao">Não preciso</label>
             </div>
           </div>
+          <input type="hidden" name="Treinos extras desejados" id="extras-out" />
         </div>
       </section>
 
@@ -592,7 +594,7 @@
         <div class="field">
           <label>Foto de frente</label>
           <div class="file-field">
-            <input type="file" name="foto_frente" accept="image/*" capture="environment" />
+            <input type="file" name="Foto - frente" accept="image/*" capture="environment" />
             <span class="file-icon">📸</span>
             <span class="file-text">Tirar / escolher foto</span>
             <span class="file-sub">Mostre dos pés à cabeça</span>
@@ -603,7 +605,7 @@
         <div class="field">
           <label>Foto de lado</label>
           <div class="file-field">
-            <input type="file" name="foto_lado" accept="image/*" capture="environment" />
+            <input type="file" name="Foto - lado" accept="image/*" capture="environment" />
             <span class="file-icon">📸</span>
             <span class="file-text">Tirar / escolher foto</span>
             <span class="file-sub">Perfil completo, com pés</span>
@@ -614,7 +616,7 @@
         <div class="field">
           <label>Foto de costas</label>
           <div class="file-field">
-            <input type="file" name="foto_costas" accept="image/*" capture="environment" />
+            <input type="file" name="Foto - costas" accept="image/*" capture="environment" />
             <span class="file-icon">📸</span>
             <span class="file-text">Tirar / escolher foto</span>
             <span class="file-sub">Costas inteiras, com pés</span>
@@ -634,12 +636,12 @@
 
         <div class="field">
           <label for="observacoes">Observações livres</label>
-          <textarea id="observacoes" name="observacoes" placeholder="Objetivos, expectativas, restrições alimentares, qualquer coisa que considere importante..."></textarea>
+          <textarea id="observacoes" name="Observações" placeholder="Objetivos, expectativas, restrições alimentares, qualquer coisa que considere importante..."></textarea>
         </div>
 
         <div class="consent">
           <label>
-            <input type="checkbox" id="consent" name="consentimento" value="Sim" required />
+            <input type="checkbox" id="consent" name="Consentimento LGPD" value="Autorizado" required />
             <span>
               Autorizo o uso das informações e fotos enviadas <strong>exclusivamente para minha avaliação física e prescrição de treino</strong>, em conformidade com a LGPD. Sei que meus dados serão tratados de forma confidencial e não compartilhados com terceiros. <span class="req">*</span>
             </span>
@@ -735,6 +737,13 @@
     });
   });
 
+  // Consolida checkboxes em campos únicos antes de enviar
+  function collectGroup(groupName, outId) {
+    const items = document.querySelectorAll(`[data-group="${groupName}"] [data-group-item]:checked`);
+    const values = Array.from(items).map(i => i.value);
+    document.getElementById(outId).value = values.join(', ');
+  }
+
   // Validação do consentimento + estado de envio
   form.addEventListener('submit', (e) => {
     const consent = document.getElementById('consent');
@@ -744,6 +753,8 @@
       consentError.style.display = 'block';
       return;
     }
+    collectGroup('patologias', 'patologias-out');
+    collectGroup('extras', 'extras-out');
     btnSubmit.disabled = true;
     btnSubmit.innerHTML = '<span class="spinner"></span>Enviando...';
   });
