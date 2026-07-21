@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anamnese Nutricional · Lipedema | Mileni Rosa</title>
+  <meta name="description" content="Anamnese nutricional completa — Mileni Rosa. Formulário de avaliação com foco em lipedema e saúde hormonal." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#c2586e" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💗</text></svg>" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:    #c2586e;
+      --rose-lt: #e8899a;
+      --rose-bg: #fdf0f3;
+      --plum:    #7b3f5e;
+      --blush:   #f5d6de;
+      --cream:   #fdf8f5;
+      --charcoal:#2d2d2d;
+      --gray:    #6b6b6b;
+      --light:   #f9f4f6;
+      --white:   #ffffff;
+      --error:   #c0392b;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--charcoal);
+      background: var(--cream);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .logo {
+      font-family: 'Lora', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--rose);
+      letter-spacing: -.02em;
+      text-decoration: none;
+    }
+    .logo span { color: var(--plum); font-style: italic; }
+
+    h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--plum);
+      font-weight: 700;
+      margin: 1.5rem 0 .5rem;
+      line-height: 1.2;
+    }
+    .subtitle {
+      color: var(--gray);
+      font-size: .95rem;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* Progresso */
+    .progress {
+      display: flex;
+      gap: .3rem;
+      margin: 2rem auto 1.5rem;
+      max-width: 520px;
+    }
+    .progress-step {
+      flex: 1;
+      height: 6px;
+      background: var(--blush);
+      border-radius: 3px;
+      transition: background .3s;
+    }
+    .progress-step.active { background: var(--rose); }
+    .progress-label {
+      text-align: center;
+      font-size: .82rem;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    /* Card do formulário */
+    .form-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 30px rgba(194,88,110,.08);
+      border: 1px solid var(--blush);
+    }
+    @media (min-width: 640px) {
+      .form-card { padding: 2.5rem 2.5rem; }
+    }
+
+    .step { display: none; animation: fadeIn .3s ease; }
+    .step.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-title {
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      color: var(--plum);
+      font-weight: 600;
+      margin-bottom: .25rem;
+    }
+    .step-hint {
+      color: var(--gray);
+      font-size: .9rem;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Sub-seções dentro de uma etapa */
+    .subhead {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      color: var(--rose);
+      font-weight: 600;
+      margin: 1.75rem 0 1rem;
+      padding-bottom: .4rem;
+      border-bottom: 1px solid var(--blush);
+    }
+    .subhead:first-of-type { margin-top: 0; }
+
+    .field {
+      margin-bottom: 1.4rem;
+    }
+    .field label {
+      display: block;
+      font-size: .92rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: .45rem;
+    }
+    .field .help {
+      font-size: .8rem;
+      color: var(--gray);
+      margin-top: .35rem;
+      font-weight: 400;
+    }
+    .req { color: var(--rose); }
+
+    /* Grade para agrupar campos curtos lado a lado */
+    .row { display: grid; gap: 0 1rem; }
+    @media (min-width: 560px) {
+      .row.cols-2 { grid-template-columns: 1fr 1fr; }
+      .row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: .8rem 1rem;
+      border: 1.5px solid var(--blush);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--charcoal);
+      background: var(--white);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(194,88,110,.12);
+    }
+    textarea { min-height: 80px; resize: vertical; }
+
+    /* Radios e checkboxes */
+    .options { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .options.tight .option { flex: 1 1 calc(50% - .25rem); }
+    .options.mini .option { flex: 0 0 auto; min-width: 84px; }
+    .option {
+      flex: 1 1 calc(50% - .25rem);
+      min-width: 130px;
+    }
+    .option input { position: absolute; opacity: 0; pointer-events: none; }
+    .option label {
+      display: block;
+      padding: .7rem 1rem;
+      border: 1.5px solid var(--blush);
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 500;
+      font-size: .92rem;
+      transition: all .2s;
+      margin: 0;
+    }
+    .option input:checked + label {
+      background: var(--rose-bg);
+      border-color: var(--rose);
+      color: var(--plum);
+      font-weight: 600;
+    }
+
+    /* Upload de arquivos */
+    .file-field {
+      border: 2px dashed var(--blush);
+      border-radius: 12px;
+      padding: 1.25rem 1rem;
+      text-align: center;
+      background: var(--cream);
+      transition: all .2s;
+      cursor: pointer;
+      position: relative;
+    }
+    .file-field:hover { border-color: var(--rose-lt); background: var(--rose-bg); }
+    .file-field input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .file-icon { font-size: 1.6rem; display: block; margin-bottom: .25rem; }
+    .file-text { font-size: .92rem; font-weight: 600; color: var(--plum); }
+    .file-sub { font-size: .78rem; color: var(--gray); margin-top: .15rem; }
+    .file-name {
+      display: none;
+      margin-top: .5rem;
+      font-size: .85rem;
+      color: var(--rose);
+      font-weight: 600;
+      word-break: break-all;
+    }
+    .file-field.has-file { border-style: solid; border-color: var(--rose); background: var(--rose-bg); }
+    .file-field.has-file .file-name { display: block; }
+
+    /* Consentimento */
+    .consent {
+      background: var(--rose-bg);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--rose);
+    }
+    .consent label {
+      display: flex;
+      gap: .75rem;
+      cursor: pointer;
+      font-size: .88rem;
+      line-height: 1.55;
+      color: var(--charcoal);
+      font-weight: 400;
+    }
+    .consent input[type="checkbox"] {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      margin-top: 2px;
+      accent-color: var(--rose);
+      cursor: pointer;
+    }
+
+    /* Navegação */
+    .nav-buttons {
+      display: flex;
+      gap: .75rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    button {
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: .85rem 1.75rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: all .2s;
+      letter-spacing: .02em;
+    }
+    .btn-primary {
+      background: var(--rose);
+      color: var(--white);
+      flex: 1;
+      min-width: 140px;
+    }
+    .btn-primary:hover { background: var(--plum); transform: translateY(-1px); }
+    .btn-primary:disabled { background: var(--rose-lt); cursor: not-allowed; transform: none; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--plum);
+      border: 1.5px solid var(--blush);
+    }
+    .btn-secondary:hover { border-color: var(--rose); color: var(--rose); }
+
+    .error-msg {
+      color: var(--error);
+      font-size: .82rem;
+      margin-top: .35rem;
+      display: none;
+    }
+    .field.has-error input,
+    .field.has-error select,
+    .field.has-error textarea { border-color: var(--error); }
+    .field.has-error .error-msg { display: block; }
+
+    /* Tela de sucesso */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .success-screen.active { display: block; }
+    .success-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
+    .success-screen h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.6rem;
+      color: var(--plum);
+      margin-bottom: .75rem;
+    }
+    .success-screen p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: var(--gray);
+      font-size: .8rem;
+      margin-top: 2rem;
+      padding: 0 1rem;
+    }
+    .footer-note a { color: var(--rose); text-decoration: none; }
+
+    /* Loading */
+    .spinner {
+      display: inline-block;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,.4);
+      border-top-color: var(--white);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      vertical-align: -3px;
+      margin-right: .5rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <header class="header">
+    <a href="index.html" class="logo">Mileni <span>Rosa</span></a>
+    <h1 id="pageTitle">Anamnese Nutricional</h1>
+    <p class="subtitle" id="pageSubtitle">Para montar seu plano com cuidado e olhar atento ao lipedema e à sua saúde hormonal, preciso te conhecer bem. É um pouco longo, mas cada resposta faz diferença. 💗</p>
+    <div id="accessBadge" style="display:none;margin-top:1rem;font-size:.78rem;color:var(--plum);background:var(--rose-bg);padding:.4rem 1rem;border-radius:999px;letter-spacing:.05em;border:1px solid var(--blush);"></div>
+  </header>
+
+  <div class="progress" id="progress"></div>
+  <div class="progress-label" id="progressLabel">Etapa 1</div>
+
+  <div class="form-card">
+    <form
+      id="lipedemaForm"
+      name="anamnese-lipedema"
+      method="POST"
+      enctype="multipart/form-data"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      action="/obrigada"
+    >
+      <input type="hidden" name="form-name" value="anamnese-lipedema" />
+      <input type="hidden" name="Código de acesso" id="accessCode" value="" />
+      <p style="display:none;"><label>Não preencher: <input name="bot-field" /></label></p>
+
+      <!-- ETAPA 1 — DADOS PESSOAIS -->
+      <section class="step active" data-step="1">
+        <h2 class="step-title">1. Dados pessoais</h2>
+        <p class="step-hint">Vamos começar pelo básico.</p>
+
+        <div class="field" data-required>
+          <label for="nome">Nome completo <span class="req">*</span></label>
+          <input type="text" id="nome" name="Nome" autocomplete="name" required />
+          <div class="error-msg">Por favor, informe seu nome.</div>
+        </div>
+
+        <div class="row cols-2">
+          <div class="field">
+            <label for="idade">Idade</label>
+            <input type="number" id="idade" name="Idade" inputmode="numeric" min="0" max="120" />
+          </div>
+          <div class="field">
+            <label for="nascimento">Data de nascimento</label>
+            <input type="date" id="nascimento" name="Data de nascimento" />
+          </div>
+        </div>
+
+        <div class="row cols-3">
+          <div class="field">
+            <label for="altura">Altura (cm)</label>
+            <input type="text" id="altura" name="Altura" inputmode="decimal" placeholder="Ex: 165" />
+          </div>
+          <div class="field">
+            <label for="peso-atual">Peso atual (kg)</label>
+            <input type="text" id="peso-atual" name="Peso atual" inputmode="decimal" placeholder="Ex: 72" />
+          </div>
+          <div class="field">
+            <label for="peso-desejado">Peso desejado (kg)</label>
+            <input type="text" id="peso-desejado" name="Peso desejado" inputmode="decimal" placeholder="Ex: 64" />
+          </div>
+        </div>
+
+        <div class="row cols-2">
+          <div class="field" data-required>
+            <label for="email">E-mail <span class="req">*</span></label>
+            <input type="email" id="email" name="E-mail" autocomplete="email" required />
+            <div class="error-msg">Informe um e-mail válido.</div>
+          </div>
+          <div class="field">
+            <label for="telefone">Telefone / WhatsApp</label>
+            <input type="tel" id="telefone" name="Telefone" inputmode="tel" placeholder="(51) 99999-9999" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="profissao">Profissão</label>
+          <input type="text" id="profissao" name="Profissão" />
+        </div>
+
+        <div class="field">
+          <label>Rotina de trabalho</label>
+          <div class="options">
+            <div class="option">
+              <input type="radio" id="rot-sentada" name="Rotina de trabalho" value="Sentada" />
+              <label for="rot-sentada">Sentada</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="rot-pe" name="Rotina de trabalho" value="Em pé" />
+              <label for="rot-pe">Em pé</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="rot-turnos" name="Rotina de trabalho" value="Turnos" />
+              <label for="rot-turnos">Turnos</label>
+            </div>
+            <div class="option">
+              <input type="radio" id="rot-mista" name="Rotina de trabalho" value="Mista" />
+              <label for="rot-mista">Mista</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ETAPA 2 — OBJETIVO -->
+      <section class="step" data-step="2">
+        <h2 class="step-title">2. Objetivo principal</h2>
+        <p class="step-hint">O que você deseja alcançar? Pode marcar mais de uma opção.</p>
+
+        <div class="field">
+          <div class="options" data-group="objetivo">
+            <div class="option"><input type="checkbox" id="obj-emagrecer" data-group-item value="Emagrecer" /><label for="obj-emagrecer">Emagrecer</label></div>
+            <div class="option"><input type="checkbox" id="obj-massa" data-group-item value="Ganhar massa muscular" /><label for="obj-massa">Ganhar massa muscular</label></div>
+            <div class="option"><input type="checkbox" id="obj-localizada" data-group-item value="Reduzir gordura localizada" /><label for="obj-localizada">Reduzir gordura localizada</label></div>
+            <div class="option"><input type="checkbox" id="obj-disposicao" data-group-item value="Melhorar disposição" /><label for="obj-disposicao">Melhorar disposição</label></div>
+            <div class="option"><input type="checkbox" id="obj-exames" data-group-item value="Melhorar exames" /><label for="obj-exames">Melhorar exames</label></div>
+            <div class="option"><input type="checkbox" id="obj-hormonais" data-group-item value="Melhorar sintomas hormonais" /><label for="obj-hormonais">Sintomas hormonais</label></div>
+            <div class="option"><input type="checkbox" id="obj-lipedema" data-group-item value="Lipedema" /><label for="obj-lipedema">Lipedema</label></div>
+            <div class="option"><input type="checkbox" id="obj-fertilidade" data-group-item value="Fertilidade" /><label for="obj-fertilidade">Fertilidade</label></div>
+          </div>
+          <input type="hidden" name="Objetivo principal" data-group-out="objetivo" />
+          <div class="field" style="margin-top:.75rem;margin-bottom:0;">
+            <input type="text" name="Outro objetivo" placeholder="Outro objetivo? Descreva aqui..." />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="por-que">Por que esse objetivo é importante para você?</label>
+          <textarea id="por-que" name="Por que esse objetivo é importante" placeholder="Conte um pouco da sua motivação..."></textarea>
+        </div>
+      </section>
+
+      <!-- ETAPA 3 — HISTÓRICO DE PESO -->
+      <section class="step" data-step="3">
+        <h2 class="step-title">3. Histórico de peso</h2>
+        <p class="step-hint">Isso me ajuda a entender sua relação com o peso ao longo do tempo.</p>
+
+        <div class="row cols-2">
+          <div class="field">
+            <label for="peso-alto">Peso mais alto da vida</label>
+            <input type="text" id="peso-alto" name="Peso mais alto da vida" placeholder="Ex: 85 kg" />
+          </div>
+          <div class="field">
+            <label for="peso-baixo">Peso mais baixo (vida adulta)</label>
+            <input type="text" id="peso-baixo" name="Peso mais baixo da vida adulta" placeholder="Ex: 60 kg" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="tempo-peso">Há quanto tempo está no peso atual?</label>
+          <input type="text" id="tempo-peso" name="Tempo no peso atual" placeholder="Ex: 6 meses, 2 anos..." />
+        </div>
+
+        <div class="field">
+          <label for="qtd-dietas">Quantas vezes já fez dieta?</label>
+          <input type="text" id="qtd-dietas" name="Quantas vezes já fez dieta" placeholder="Ex: 3 vezes, várias, nunca..." />
+        </div>
+
+        <div class="field">
+          <label for="dieta-resultado">Qual dieta teve mais resultado?</label>
+          <input type="text" id="dieta-resultado" name="Dieta com mais resultado" placeholder="Ex: low carb, jejum, com nutri..." />
+        </div>
+
+        <div class="field">
+          <label>Recuperou o peso depois?</label>
+          <div class="options">
+            <div class="option"><input type="radio" id="rec-sim" name="Recuperou o peso" value="Sim" /><label for="rec-sim">Sim</label></div>
+            <div class="option"><input type="radio" id="rec-parcial" name="Recuperou o peso" value="Parcialmente" /><label for="rec-parcial">Parcialmente</label></div>
+            <div class="option"><input type="radio" id="rec-nao" name="Recuperou o peso" value="Não" /><label for="rec-nao">Não</label></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ETAPA 4 — HISTÓRICO DE SAÚDE -->
+      <section class="step" data-step="4">
+        <h2 class="step-title">4. Histórico de saúde</h2>
+        <p class="step-hint">Possui diagnóstico de alguma dessas condições? Marque todas que se aplicam.</p>
+
+        <div class="field">
+          <div class="options tight" data-group="diagnosticos">
+            <div class="option"><input type="checkbox" id="dg-hipoti" data-group-item value="Hipotireoidismo" /><label for="dg-hipoti">Hipotireoidismo</label></div>
+            <div class="option"><input type="checkbox" id="dg-hiperti" data-group-item value="Hipertireoidismo" /><label for="dg-hiperti">Hipertireoidismo</label></div>
+            <div class="option"><input type="checkbox" id="dg-sop" data-group-item value="SOP" /><label for="dg-sop">SOP</label></div>
+            <div class="option"><input type="checkbox" id="dg-endo" data-group-item value="Endometriose" /><label for="dg-endo">Endometriose</label></div>
+            <div class="option"><input type="checkbox" id="dg-adeno" data-group-item value="Adenomiose" /><label for="dg-adeno">Adenomiose</label></div>
+            <div class="option"><input type="checkbox" id="dg-lipedema" data-group-item value="Lipedema" /><label for="dg-lipedema">Lipedema</label></div>
+            <div class="option"><input type="checkbox" id="dg-diabetes" data-group-item value="Diabetes" /><label for="dg-diabetes">Diabetes</label></div>
+            <div class="option"><input type="checkbox" id="dg-ri" data-group-item value="Resistência à insulina" /><label for="dg-ri">Resistência à insulina</label></div>
+            <div class="option"><input type="checkbox" id="dg-hipertensao" data-group-item value="Hipertensão" /><label for="dg-hipertensao">Hipertensão</label></div>
+            <div class="option"><input type="checkbox" id="dg-colesterol" data-group-item value="Colesterol alto" /><label for="dg-colesterol">Colesterol alto</label></div>
+            <div class="option"><input type="checkbox" id="dg-esteatose" data-group-item value="Esteatose hepática" /><label for="dg-esteatose">Esteatose hepática</label></div>
+            <div class="option"><input type="checkbox" id="dg-ansiedade" data-group-item value="Ansiedade" /><label for="dg-ansiedade">Ansiedade</label></div>
+            <div class="option"><input type="checkbox" id="dg-depressao" data-group-item value="Depressão" /><label for="dg-depressao">Depressão</label></div>
+            <div class="option"><input type="checkbox" id="dg-enxaqueca" data-group-item value="Enxaqueca" /><label for="dg-enxaqueca">Enxaqueca</label></div>
+            <div class="option"><input type="checkbox" id="dg-fibro" data-group-item value="Fibromialgia" /><label for="dg-fibro">Fibromialgia</label></div>
+            <div class="option"><input type="checkbox" id="dg-autoimune" data-group-item value="Doença autoimune" /><label for="dg-autoimune">Doença autoimune</label></div>
+          </div>
+          <input type="hidden" name="Diagnósticos" data-group-out="diagnosticos" />
+          <div class="field" style="margin-top:.75rem;margin-bottom:0;">
+            <input type="text" name="Outro diagnóstico" placeholder="Outro? Descreva aqui..." />
+          </div>
+        </div>
+      </section>
+
+      <!-- ETAPA 5 — CIRURGIAS E MEDICAMENTOS -->
+      <section class="step" data-step="5">
+        <h2 class="step-title">5. Cirurgias e medicamentos</h2>
+        <p class="step-hint">Informações importantes para a sua segurança.</p>
+
+        <div class="subhead">Cirurgias</div>
+        <div class="field">
+          <label>Já realizou alguma cirurgia?</label>
+          <div class="options">
+            <div class="option"><input type="radio" id="cir-sim" name="Já fez cirurgia" value="Sim" /><label for="cir-sim">Sim</label></div>
+            <div class="option"><input type="radio" id="cir-nao" name="Já fez cirurgia" value="Não" /><label for="cir-nao">Não</label></div>
+          </div>
+        </div>
+        <div class="row cols-2">
+          <div class="field">
+            <label for="cir-qual">Qual?</label>
+            <input type="text" id="cir-qual" name="Qual cirurgia" placeholder="Se sim, qual(is)?" />
+          </div>
+          <div class="field">
+            <label for="cir-quando">Quando?</label>
+            <input type="text" id="cir-quando" name="Quando (cirurgia)" placeholder="Ex: 2021" />
+          </div>
+        </div>
+
+        <div class="subhead">Medicamentos</div>
+        <div class="field">
+          <label for="medicamentos">Quais medicamentos usa diariamente?</label>
+          <textarea id="medicamentos" name="Medicamentos diários" placeholder="Liste os medicamentos e dosagens. Se não usa, escreva 'nenhum'."></textarea>
+        </div>
+
+        <div class="field">
+          <label>Usa anticoncepcional?</label>
+          <div class="options">
+            <div class="option"><input type="radio" id="ac-sim" name="Usa anticoncepcional" value="Sim" /><label for="ac-sim">Sim</label></div>
+            <div class="option"><input type="radio" id="ac-nao" name="Usa anticoncepcional" value="Não" /><label for="ac-nao">Não</label></div>
+          </div>
+          <div class="field" style="margin-top:.75rem;margin-bottom:0;">
+            <input type="text" name="Qual anticoncepcional" placeholder="Se sim, qual?" />
+          </div>
+        </div>
+
+        <div class="row cols-2">
+          <div class="field">
+            <label>Usa hormônios?</label>
+            <div class="options">
+              <div class="option"><input type="radio" id="horm-sim" name="Usa hormônios" value="Sim" /><label for="horm-sim">Sim</label></div>
+              <div class="option"><input type="radio" id="horm-nao" name="Usa hormônios" value="Não" /><label for="horm-nao">Não</label></div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Faz reposição hormonal?</label>
+            <div class="options">
+              <div class="option"><input type="radio" id="rep-sim" name="Faz reposição hormonal" value="Sim" /><label for="rep-sim">Sim</label></div>
+              <div class="option"><input type="radio" id="rep-nao" name="Faz reposição hormonal" value="Não" /><label for="rep-nao">Não</label></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ETAPA 6 — SUPLEMENTAÇÃO E EXAMES -->
+      <section class="step" data-step="6">
+        <h2 class="step-title">6. Suplementação e exames</h2>
+        <p class="step-hint">O que você já toma e o que temos de exames recentes.</p>
+
+        <div class="subhead">Suplementos que utiliza</div>
+        <div class="field">
+          <div class="options" data-group="suplementos">
+            <div class="option"><input type="checkbox" id="sup-whey" data-group-item value="Whey" /><label for="sup-whey">Whey</label></div>
+            <div class="option"><input type="checkbox" id="sup-creatina" data-group-item value="Creatina" /><label for="sup-creatina">Creatina</label></div>
+            <div class="option"><input type="checkbox" id="sup-magnesio" data-group-item value="Magnésio" /><label for="sup-magnesio">Magnésio</label></div>
+            <div class="option"><input type="checkbox" id="sup-omega" data-group-item value="Ômega 3" /><label for="sup-omega">Ômega 3</label></div>
+            <div class="option"><input type="checkbox" id="sup-vitd" data-group-item value="Vitamina D" /><label for="sup-vitd">Vitamina D</label></div>
+            <div class="option"><input type="checkbox" id="sup-colageno" data-group-item value="Colágeno" /><label for="sup-colageno">Colágeno</label></div>
+            <div class="option"><input type="checkbox" id="sup-multi" data-group-item value="Multivitamínico" /><label for="sup-multi">Multivitamínico</label></div>
+          </div>
+          <input type="hidden" name="Suplementos" data-group-out="suplementos" />
+          <div class="field" style="margin-top:.75rem;margin-bottom:0;">
+            <input type="text" name="Outros suplementos" placeholder="Outros? Descreva aqui..." />
+          </div>
+        </div>
+
+        <div class="subhead">Exames recentes</div>
+        <div class="field">
+          <label>Possui exames dos últimos 12 meses?</label>
+          <div class="options">
+            <div class="option"><input type="radio" id="ex-sim" name="Possui exames recentes" value="Sim" /><label for="ex-sim">Sim</label></div>
+            <div class="option"><input type="radio" id="ex-nao" name="Possui exames recentes" value="Não" /><label for="ex-nao">Não</label></div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Pode anexá-los?</label>
+          <div class="file-field">
+            <input type="file" name="Exames" accept=".pdf,.jpg,.jpeg,.png,.heic" multiple />
+            <span class="file-icon">📄</span>
+            <span class="file-text">Anexar exames (PDF ou foto)</span>
+            <span class="file-sub">Opcional — pode selecionar mais de um</span>
+            <span class="file-name"></span>
+          </div>
+          <div class="help">Se preferir, pode me enviar depois pelo WhatsApp.</div>
+        </div>
+      </section>
+
+      <!-- ETAPA 7 — CICLO MENSTRUAL -->
+      <section class="step" data-step="7">
+        <h2 class="step-title">7. Ciclo menstrual</h2>
+        <p class="step-hint">Fundamental para entender o comportamento do lipedema e da retenção.</p>
+
+        <div class="field">
+          <label>Menstrua regularmente?</label>
+          <div class="options">
+            <div class="option"><input type="radio" id="men-sim" name="Menstrua regularmente" value="Sim" /><label for="men-sim">Sim</label></div>
+            <div class="option"><input type="radio" id="men-nao" name="Menstrua regularmente" value="Não" /><label for="men-nao">Não</label></div>
+          </div>
+        </div>
+
+        <div class="row cols-2">
+          <div class="field">
+            <label for="ciclo-dias">Quantos dias dura o ciclo?</label>
+            <input type="text" id="ciclo-dias" name="Duração do ciclo" placeholder="Ex: 28 dias" />
+          </div>
+          <div class="field">
+            <label for="ultima-menstruacao">Data da última menstruação</label>
+            <input type="date" id="ultima-menstruacao" name="Data da última menstruação" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Apresenta algum desses sintomas?</label>
+          <div class="help" style="margin-top:0;margin-bottom:.5rem;">Marque todos que se aplicam.</div>
+          <div class="options tight" data-group="sintomas-menstruais">
+            <div class="option"><input type="checkbox" id="sm-fluxo" data-group-item value="Fluxo intenso" /><label for="sm-fluxo">Fluxo intenso</label></div>
+            <div class="option"><input type="checkbox" id="sm-tpm" data-group-item value="TPM" /><label for="sm-tpm">TPM</label></div>
+            <div class="option"><input type="checkbox" id="sm-colicas" data-group-item value="Cólicas" /><label for="sm-colicas">Cólicas</label></div>
+            <div class="option"><input type="checkbox" id="sm-inchaco" data-group-item value="Inchaço" /><label for="sm-inchaco">Inchaço</label></div>
+            <div class="option"><input type="checkbox" id="sm-humor" data-group-item value="Oscilação de humor" /><label for="sm-humor">Oscilação de humor</label></div>
+            <div class="option"><input type="checkbox" id="sm-compulsao" data-group-item value="Compulsão antes da menstruação" /><label for="sm-compulsao">Compulsão pré-menstrual</label></div>
+          </div>
+          <input type="hidden" name="Sintomas menstruais" data-group-out="sintomas-menstruais" />
+        </div>
+
+        <div class="field">
+          <label>Situação reprodutiva atual</label>
+          <div class="help" style="margin-top:0;margin-bottom:.5rem;">Marque o que se aplica.</div>
+          <div class="options tight" data-group="situacao-reprodutiva">
+            <div class="option"><input type="checkbox" id="sr-gravida" data-group-item value="Grávida" /><label for="sr-gravida">Grávida</label></div>
+            <div class="option"><input type="checkbox" id="sr-tentando" data-group-item value="Tentando engravidar" /><label for="sr-tentando">Tentando engravidar</label></div>
+            <div class="option"><input type="checkbox" id="sr-amamentando" data-group-item value="Amamentando" /><label for="sr-amamentando">Amamentando</label></div>
+            <div class="option"><input type="checkbox" id="sr-menopausa" data-group-item value="Menopausa" /><label for="sr-menopausa">Menopausa</label></div>
+            <div class="option"><input type="checkbox" id="sr-nenhuma" data-group-item value="Nenhuma dessas" /><label for="sr-nenhuma">Nenhuma dessas</label></div>
+          </div>
+          <input type="hidden" name="Situação reprodutiva" data-group-out="situacao-reprodutiva" />
+        </div>
+      </section>
+
+      <!-- ETAPA 8 — INTESTINO, SONO E ESTRESSE -->
+      <section class="step" data-step="8">
+        <h2 class="step-title">8. Intestino, sono e estresse</h2>
+        <p class="step-hint">Pilares que impactam diretamente a inflamação e o emagrecimento.</p>
+
+        <div class="subhead">Saúde intestinal</div>
+        <div class="field">
+          <label for="evacuacoes">Quantas vezes evacua por dia?</label>
+          <input type="text" id="evacuacoes" name="Evacuações por dia" placeholder="Ex: 1x, a cada 2 dias..." />
+        </div>
+        <div class="field">
+          <label>Sente algum desses sintomas?</label>
+          <div class="help" style="margin-top:0;margin-bottom:.5rem;">Marque todos que se aplicam.</div>
+          <div class="options tight" data-group="sintomas-intestinais">
+            <div class="option"><input type="checkbox" id="si-prisao" data-group-item value="Prisão de ventre" /><label for="si-prisao">Prisão de ventre</label></div>
+            <div class="option"><input type="checkbox" id="si-diarreia" data-group-item value="Diarreia" /><label for="si-diarreia">Diarreia</label></div>
+            <div class="option"><input type="checkbox" id="si-gases" data-group-item value="Gases" /><label for="si-gases">Gases</label></div>
+            <div class="option"><input type="checkbox" id="si-estufamento" data-group-item value="Estufamento" /><label for="si-estufamento">Estufamento</label></div>
+            <div class="option"><input type="checkbox" id="si-azia" data-group-item value="Azia" /><label for="si-azia">Azia</label></div>
+            <div class="option"><input type="checkbox" id="si-refluxo" data-group-item value="Refluxo" /><label for="si-refluxo">Refluxo</label></div>
+          </div>
+          <input type="hidden" name="Sintomas intestinais" data-group-out="sintomas-intestinais" />
+        </div>
+
+        <div class="subhead">Sono</div>
+        <div class="row cols-2">
+          <div class="field">
+            <label for="horas-sono">Quantas horas dorme?</label>
+            <input type="text" id="horas-sono" name="Horas de sono" placeholder="Ex: 7 horas" />
+          </div>
+          <div class="field">
+            <label for="qualidade-sono">Qualidade do sono (0 a 10)</label>
+            <select id="qualidade-sono" name="Qualidade do sono">
+              <option value="">Selecione...</option>
+              <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+              <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+            </select>
+          </div>
+        </div>
+        <div class="row cols-3">
+          <div class="field">
+            <label>Acorda à noite?</label>
+            <div class="options mini">
+              <div class="option"><input type="radio" id="ac-noite-sim" name="Acorda durante a noite" value="Sim" /><label for="ac-noite-sim">Sim</label></div>
+              <div class="option"><input type="radio" id="ac-noite-nao" name="Acorda durante a noite" value="Não" /><label for="ac-noite-nao">Não</label></div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Ronca?</label>
+            <div class="options mini">
+              <div class="option"><input type="radio" id="ronca-sim" name="Ronca" value="Sim" /><label for="ronca-sim">Sim</label></div>
+              <div class="option"><input type="radio" id="ronca-nao" name="Ronca" value="Não" /><label for="ronca-nao">Não</label></div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Medicação p/ dormir?</label>
+            <div class="options mini">
+              <div class="option"><input type="radio" id="medsono-sim" name="Medicação para dormir" value="Sim" /><label for="medsono-sim">Sim</label></div>
+              <div class="option"><input type="radio" id="medsono-nao" name="Medicação para dormir" value="Não" /><label for="medsono-nao">Não</label></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subhead">Estresse</div>
+        <div class="field">
+          <label for="estresse">Numa escala de 0 a 10, qual seu nível de estresse?</label>
+          <select id="estresse" name="Nível de estresse">
+            <option value="">Selecione...</option>
+            <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="causas-estresse">Principais causas</label>
+          <textarea id="causas-estresse" name="Principais causas de estresse" placeholder="Ex: trabalho, finanças, família..."></textarea>
+        </div>
+      </section>
+
+      <!-- ETAPA 9 — EXERCÍCIOS -->
+      <section class="step" data-step="9">
+        <h2 class="step-title">9. Exercícios</h2>
+        <p class="step-hint">Como está a sua rotina de movimento hoje.</p>
+
+        <div class="field">
+          <label>Pratica atividade física?</label>
+          <div class="options">
+            <div class="option"><input type="radio" id="af-sim" name="Pratica atividade física" value="Sim" /><label for="af-sim">Sim</label></div>
+            <div class="option"><input type="radio" id="af-nao" name="Pratica atividade física" value="Não" /><label for="af-nao">Não</label></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="af-qual">Qual atividade?</label>
+          <input type="text" id="af-qual" name="Qual atividade" placeholder="Ex: musculação, corrida, pilates..." />
+        </div>
+
+        <div class="row cols-2">
+          <div class="field">
+            <label for="af-vezes">Quantas vezes por semana?</label>
+            <input type="text" id="af-vezes" name="Vezes por semana" placeholder="Ex: 4x" />
+          </div>
+          <div class="field">
+            <label for="af-duracao">Duração de cada sessão?</label>
+            <input type="text" id="af-duracao" name="Duração do treino" placeholder="Ex: 1 hora" />
+          </div>
+        </div>
+
+        <div class="row cols-2">
+          <div class="field">
+            <label for="af-intensidade">Intensidade</label>
+            <select id="af-intensidade" name="Intensidade">
+              <option value="">Selecione...</option>
+              <option>Leve</option>
+              <option>Moderada</option>
+              <option>Intensa</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="af-horario">Horário do treino</label>
+            <input type="text" id="af-horario" name="Horário do treino" placeholder="Ex: manhã, 18h..." />
+          </div>
+        </div>
+      </section>
+
+      <!-- ETAPA 10 — ALIMENTAÇÃO E RECORDATÓRIO -->
+      <section class="step" data-step="10">
+        <h2 class="step-title">10. Alimentação</h2>
+        <p class="step-hint">Como é a sua rotina alimentar no dia a dia.</p>
+
+        <div class="row cols-2">
+          <div class="field">
+            <label for="refeicoes">Quantas refeições faz por dia?</label>
+            <input type="text" id="refeicoes" name="Refeições por dia" placeholder="Ex: 4" />
+          </div>
+          <div class="field">
+            <label for="horarios">Horários das refeições</label>
+            <input type="text" id="horarios" name="Horários das refeições" placeholder="Ex: 8h, 12h, 16h, 20h" />
+          </div>
+        </div>
+
+        <div class="row cols-2">
+          <div class="field">
+            <label for="quem-prepara">Quem prepara sua comida?</label>
+            <input type="text" id="quem-prepara" name="Quem prepara a comida" placeholder="Ex: eu mesma, marmita..." />
+          </div>
+          <div class="field">
+            <label>Come fora?</label>
+            <div class="options">
+              <div class="option"><input type="radio" id="fora-sim" name="Come fora" value="Sim" /><label for="fora-sim">Sim</label></div>
+              <div class="option"><input type="radio" id="fora-asvezes" name="Come fora" value="Às vezes" /><label for="fora-asvezes">Às vezes</label></div>
+              <div class="option"><input type="radio" id="fora-nao" name="Come fora" value="Não" /><label for="fora-nao">Não</label></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Hábitos alimentares</label>
+          <div class="help" style="margin-top:0;margin-bottom:.5rem;">Marque os que se aplicam a você.</div>
+          <div class="options tight" data-group="habitos-alimentares">
+            <div class="option"><input type="checkbox" id="ha-pula" data-group-item value="Pula refeições" /><label for="ha-pula">Pula refeições</label></div>
+            <div class="option"><input type="checkbox" id="ha-belisca" data-group-item value="Belisca durante o dia" /><label for="ha-belisca">Belisca durante o dia</label></div>
+            <div class="option"><input type="checkbox" id="ha-rapido" data-group-item value="Come rápido" /><label for="ha-rapido">Come rápido</label></div>
+            <div class="option"><input type="checkbox" id="ha-mastiga" data-group-item value="Mastiga bem" /><label for="ha-mastiga">Mastiga bem</label></div>
+          </div>
+          <input type="hidden" name="Hábitos alimentares" data-group-out="habitos-alimentares" />
+        </div>
+
+        <div class="subhead">Recordatório alimentar</div>
+        <p class="step-hint" style="margin-top:-.5rem;">O que você normalmente come em cada refeição.</p>
+        <div class="field">
+          <label for="cafe">Café da manhã</label>
+          <textarea id="cafe" name="Café da manhã" placeholder="Ex: café com pão, ovos, fruta..."></textarea>
+        </div>
+        <div class="field">
+          <label for="lanche-manha">Lanche da manhã</label>
+          <textarea id="lanche-manha" name="Lanche da manhã"></textarea>
+        </div>
+        <div class="field">
+          <label for="almoco">Almoço</label>
+          <textarea id="almoco" name="Almoço"></textarea>
+        </div>
+        <div class="field">
+          <label for="lanche-tarde">Lanche da tarde</label>
+          <textarea id="lanche-tarde" name="Lanche da tarde"></textarea>
+        </div>
+        <div class="field">
+          <label for="jantar">Jantar</label>
+          <textarea id="jantar" name="Jantar"></textarea>
+        </div>
+        <div class="field">
+          <label for="ceia">Ceia</label>
+          <textarea id="ceia" name="Ceia"></textarea>
+        </div>
+      </section>
+
+      <!-- ETAPA 11 — FOME, PREFERÊNCIAS, ÁGUA, BEBIDAS E DOCES -->
+      <section class="step" data-step="11">
+        <h2 class="step-title">11. Fome, preferências e bebidas</h2>
+        <p class="step-hint">Para o plano ser gostoso, possível e sustentável.</p>
+
+        <div class="subhead">Fome e saciedade</div>
+        <div class="field">
+          <label>Você se identifica com algum destes?</label>
+          <div class="help" style="margin-top:0;margin-bottom:.5rem;">Marque os que se aplicam.</div>
+          <div class="options tight" data-group="comportamento-alimentar">
+            <div class="option"><input type="checkbox" id="ca-fome" data-group-item value="Sente muita fome" /><label for="ca-fome">Sente muita fome</label></div>
+            <div class="option"><input type="checkbox" id="ca-compulsao" data-group-item value="Episódios de compulsão" /><label for="ca-compulsao">Episódios de compulsão</label></div>
+            <div class="option"><input type="checkbox" id="ca-ansiedade" data-group-item value="Come por ansiedade" /><label for="ca-ansiedade">Come por ansiedade</label></div>
+            <div class="option"><input type="checkbox" id="ca-triste" data-group-item value="Come quando está triste" /><label for="ca-triste">Come quando triste</label></div>
+            <div class="option"><input type="checkbox" id="ca-escondido" data-group-item value="Come escondido" /><label for="ca-escondido">Come escondido</label></div>
+          </div>
+          <input type="hidden" name="Comportamento alimentar" data-group-out="comportamento-alimentar" />
+        </div>
+        <div class="field">
+          <label for="horario-fome">Qual horário sente mais fome?</label>
+          <input type="text" id="horario-fome" name="Horário de mais fome" placeholder="Ex: à noite, à tarde..." />
+        </div>
+
+        <div class="subhead">Preferências alimentares</div>
+        <div class="field">
+          <label for="gosta">Alimentos que gosta</label>
+          <textarea id="gosta" name="Alimentos que gosta"></textarea>
+        </div>
+        <div class="field">
+          <label for="nao-gosta">Alimentos que não gosta</label>
+          <textarea id="nao-gosta" name="Alimentos que não gosta"></textarea>
+        </div>
+        <div class="row cols-2">
+          <div class="field">
+            <label for="alergias">Alergias</label>
+            <input type="text" id="alergias" name="Alergias" placeholder="Se não tiver, escreva 'nenhuma'" />
+          </div>
+          <div class="field">
+            <label for="intolerancias">Intolerâncias</label>
+            <input type="text" id="intolerancias" name="Intolerâncias" placeholder="Ex: lactose, glúten..." />
+          </div>
+        </div>
+        <div class="field">
+          <label for="restricoes">Restrições religiosas ou de estilo de vida</label>
+          <input type="text" id="restricoes" name="Restrições religiosas" placeholder="Ex: não como carne de porco, vegetariana..." />
+        </div>
+
+        <div class="subhead">Água e bebidas</div>
+        <div class="field">
+          <label for="agua">Quantos litros de água bebe por dia?</label>
+          <input type="text" id="agua" name="Litros de água por dia" placeholder="Ex: 2 litros" />
+        </div>
+        <div class="field">
+          <label>Quais bebidas consome?</label>
+          <div class="options tight" data-group="bebidas">
+            <div class="option"><input type="checkbox" id="beb-refri" data-group-item value="Refrigerante" /><label for="beb-refri">Refrigerante</label></div>
+            <div class="option"><input type="checkbox" id="beb-suco" data-group-item value="Suco" /><label for="beb-suco">Suco</label></div>
+            <div class="option"><input type="checkbox" id="beb-cafe" data-group-item value="Café" /><label for="beb-cafe">Café</label></div>
+            <div class="option"><input type="checkbox" id="beb-energetico" data-group-item value="Energético" /><label for="beb-energetico">Energético</label></div>
+            <div class="option"><input type="checkbox" id="beb-alcool" data-group-item value="Álcool" /><label for="beb-alcool">Álcool</label></div>
+          </div>
+          <input type="hidden" name="Bebidas consumidas" data-group-out="bebidas" />
+          <div class="field" style="margin-top:.75rem;margin-bottom:0;">
+            <input type="text" name="Frequência de bebidas" placeholder="Com que frequência? Ex: café todo dia, álcool no fim de semana..." />
+          </div>
+        </div>
+
+        <div class="subhead">Doces</div>
+        <div class="field">
+          <label>Com que frequência sente vontade de doce?</label>
+          <div class="options tight">
+            <div class="option"><input type="radio" id="doce-nunca" name="Vontade de doce" value="Nunca" /><label for="doce-nunca">Nunca</label></div>
+            <div class="option"><input type="radio" id="doce-raro" name="Vontade de doce" value="Raramente" /><label for="doce-raro">Raramente</label></div>
+            <div class="option"><input type="radio" id="doce-algumas" name="Vontade de doce" value="Algumas vezes" /><label for="doce-algumas">Algumas vezes</label></div>
+            <div class="option"><input type="radio" id="doce-todos" name="Vontade de doce" value="Todos os dias" /><label for="doce-todos">Todos os dias</label></div>
+            <div class="option"><input type="radio" id="doce-noite" name="Vontade de doce" value="Mais à noite" /><label for="doce-noite">Mais à noite</label></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ETAPA 12 — LIPEDEMA -->
+      <section class="step" data-step="12">
+        <h2 class="step-title">12. Lipedema</h2>
+        <p class="step-hint">Vamos entender a fundo como o lipedema se manifesta no seu corpo.</p>
+
+        <div class="row cols-2">
+          <div class="field">
+            <label>Possui diagnóstico?</label>
+            <div class="options">
+              <div class="option"><input type="radio" id="lip-sim" name="Diagnóstico de lipedema" value="Sim" /><label for="lip-sim">Sim</label></div>
+              <div class="option"><input type="radio" id="lip-suspeita" name="Diagnóstico de lipedema" value="Suspeita" /><label for="lip-suspeita">Suspeita</label></div>
+              <div class="option"><input type="radio" id="lip-nao" name="Diagnóstico de lipedema" value="Não" /><label for="lip-nao">Não</label></div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="lip-estagio">Em qual estágio?</label>
+            <select id="lip-estagio" name="Estágio do lipedema">
+              <option value="">Selecione...</option>
+              <option>Estágio 1</option>
+              <option>Estágio 2</option>
+              <option>Estágio 3</option>
+              <option>Estágio 4</option>
+              <option>Não sei</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Quais sintomas você sente?</label>
+          <div class="help" style="margin-top:0;margin-bottom:.5rem;">Marque todos que se aplicam.</div>
+          <div class="options tight" data-group="sintomas-lipedema">
+            <div class="option"><input type="checkbox" id="sl-dor" data-group-item value="Dor ao toque" /><label for="sl-dor">Dor ao toque</label></div>
+            <div class="option"><input type="checkbox" id="sl-peso" data-group-item value="Sensação de peso" /><label for="sl-peso">Sensação de peso</label></div>
+            <div class="option"><input type="checkbox" id="sl-hematomas" data-group-item value="Hematomas frequentes" /><label for="sl-hematomas">Hematomas frequentes</label></div>
+            <div class="option"><input type="checkbox" id="sl-edema" data-group-item value="Edema" /><label for="sl-edema">Edema (inchaço)</label></div>
+          </div>
+          <input type="hidden" name="Sintomas de lipedema" data-group-out="sintomas-lipedema" />
+        </div>
+
+        <div class="row cols-2">
+          <div class="field">
+            <label>Histórico familiar?</label>
+            <div class="options">
+              <div class="option"><input type="radio" id="lipfam-sim" name="Histórico familiar de lipedema" value="Sim" /><label for="lipfam-sim">Sim</label></div>
+              <div class="option"><input type="radio" id="lipfam-nao" name="Histórico familiar de lipedema" value="Não" /><label for="lipfam-nao">Não</label></div>
+              <div class="option"><input type="radio" id="lipfam-naosei" name="Histórico familiar de lipedema" value="Não sei" /><label for="lipfam-naosei">Não sei</label></div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Usa meia compressiva?</label>
+            <div class="options">
+              <div class="option"><input type="radio" id="meia-sim" name="Usa meia compressiva" value="Sim" /><label for="meia-sim">Sim</label></div>
+              <div class="option"><input type="radio" id="meia-nao" name="Usa meia compressiva" value="Não" /><label for="meia-nao">Não</label></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row cols-2">
+          <div class="field">
+            <label>Já fez drenagem?</label>
+            <div class="options">
+              <div class="option"><input type="radio" id="dren-sim" name="Já fez drenagem" value="Sim" /><label for="dren-sim">Sim</label></div>
+              <div class="option"><input type="radio" id="dren-nao" name="Já fez drenagem" value="Não" /><label for="dren-nao">Não</label></div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Piora durante o ciclo menstrual?</label>
+            <div class="options">
+              <div class="option"><input type="radio" id="lippiora-sim" name="Piora no ciclo menstrual" value="Sim" /><label for="lippiora-sim">Sim</label></div>
+              <div class="option"><input type="radio" id="lippiora-nao" name="Piora no ciclo menstrual" value="Não" /><label for="lippiora-nao">Não</label></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ETAPA 13 — SOBRE VOCÊ E METAS -->
+      <section class="step" data-step="13">
+        <h2 class="step-title">13. Sobre você e suas metas</h2>
+        <p class="step-hint">Para fechar, quero entender você além dos números.</p>
+
+        <div class="field">
+          <label for="autoimagem">Como você se sente em relação ao seu corpo hoje?</label>
+          <textarea id="autoimagem" name="Autoimagem" placeholder="Fale com sinceridade — aqui é um espaço seguro."></textarea>
+        </div>
+
+        <div class="field">
+          <label>O que mais dificulta sua alimentação?</label>
+          <div class="help" style="margin-top:0;margin-bottom:.5rem;">Marque os que se aplicam.</div>
+          <div class="options tight" data-group="dificuldades">
+            <div class="option"><input type="checkbox" id="dif-tempo" data-group-item value="Falta de tempo" /><label for="dif-tempo">Falta de tempo</label></div>
+            <div class="option"><input type="checkbox" id="dif-ansiedade" data-group-item value="Ansiedade" /><label for="dif-ansiedade">Ansiedade</label></div>
+            <div class="option"><input type="checkbox" id="dif-trabalho" data-group-item value="Trabalho" /><label for="dif-trabalho">Trabalho</label></div>
+            <div class="option"><input type="checkbox" id="dif-filhos" data-group-item value="Filhos" /><label for="dif-filhos">Filhos</label></div>
+            <div class="option"><input type="checkbox" id="dif-financeiro" data-group-item value="Financeiro" /><label for="dif-financeiro">Financeiro</label></div>
+            <div class="option"><input type="checkbox" id="dif-organizacao" data-group-item value="Falta de organização" /><label for="dif-organizacao">Falta de organização</label></div>
+            <div class="option"><input type="checkbox" id="dif-compulsao" data-group-item value="Compulsão" /><label for="dif-compulsao">Compulsão</label></div>
+          </div>
+          <input type="hidden" name="Dificuldades" data-group-out="dificuldades" />
+          <div class="field" style="margin-top:.75rem;margin-bottom:0;">
+            <input type="text" name="Outra dificuldade" placeholder="Outra? Descreva aqui..." />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="disponibilidade">Quanto tempo consegue dedicar por semana para cuidar da alimentação?</label>
+          <input type="text" id="disponibilidade" name="Tempo disponível por semana" placeholder="Ex: 2 horas para preparar as refeições" />
+        </div>
+
+        <div class="field">
+          <label for="motivacao">Numa escala de 0 a 10, quanto está comprometida em mudar seus hábitos?</label>
+          <select id="motivacao" name="Comprometimento">
+            <option value="">Selecione...</option>
+            <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+          </select>
+        </div>
+
+        <div class="subhead">Onde você gostaria de estar daqui a...</div>
+        <div class="field">
+          <label for="meta-30">30 dias</label>
+          <input type="text" id="meta-30" name="Meta 30 dias" placeholder="Ex: menos inchaço, mais energia..." />
+        </div>
+        <div class="field">
+          <label for="meta-90">90 dias</label>
+          <input type="text" id="meta-90" name="Meta 90 dias" />
+        </div>
+        <div class="field">
+          <label for="meta-180">6 meses</label>
+          <input type="text" id="meta-180" name="Meta 6 meses" />
+        </div>
+
+        <div class="consent">
+          <label>
+            <input type="checkbox" id="consent" name="Consentimento LGPD" value="Autorizado" required />
+            <span>
+              Autorizo o uso das informações enviadas <strong>exclusivamente para minha avaliação nutricional e elaboração do plano alimentar</strong>, em conformidade com a LGPD. Sei que meus dados serão tratados de forma confidencial e não compartilhados com terceiros. <span class="req">*</span>
+            </span>
+          </label>
+        </div>
+        <div class="error-msg" id="consent-error">É preciso autorizar para enviar.</div>
+      </section>
+
+      <!-- Navegação -->
+      <div class="nav-buttons">
+        <button type="button" class="btn-secondary" id="btnBack" style="display:none;">← Voltar</button>
+        <button type="button" class="btn-primary" id="btnNext">Continuar →</button>
+        <button type="submit" class="btn-primary" id="btnSubmit" style="display:none;">Enviar anamnese 💗</button>
+      </div>
+    </form>
+
+    <!-- Tela de sucesso -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">💗</div>
+      <h2>Recebido com carinho!</h2>
+      <p>Obrigada por confiar e por dedicar esse tempo. Vou analisar cada resposta com atenção e montar seu plano com foco no seu lipedema e na sua saúde. Entro em contato pelo e-mail ou WhatsApp informado.</p>
+      <a href="index.html" class="btn-primary" style="display:inline-block;text-decoration:none;padding:.85rem 2rem;">Voltar ao site</a>
+    </div>
+  </div>
+
+  <p class="footer-note">
+    Suas informações são confidenciais. Em caso de dúvida, fale comigo direto:
+    <a href="https://wa.me/5551994401265" target="_blank" rel="noopener">WhatsApp (51) 99440-1265</a>
+  </p>
+</div>
+
+<script>
+  // Leitura do código de acesso na URL: ?c=maria-2026 ou ?c=ABC123&n=Maria
+  (function readAccessCode() {
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('c') || params.get('code') || '';
+    const name = params.get('n') || params.get('nome') || '';
+    if (code) {
+      document.getElementById('accessCode').value = code;
+      const badge = document.getElementById('accessBadge');
+      badge.textContent = '✦ Acesso personalizado · ' + code.toUpperCase();
+      badge.style.display = 'inline-block';
+    }
+    if (name) {
+      const firstName = decodeURIComponent(name).split(' ')[0];
+      document.getElementById('pageTitle').textContent = 'Olá, ' + firstName + ' 💗';
+      document.getElementById('pageSubtitle').textContent = 'Que bom te ver por aqui! Pra montar seu plano com cuidado e olhar atento ao lipedema, preciso te conhecer bem. Responda com calma.';
+      const nomeInput = document.getElementById('nome');
+      if (nomeInput && !nomeInput.value) nomeInput.value = decodeURIComponent(name);
+    }
+  })();
+
+  const form = document.getElementById('lipedemaForm');
+  const steps = form.querySelectorAll('.step');
+  const progress = document.getElementById('progress');
+  const progressLabel = document.getElementById('progressLabel');
+  const btnBack = document.getElementById('btnBack');
+  const btnNext = document.getElementById('btnNext');
+  const btnSubmit = document.getElementById('btnSubmit');
+  const total = steps.length;
+  let current = 1;
+
+  // Gera as barrinhas de progresso conforme o nº de etapas
+  for (let i = 0; i < total; i++) {
+    const bar = document.createElement('div');
+    bar.className = 'progress-step';
+    progress.appendChild(bar);
+  }
+  const progressSteps = progress.querySelectorAll('.progress-step');
+
+  function render() {
+    steps.forEach(s => s.classList.toggle('active', +s.dataset.step === current));
+    progressSteps.forEach((p, i) => p.classList.toggle('active', i < current));
+    progressLabel.textContent = `Etapa ${current} de ${total}`;
+    btnBack.style.display = current === 1 ? 'none' : 'inline-block';
+    btnNext.style.display = current === total ? 'none' : 'inline-block';
+    btnSubmit.style.display = current === total ? 'inline-block' : 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function validateStep(stepNum) {
+    const step = form.querySelector(`.step[data-step="${stepNum}"]`);
+    const requiredFields = step.querySelectorAll('[data-required]');
+    let valid = true;
+    requiredFields.forEach(f => {
+      const input = f.querySelector('input, select, textarea');
+      const hasValue = input && input.value.trim() !== '';
+      const validEmail = input.type !== 'email' || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(input.value);
+      if (!hasValue || !validEmail) {
+        f.classList.add('has-error');
+        valid = false;
+      } else {
+        f.classList.remove('has-error');
+      }
+    });
+    return valid;
+  }
+
+  btnNext.addEventListener('click', () => {
+    if (!validateStep(current)) return;
+    if (current < total) { current++; render(); }
+  });
+
+  btnBack.addEventListener('click', () => {
+    if (current > 1) { current--; render(); }
+  });
+
+  // Feedback visual nos uploads
+  document.querySelectorAll('.file-field').forEach(field => {
+    const input = field.querySelector('input[type="file"]');
+    const nameEl = field.querySelector('.file-name');
+    input.addEventListener('change', () => {
+      if (input.files && input.files.length) {
+        const names = Array.from(input.files).map(f => f.name).join(', ');
+        nameEl.textContent = '✓ ' + names;
+        field.classList.add('has-file');
+      } else {
+        nameEl.textContent = '';
+        field.classList.remove('has-file');
+      }
+    });
+  });
+
+  // Consolida todos os grupos de checkbox em campos únicos antes de enviar
+  function collectGroups() {
+    document.querySelectorAll('[data-group]').forEach(container => {
+      const key = container.dataset.group;
+      const items = container.querySelectorAll('[data-group-item]:checked');
+      const values = Array.from(items).map(i => i.value);
+      const out = document.querySelector(`[data-group-out="${key}"]`);
+      if (out) out.value = values.join(', ');
+    });
+  }
+
+  // Validação do consentimento + estado de envio
+  form.addEventListener('submit', (e) => {
+    const consent = document.getElementById('consent');
+    const consentError = document.getElementById('consent-error');
+    if (!consent.checked) {
+      e.preventDefault();
+      consentError.style.display = 'block';
+      return;
+    }
+    collectGroups();
+    btnSubmit.disabled = true;
+    btnSubmit.innerHTML = '<span class="spinner"></span>Enviando...';
+  });
+
+  render();
+</script>
+
+</body>
+</html>
