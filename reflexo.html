@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Limpe o espelho e dê o primeiro passo. Campanha da clínica Reflexo.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0A0806">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://milenirosa.netlify.app/reflexo.html">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Você já parou de sorrir nas fotos?">
+  <meta property="og:description" content="Limpe o espelho e dê o primeiro passo. Campanha da clínica Reflexo.">
+  <meta name="twitter:card" content="summary">
+
+  <title>Reflexo</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Karla:wght@400;500;600;700&display=swap">
+
+  <style>
+    /* =================================================================
+       REFLEXO — Odontologia que começa no espelho
+       Campanha de captação para clínica odontológica.
+
+       MARCA
+         Ideia central: quem tem vergonha dos dentes desvia do espelho.
+         A página pede o gesto de limpar o embaçado — o mesmo gesto do
+         banheiro de manhã. Interagir É a mensagem.
+         Voz: segunda pessoa, direta, sem "sorriso dos sonhos".
+
+       PALETA  vidro frio + luz quente (foge do azul-menta clínico)
+         --ink     banheiro no escuro, ardósia fria
+         --glass   condensação no vidro
+         --warm    a luz do outro lado, tom de pele
+         --go      ação
+
+       TIPOGRAFIA
+         Instrument Serif  títulos, alto contraste, editorial
+         Karla             texto, humanista e morna
+         DM Mono           rótulos e dados
+       ================================================================= */
+    :root {
+      --ink:      #0C1417;
+      --ink-2:    #131F20;
+      --ink-3:    #1B2A2A;
+      --glass:    #C9D6D6;
+      --silver:   #8FA3A4;
+      --mist:     #E8EFEE;
+      --mute:     #93A5A5;
+      --warm:     #F2A878;
+      --warm-hi:  #FFD3AC;
+      --warm-dp:  #B5663A;
+      --go:       #15A06B;
+      --go-hi:    #2ED18F;
+      --err:      #E8785F;
+
+      --f-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --f-body:    'Karla', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --f-mono:    'DM Mono', ui-monospace, Menlo, Consolas, monospace;
+    }
+
+    html, body { min-height: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: var(--mist);
+      font-family: var(--f-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* luz morna vindo de cima, como uma janela de banheiro */
+    .room {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(70% 38% at 50% 0%, #6E4A3340 0%, transparent 62%),
+        radial-gradient(120% 70% at 50% 108%, #0A1113 0%, transparent 70%);
+    }
+
+    .wrap {
+      position: relative; z-index: 2;
+      max-width: 540px; margin: 0 auto;
+      padding-inline: 20px;
+      padding-block: 26px 48px;
+    }
+
+    /* ---------------- Marca ---------------- */
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand svg { width: 26px; height: 26px; flex: none; }
+    .brand-name {
+      font-family: var(--f-display);
+      font-size: 1.32rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--mist);
+    }
+    .brand-tag {
+      margin: 8px 0 0;
+      font-family: var(--f-mono); font-size: .62rem;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--silver);
+    }
+
+    .demo-tag {
+      position: fixed; top: env(safe-area-inset-top, 0px); right: 0; z-index: 7;
+      margin: 12px; padding: 6px 12px;
+      border: 1px solid #8FA3A444; border-radius: 999px;
+      background: #131F20e0; color: var(--silver);
+      font-family: var(--f-mono); font-size: .6rem;
+      letter-spacing: .16em; text-transform: uppercase;
+    }
+
+    /* ---------------- Pergunta de abertura ---------------- */
+    .hero {
+      margin: 34px 0 0;
+      font-family: var(--f-display);
+      font-weight: 400;
+      font-size: clamp(2.3rem, 10.5vw, 3.4rem);
+      line-height: 1.04; letter-spacing: -.015em;
+      text-wrap: balance; color: var(--mist);
+    }
+    .hero em { font-style: italic; color: var(--warm); }
+
+    .hero-sub {
+      margin: 16px 0 0; max-width: 32ch;
+      font-size: 1.02rem; color: var(--mute);
+    }
+
+    /* ---------------- O espelho ---------------- */
+    .mirror {
+      position: relative;
+      margin-top: 26px;
+      aspect-ratio: 3 / 4;
+      max-width: 100%;
+      border-radius: 200px 200px 14px 14px;
+      overflow: hidden;
+      background: linear-gradient(168deg, var(--ink-3), #0F1A1B 62%);
+      box-shadow:
+        0 30px 70px #00000099,
+        inset 0 0 0 1px #8FA3A433,
+        inset 0 2px 0 #E8EFEE1A;
+      touch-action: none;
+    }
+
+    /* o que está atrás do embaçado */
+    .behind {
+      position: absolute; inset: 0;
+      display: grid; place-content: center;
+      padding: 30px 26px;
+      text-align: center;
+      background:
+        radial-gradient(64% 46% at 50% 38%, #8A5A3A66 0%, transparent 72%),
+        linear-gradient(170deg, #1C2A29, #101B1C);
+    }
+    .behind p {
+      margin: 0;
+      font-family: var(--f-display);
+      font-size: clamp(1.7rem, 7.6vw, 2.35rem);
+      line-height: 1.16; letter-spacing: -.01em;
+      color: var(--warm-hi);
+      text-wrap: balance;
+    }
+    .behind span {
+      display: block; margin-top: 18px;
+      font-family: var(--f-mono); font-size: .64rem;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--warm);
+    }
+
+    #fog {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      cursor: grab;
+      transition: opacity .8s ease;
+    }
+    #fog:active { cursor: grabbing; }
+
+    .swipe-cue {
+      position: absolute; left: 0; right: 0; bottom: 26px;
+      text-align: center; pointer-events: none;
+      font-family: var(--f-mono); font-size: .66rem;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: #0C1417; opacity: .55;
+      animation: pulse 2.6s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:.7} }
+
+    .reveal-btn {
+      display: block; margin: 14px auto 0;
+      padding: 11px 20px;
+      background: none; border: 1px solid #8FA3A44D; border-radius: 999px;
+      color: var(--silver); font-family: var(--f-body); font-size: .86rem;
+      cursor: pointer;
+    }
+    .reveal-btn:hover { color: var(--mist); border-color: var(--silver); }
+    .reveal-btn:focus-visible { outline: 2px solid var(--warm); outline-offset: 3px; }
+    .reveal-btn[hidden] { display: none !important; }
+
+    /* ---------------- Blocos do funil ---------------- */
+    .step { margin-top: 40px; scroll-margin-top: 20px; }
+    .step[hidden] { display: none !important; }
+
+    .fade-up > * { animation: rise .7s cubic-bezier(.2,.8,.3,1) backwards; }
+    .fade-up > *:nth-child(1){animation-delay:.05s} .fade-up > *:nth-child(2){animation-delay:.13s}
+    .fade-up > *:nth-child(3){animation-delay:.21s} .fade-up > *:nth-child(4){animation-delay:.29s}
+    .fade-up > *:nth-child(5){animation-delay:.37s}
+    @keyframes rise { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+    .label {
+      margin: 0 0 10px;
+      font-family: var(--f-mono); font-size: .64rem;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--warm);
+    }
+
+    .h2 {
+      margin: 0 0 12px;
+      font-family: var(--f-display); font-weight: 400;
+      font-size: clamp(1.75rem, 7.4vw, 2.3rem);
+      line-height: 1.1; letter-spacing: -.012em;
+      text-wrap: balance; color: var(--mist);
+    }
+    .h2 em { font-style: italic; color: var(--warm); }
+
+    .body-txt { margin: 0 0 22px; max-width: 40ch; color: var(--mute); }
+    .body-txt strong { color: var(--mist); font-weight: 600; }
+
+    /* Cartão da oferta: sem preço, sem desconto (regra CFO) */
+    .offer {
+      border-left: 2px solid var(--warm-dp);
+      padding-left: 20px;
+      display: grid; gap: 18px;
+    }
+    .offer div h3 {
+      margin: 0 0 3px;
+      font-family: var(--f-body); font-weight: 600;
+      font-size: 1rem; color: var(--mist);
+    }
+    .offer div p { margin: 0; font-size: .92rem; color: var(--mute); }
+
+    .deadline {
+      margin-top: 24px; padding-top: 18px;
+      border-top: 1px solid #8FA3A426;
+      display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+      font-family: var(--f-mono); font-size: .74rem;
+      letter-spacing: .1em; color: var(--silver);
+    }
+    .deadline b { color: var(--warm-hi); font-weight: 500; font-variant-numeric: tabular-nums; }
+    .deadline[hidden] { display: none !important; }
+
+    /* ---------------- Qualificação ---------------- */
+    .opts { display: grid; gap: 10px; }
+    .opt {
+      display: flex; align-items: center; gap: 14px;
+      width: 100%; padding: 16px 18px; text-align: left;
+      background: var(--ink-2); border: 1px solid #8FA3A42E; border-radius: 3px;
+      color: var(--mist); font-family: var(--f-body); font-size: 1rem;
+      cursor: pointer;
+      transition: border-color .2s ease, background .2s ease, transform .15s ease;
+    }
+    .opt i {
+      width: 7px; height: 7px; flex: none; border-radius: 50%;
+      background: #8FA3A455; transition: background .2s ease, box-shadow .2s ease;
+    }
+    .opt:hover { border-color: var(--silver); transform: translateX(3px); }
+    .opt:focus-visible { outline: 2px solid var(--warm); outline-offset: 2px; }
+    .opt[aria-pressed="true"] {
+      border-color: var(--warm); background: #F2A8780F;
+    }
+    .opt[aria-pressed="true"] i { background: var(--warm); box-shadow: 0 0 0 4px #F2A87826; }
+
+    /* ---------------- Formulário ---------------- */
+    .field { margin-bottom: 18px; }
+    .field label {
+      display: block; margin-bottom: 8px;
+      font-family: var(--f-mono); font-size: .64rem;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--silver);
+    }
+    .field input[type="text"], .field input[type="tel"] {
+      width: 100%; padding: 15px 16px;
+      background: var(--ink-2); color: var(--mist);
+      border: 1px solid #8FA3A42E; border-radius: 3px;
+      font-family: var(--f-body); font-size: 1.02rem;
+    }
+    .field input::placeholder { color: #93A5A566; }
+    .field input:focus { outline: none; border-color: var(--warm); background: var(--ink-3); }
+    .field input[aria-invalid="true"] { border-color: var(--err); }
+
+    .err { display: none; margin-top: 7px; font-size: .84rem; color: var(--err); }
+    .field[data-invalid="true"] .err { display: block; }
+
+    .consent { display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: start; margin: 20px 0 4px; }
+    .consent input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--go); }
+    .consent label { font-size: .86rem; line-height: 1.5; color: #B4C3C3; }
+
+    .cta {
+      display: flex; align-items: center; justify-content: center; gap: .6em;
+      width: 100%; margin-top: 22px; padding: 18px 18px;
+      border: 0; border-radius: 3px;
+      background: var(--go); color: #fff;
+      font-family: var(--f-body); font-weight: 700;
+      font-size: clamp(.9rem, 4vw, 1.02rem); line-height: 1.3;
+      letter-spacing: .02em; text-align: center; text-decoration: none;
+      cursor: pointer;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .cta:hover:not(:disabled) { background: var(--go-hi); transform: translateY(-2px); }
+    .cta:focus-visible { outline: 2px solid var(--warm); outline-offset: 3px; }
+    .cta:disabled { background: #14563E; cursor: not-allowed; }
+    .cta svg { width: 19px; height: 19px; flex: none; }
+
+    .spin {
+      width: 16px; height: 16px; flex: none;
+      border: 2px solid #ffffff55; border-top-color: #fff;
+      border-radius: 50%; animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg) } }
+
+    .fine { margin: 14px 0 0; font-size: .8rem; line-height: 1.5; color: #7D8E8E; }
+
+    /* ---------------- Painel do lead (demonstração) ---------------- */
+    .panel { margin-top: 26px; padding: 20px 18px; background: var(--ink-2); border: 1px solid #8FA3A42E; border-radius: 3px; }
+    .panel h3 {
+      margin: 0 0 4px; font-family: var(--f-mono); font-size: .64rem;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--warm);
+    }
+    .panel .sub2 { margin: 0 0 16px; font-size: .82rem; color: var(--mute); }
+    .rows { display: grid; gap: 1px; background: #8FA3A426; border: 1px solid #8FA3A426; }
+    .row { display: grid; grid-template-columns: 92px 1fr; gap: 10px; padding: 10px 12px; background: var(--ink-3); }
+    .row dt {
+      font-family: var(--f-mono); font-size: .6rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--silver); align-self: center;
+    }
+    .row dd { margin: 0; font-size: .9rem; color: var(--mist); word-break: break-word; }
+    .p-alta { color: var(--warm); font-weight: 600; }
+    .p-media { color: var(--warm-hi); }
+    .p-baixa { color: var(--mute); }
+    .msg {
+      margin-top: 16px; padding: 14px;
+      background: #15A06B14; border: 1px solid #15A06B3D;
+      font-size: .87rem; line-height: 1.6; color: #BDDDCD; white-space: pre-wrap;
+    }
+    .restart {
+      display: block; width: 100%; margin-top: 14px; padding: 13px;
+      background: none; border: 1px solid #8FA3A43D;
+      color: var(--silver); font-family: var(--f-body); font-size: .9rem; cursor: pointer;
+    }
+    .restart:hover { color: var(--mist); border-color: var(--silver); }
+
+    .ok {
+      width: 54px; height: 54px; margin-bottom: 20px;
+      display: grid; place-items: center; border-radius: 50%;
+      background: #15A06B1F; border: 1px solid var(--go);
+    }
+    .ok svg { width: 25px; height: 25px; color: var(--go-hi); }
+
+    .foot {
+      margin-top: 54px; padding-top: 22px;
+      border-top: 1px solid #8FA3A41F;
+      font-family: var(--f-mono); font-size: .62rem;
+      letter-spacing: .14em; text-transform: uppercase; color: #6E7F7F;
+    }
+
+    .sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .swipe-cue { animation: none; }
+      .fade-up > * { animation: none; }
+      .opt:hover, .cta:hover { transform: none; }
+    }
+  </style>
+
+  <style>
+    :root { color-scheme: dark; padding-top: env(safe-area-inset-top,0px); padding-bottom: env(safe-area-inset-bottom,0px); }
+    * { box-sizing: border-box; }
+    img { max-width: 100%; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+
+<div class="room" aria-hidden="true"></div>
+<span class="demo-tag">Demonstração</span>
+
+<main class="wrap">
+
+  <header>
+    <div class="brand">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="16" cy="16" r="13" stroke="#F2A878" stroke-width="1.6"/>
+        <path d="M16 3a13 13 0 0 1 0 26" fill="#F2A87826"/>
+        <path d="M9.8 16.2q6.2 6.8 12.4 0" stroke="#E8EFEE" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-name">Reflexo</span>
+    </div>
+    <p class="brand-tag">Odontologia que começa no espelho</p>
+
+    <h1 class="hero">Você já parou de sorrir <em>nas fotos?</em></h1>
+    <p class="hero-sub">Não precisa responder. Só limpe o espelho.</p>
+  </header>
+
+  <!-- ETAPA 1 — o espelho embaçado -->
+  <div class="mirror" id="mirror">
+    <div class="behind" aria-hidden="true">
+      <p>O primeiro passo é parar de desviar o olhar.</p>
+      <span>Reflexo · Outubro</span>
+    </div>
+    <canvas id="fog" role="img" aria-label="Espelho embaçado. Passe o dedo para limpar, ou use o botão abaixo."></canvas>
+    <p class="swipe-cue" id="cue">Passe o dedo para limpar</p>
+  </div>
+  <button type="button" class="reveal-btn" id="btnReveal">Limpar o espelho</button>
+
+  <!-- ETAPA 2 — o que a clínica oferece -->
+  <section id="oferta" class="step fade-up" hidden aria-live="polite">
+    <p class="label">O que preparamos para você</p>
+    <h2 class="h2">Uma consulta para <em>entender</em>, não para empurrar tratamento.</h2>
+    <p class="body-txt">
+      A <strong id="clinica">Reflexo</strong> reservou um horário desta semana
+      para quem quer começar a resolver — no seu ritmo.
+    </p>
+
+    <div class="offer">
+      <div>
+        <h3>Avaliação clínica completa</h3>
+        <p>Com documentação digital e radiografia, para ver o que está acontecendo de fato.</p>
+      </div>
+      <div>
+        <h3>Plano de tratamento no mesmo dia</h3>
+        <p>Você sai sabendo o que precisa ser feito, em que ordem e em quanto tempo.</p>
+      </div>
+      <div>
+        <h3>Prioridade na agenda</h3>
+        <p>Horários reservados desta campanha, sem fila de espera.</p>
+      </div>
+    </div>
+
+    <p class="deadline" id="deadline" hidden>
+      <span>Reserva válida por</span> <b id="dd">00</b><span>dias</span> <b id="hh">00</b><span>horas</span>
+    </p>
+  </section>
+
+  <!-- ETAPA 3 — qualificação -->
+  <section id="qualify" class="step fade-up" hidden>
+    <p class="label">Passo 1 de 2</p>
+    <h2 class="h2">O que mais <em>te incomoda</em> hoje?</h2>
+    <p class="body-txt">Escolha uma. O dentista já chega sabendo por onde começar.</p>
+    <div class="opts" id="opts" role="group" aria-label="O que mais te incomoda"></div>
+  </section>
+
+  <!-- ETAPA 4 — captura -->
+  <section id="capture" class="step fade-up" hidden>
+    <p class="label">Passo 2 de 2</p>
+    <h2 class="h2">Para onde mandamos o <em>seu horário?</em></h2>
+
+    <form id="form" name="lead-reflexo" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="lead-reflexo">
+      <p class="sr"><label>Não preencha: <input name="bot-field"></label></p>
+
+      <input type="hidden" name="Incomodo"   id="f-inc">
+      <input type="hidden" name="Interesse"  id="f-int">
+      <input type="hidden" name="Prioridade" id="f-prio">
+      <input type="hidden" name="Campanha"   id="f-camp">
+      <input type="hidden" name="Origem"     id="f-src">
+      <input type="hidden" name="Midia"      id="f-med">
+      <input type="hidden" name="Anuncio"    id="f-cnt">
+      <input type="hidden" name="Pagina"     id="f-url">
+
+      <div class="field" id="w-nome">
+        <label for="nome">Seu nome</label>
+        <input type="text" id="nome" name="Nome" autocomplete="given-name" placeholder="Como podemos te chamar?" required>
+        <p class="err">Por favor, informe seu nome.</p>
+      </div>
+
+      <div class="field" id="w-fone">
+        <label for="fone">WhatsApp</label>
+        <input type="tel" id="fone" name="WhatsApp" autocomplete="tel" inputmode="numeric" placeholder="(11) 91234-5678" required>
+        <p class="err">Informe um WhatsApp válido com DDD.</p>
+      </div>
+
+      <div class="consent">
+        <input type="checkbox" id="lgpd" name="Consentimento LGPD" value="sim" required>
+        <label for="lgpd">Autorizo o contato por WhatsApp sobre este atendimento, conforme a LGPD. Meus dados ficam só com a clínica.</label>
+      </div>
+      <p class="err" id="err-lgpd">É preciso autorizar o contato para continuar.</p>
+
+      <button type="submit" class="cta" id="btnSend">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.38a9.86 9.86 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.1.81.83-3.03-.2-.31a8.19 8.19 0 0 1-1.26-4.39c0-4.54 3.7-8.23 8.23-8.23 2.2 0 4.26.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24Zm4.52-6.17c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.13-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.15-.24-.02-.38.1-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.48-.4-.42-.55-.43h-.48c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.2 3.72.59.25 1.05.4 1.4.52.59.18 1.13.16 1.55.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+        <span id="sendTxt">Reservar meu horário</span>
+      </button>
+    </form>
+
+    <p class="fine">Sem cadastro, sem senha, sem e-mail de propaganda. Só o contato para marcar.</p>
+  </section>
+
+  <!-- ETAPA 5 — confirmação -->
+  <section id="done" class="step fade-up" hidden aria-live="polite">
+    <div class="ok" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>
+    </div>
+    <h2 class="h2">Horário <em>reservado.</em></h2>
+    <p class="body-txt" id="doneTxt">
+      A equipe da Reflexo entra em contato pelo WhatsApp que você informou.
+      Em uma campanha real, a conversa abriria agora.
+    </p>
+
+    <div class="panel">
+      <h3>O lead que a clínica recebe</h3>
+      <p class="sub2">Cai no painel e no e-mail da clínica no mesmo instante.</p>
+      <dl class="rows" id="rows"></dl>
+      <div class="msg" id="msgPrev"></div>
+      <button type="button" class="restart" id="btnAgain">↺ Ver a demonstração de novo</button>
+    </div>
+  </section>
+
+  <p class="foot">Reflexo · Odontologia que começa no espelho</p>
+
+</main>
+
+<script>
+(() => {
+  'use strict';
+
+  /* ==============================================================
+     CONFIG — o que muda de clínica para clínica.
+     ============================================================== */
+  const DEMO = true;   // false = grava o lead e abre o WhatsApp de verdade
+
+  const CONFIG = {
+    marca:    'Reflexo',
+    campanha: 'Reflexo Outubro',
+    whatsapp: '5511999999999',           // DDI + DDD + número, só dígitos
+
+    // Prazo REAL. null esconde o contador — nunca use prazo que reinicia.
+    prazo: '2026-10-31T23:59:59',
+
+    // Qualificação escrita como a PESSOA descreve o problema,
+    // não como o dentista classifica. 'int' é a tradução clínica
+    // que vai no lead; 'prio' ordena o atendimento da equipe.
+    incomodos: [
+      { txt: 'Escondo o sorriso nas fotos',      int: 'Estética / lentes',   prio: 'alta'  },
+      { txt: 'Estou com dor ou sensibilidade',   int: 'Urgência',            prio: 'alta'  },
+      { txt: 'Perdi um ou mais dentes',          int: 'Implante / prótese',  prio: 'alta'  },
+      { txt: 'Meus dentes são tortos',           int: 'Ortodontia',          prio: 'media' },
+      { txt: 'Queria os dentes mais claros',     int: 'Clareamento',         prio: 'media' },
+      { txt: 'Faz tempo que não vou ao dentista',int: 'Prevenção',           prio: 'baixa' },
+    ],
+
+    formName: 'lead-reflexo',
+  };
+  /* ============================================================== */
+
+  const $ = id => document.getElementById(id);
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let escolha = null;
+
+  function track(ev, d) {
+    try { (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: ev }, d || {})); } catch (_) {}
+    try {
+      if (typeof window.fbq === 'function') {
+        if (ev === 'lead_enviado') window.fbq('track', 'Lead', d || {});
+        else window.fbq('trackCustom', ev, d || {});
+      }
+    } catch (_) {}
+  }
+
+  /* ---------- atribuição de campanha ---------- */
+  const qs = new URLSearchParams(location.search);
+  $('f-src').value  = qs.get('utm_source') || document.referrer || 'direto';
+  $('f-med').value  = qs.get('utm_medium') || '';
+  $('f-cnt').value  = qs.get('utm_content') || qs.get('utm_campaign') || '';
+  $('f-url').value  = location.href;
+  $('f-camp').value = CONFIG.campanha;
+  $('clinica').textContent = CONFIG.marca;
+
+  $('opts').innerHTML = CONFIG.incomodos.map((o, i) =>
+    '<button type="button" class="opt" aria-pressed="false" data-i="' + i + '">' +
+    '<i aria-hidden="true"></i><span>' + o.txt + '</span></button>'
+  ).join('');
+
+  function mostrar(id) {
+    const el = $(id);
+    el.hidden = false;
+    el.classList.remove('fade-up'); void el.offsetWidth; el.classList.add('fade-up');
+    setTimeout(() => el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' }), 180);
+  }
+
+  /* =========================================================
+     O ESPELHO EMBAÇADO
+     Canvas com a condensação; o dedo apaga com destination-out.
+     ========================================================= */
+  const mirror = $('mirror'), fog = $('fog'), ctx = fog.getContext('2d', { willReadFrequently: true });
+  let limpo = false, desenhando = false, dpr = 1;
+
+  function pintarEmbacado() {
+    const r = mirror.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    fog.width = Math.max(1, Math.round(r.width * dpr));
+    fog.height = Math.max(1, Math.round(r.height * dpr));
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const w = r.width, h = r.height;
+
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.clearRect(0, 0, w, h);
+
+    const g = ctx.createLinearGradient(0, 0, w * .35, h);
+    g.addColorStop(0,   '#E4EDEC');
+    g.addColorStop(.45, '#C9D6D6');
+    g.addColorStop(1,   '#AEBFBF');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+
+    // manchas de condensação, para não parecer chapado
+    for (let i = 0; i < 26; i++) {
+      const x = Math.random() * w, y = Math.random() * h, rad = Math.random() * 70 + 26;
+      const b = ctx.createRadialGradient(x, y, 0, x, y, rad);
+      b.addColorStop(0, 'rgba(255,255,255,.34)');
+      b.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = b;
+      ctx.beginPath(); ctx.arc(x, y, rad, 0, Math.PI * 2); ctx.fill();
+    }
+
+    // gotas escorridas
+    ctx.globalCompositeOperation = 'destination-out';
+    for (let i = 0; i < 16; i++) {
+      const x = Math.random() * w, y = Math.random() * h * .9, rr = Math.random() * 2.6 + 1.1;
+      ctx.beginPath(); ctx.arc(x, y, rr, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(x, y + rr * 3.2, rr * .62, rr * 3.4, 0, 0, Math.PI * 2);
+      ctx.globalAlpha = .5; ctx.fill(); ctx.globalAlpha = 1;
+    }
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  function apagar(x, y) {
+    ctx.globalCompositeOperation = 'destination-out';
+    const rad = 34;
+    const g = ctx.createRadialGradient(x, y, 0, x, y, rad);
+    g.addColorStop(0,   'rgba(0,0,0,1)');
+    g.addColorStop(.62, 'rgba(0,0,0,.85)');
+    g.addColorStop(1,   'rgba(0,0,0,0)');
+    ctx.fillStyle = g;
+    ctx.beginPath(); ctx.arc(x, y, rad, 0, Math.PI * 2); ctx.fill();
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  function porcentagemLimpa() {
+    // amostra esparsa: barato o bastante para rodar durante o gesto
+    const d = ctx.getImageData(0, 0, fog.width, fog.height).data;
+    let vazios = 0, total = 0;
+    for (let i = 3; i < d.length; i += 4 * 220) { total++; if (d[i] < 46) vazios++; }
+    return total ? vazios / total : 0;
+  }
+
+  function pos(e) {
+    const r = fog.getBoundingClientRect();
+    const t = e.touches ? e.touches[0] : e;
+    return [t.clientX - r.left, t.clientY - r.top];
+  }
+
+  let amostra = 0;
+  function mover(e) {
+    if (!desenhando || limpo) return;
+    e.preventDefault();
+    const [x, y] = pos(e);
+    apagar(x, y);
+    if (++amostra % 6 === 0 && porcentagemLimpa() > .42) revelar();
+  }
+
+  function revelar() {
+    if (limpo) return;
+    limpo = true;
+    fog.style.opacity = '0';
+    $('cue').style.display = 'none';
+    $('btnReveal').hidden = true;
+    setTimeout(() => { fog.style.pointerEvents = 'none'; }, 800);
+
+    if (navigator.vibrate) { try { navigator.vibrate(18); } catch (_) {} }
+    track('espelho_limpo', { campanha: CONFIG.campanha });
+
+    setTimeout(() => mostrar('oferta'), 700);
+    setTimeout(() => { $('qualify').hidden = false; }, 1200);
+  }
+
+  fog.addEventListener('pointerdown', e => { desenhando = true; fog.setPointerCapture?.(e.pointerId); mover(e); });
+  fog.addEventListener('pointermove', mover);
+  window.addEventListener('pointerup', () => { desenhando = false; });
+  fog.addEventListener('touchmove', mover, { passive: false });
+
+  $('btnReveal').addEventListener('click', revelar);
+
+  pintarEmbacado();
+  window.addEventListener('resize', () => { if (!limpo) pintarEmbacado(); });
+  if (reduced) { $('cue').style.display = 'none'; }
+
+  /* ---------- qualificação ---------- */
+  $('opts').addEventListener('click', e => {
+    const b = e.target.closest('.opt');
+    if (!b) return;
+    $('opts').querySelectorAll('.opt').forEach(o => o.setAttribute('aria-pressed', 'false'));
+    b.setAttribute('aria-pressed', 'true');
+
+    escolha = CONFIG.incomodos[+b.dataset.i];
+    $('f-inc').value  = escolha.txt;
+    $('f-int').value  = escolha.int;
+    $('f-prio').value = escolha.prio;
+    track('incomodo_escolhido', { interesse: escolha.int, prioridade: escolha.prio });
+
+    mostrar('capture');
+    setTimeout(() => { try { $('nome').focus({ preventScroll: true }); } catch (_) {} }, 800);
+  });
+
+  /* ---------- máscara de telefone ---------- */
+  const fone = $('fone');
+  fone.addEventListener('input', () => {
+    let v = fone.value.replace(/\D/g, '').slice(0, 11);
+    if (v.length > 6)      v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+    else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+    else if (v.length)     v = '(' + v;
+    fone.value = v;
+  });
+
+  /* ---------- envio ---------- */
+  const form = $('form'), btnSend = $('btnSend');
+  $('err-lgpd').style.display = 'none';
+
+  function valida() {
+    let ok = true;
+    const nome = $('nome'), dig = fone.value.replace(/\D/g, '');
+    const mark = (wrap, campo, ruim) => {
+      wrap.dataset.invalid = ruim ? 'true' : 'false';
+      campo.setAttribute('aria-invalid', ruim ? 'true' : 'false');
+      if (ruim) ok = false;
+    };
+    mark($('w-nome'), nome, nome.value.trim().length < 2);
+    mark($('w-fone'), fone, dig.length < 10);
+    $('err-lgpd').style.display = $('lgpd').checked ? 'none' : 'block';
+    if (!$('lgpd').checked) ok = false;
+    return ok;
+  }
+
+  function linkWhats() {
+    const primeiro = $('nome').value.trim().split(/\s+/)[0] || '';
+    const msg = 'Olá! Sou ' + primeiro + '. Limpei o espelho no site da ' + CONFIG.marca +
+      ' e quero reservar meu horário.\n' +
+      'O que me incomoda: ' + (escolha ? escolha.txt : '—') + '\n' +
+      'Campanha: ' + CONFIG.campanha;
+    return 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg);
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!valida()) return;
+
+    btnSend.disabled = true;
+    $('sendTxt').textContent = 'Reservando...';
+    btnSend.querySelector('svg').outerHTML = '<span class="spin" aria-hidden="true"></span>';
+
+    if (!DEMO) {
+      try {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(form)).toString(),
+        });
+      } catch (_) {}
+    } else {
+      await new Promise(r => setTimeout(r, 750));
+    }
+
+    track('lead_enviado', {
+      interesse: escolha ? escolha.int : '',
+      prioridade: escolha ? escolha.prio : '',
+      campanha: CONFIG.campanha,
+    });
+
+    const url = linkWhats();
+    const d = Object.fromEntries(new FormData(form));
+    $('capture').hidden = true;
+
+    const prio = (d.Prioridade || '').toLowerCase();
+    $('rows').innerHTML = [
+      ['Nome',       d.Nome],
+      ['WhatsApp',   d.WhatsApp],
+      ['Queixa',     d.Incomodo],
+      ['Interesse',  d.Interesse],
+      ['Prioridade', '<span class="p-' + prio + '">' + prio + '</span>'],
+      ['Origem',     [d.Origem, d.Midia, d.Anuncio].filter(Boolean).join(' · ')],
+      ['LGPD',       d['Consentimento LGPD'] === 'sim' ? 'autorizado' : '—'],
+    ].map(([k, v]) => '<div class="row"><dt>' + k + '</dt><dd>' + (v || '—') + '</dd></div>').join('');
+
+    $('msgPrev').textContent = 'Mensagem que abriria no WhatsApp:\n\n' +
+      decodeURIComponent(url.split('?text=')[1]);
+
+    mostrar('done');
+    if (!DEMO) setTimeout(() => { try { window.open(url, '_blank', 'noopener'); } catch (_) {} }, 600);
+  });
+
+  $('btnAgain').addEventListener('click', () => location.reload());
+
+  /* ---------- contador, só com prazo real ---------- */
+  if (CONFIG.prazo) {
+    const fim = new Date(CONFIG.prazo);
+    if (!isNaN(fim) && fim > new Date()) {
+      $('deadline').hidden = false;
+      const tick = () => {
+        const t = Math.floor(Math.max(0, fim - new Date()) / 1000);
+        $('dd').textContent = String(Math.floor(t / 86400)).padStart(2, '0');
+        $('hh').textContent = String(Math.floor((t % 86400) / 3600)).padStart(2, '0');
+      };
+      tick(); setInterval(tick, 60000);
+    }
+  }
+})();
+</script>
+
+</body>
+</html>
