@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Toque no baú e descubra a condição especial que preparamos para o seu novo sorriso.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0A0806">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://milenirosa.netlify.app/bau-revelacao-v2.html">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Tem uma oportunidade esperando você">
+  <meta property="og:description" content="Toque no baú e descubra a condição especial que preparamos para o seu novo sorriso.">
+  <meta name="twitter:card" content="summary">
+
+  <title>Baú da Revelação v2</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&display=swap">
+
+  <style>
+    /* ---------------------------------------------------------------
+       BAÚ DA REVELAÇÃO v2 — modelo de campanha para clínicas odonto
+       Funil: abrir -> qualificar -> capturar -> WhatsApp
+       Mundo visual único (cofre à meia-luz): tokens em :root, tema fixo.
+       --------------------------------------------------------------- */
+    :root {
+      --ink:        #0A0806;
+      --ink-2:      #130E07;
+      --ink-3:      #1C1409;
+      --gold-hi:    #F8E9BC;
+      --gold:       #DFBE72;
+      --gold-deep:  #8A6420;
+      --ember:      #FF9E33;
+      --go:         #25B34B;
+      --go-hi:      #4BE07A;
+      --text-mute:  #A29070;
+      --err:        #FF6B5A;
+
+      --f-display: 'Bricolage Grotesque', 'Trebuchet MS', system-ui, sans-serif;
+      --f-body:    'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --f-mono:    'DM Mono', ui-monospace, Menlo, Consolas, monospace;
+    }
+
+    html, body { min-height: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: var(--gold-hi);
+      font-family: var(--f-body);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .ambient {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(60% 42% at 50% 62%, #5A360899 0%, #2A19030F 55%, transparent 78%),
+        radial-gradient(120% 90% at 50% 120%, #1A1004 0%, transparent 70%);
+      animation: breathe 7s ease-in-out infinite;
+    }
+    @keyframes breathe { 0%,100%{opacity:.75} 50%{opacity:1} }
+
+    #fx { position: fixed; inset: 0; z-index: 5; pointer-events: none; }
+
+    .wrap {
+      position: relative; z-index: 2;
+      max-width: 560px; margin: 0 auto;
+      padding-inline: 20px;
+      padding-block: 28px 44px;
+    }
+
+    /* ---------- Barra de progresso do funil ---------- */
+    .progress {
+      position: fixed;
+      top: env(safe-area-inset-top, 0px);
+      left: 0; right: 0; z-index: 6;
+      height: 3px;
+      background: #DFBE7218;
+    }
+    .progress i {
+      display: block; height: 100%; width: 0%;
+      background: linear-gradient(to right, var(--gold-deep), var(--gold-hi));
+      transition: width .6s cubic-bezier(.2,.8,.3,1);
+    }
+
+    /* ---------- Beat 1 ---------- */
+    .eyebrow {
+      margin: 0 0 14px;
+      font-family: var(--f-mono); font-size: .72rem;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--gold-deep);
+    }
+    .eyebrow span { color: var(--gold); }
+
+    .hero {
+      margin: 0;
+      font-family: var(--f-display); font-weight: 800;
+      font-size: clamp(2.5rem, 12.5vw, 3.9rem);
+      line-height: .95; letter-spacing: -.035em;
+      text-wrap: balance; color: var(--gold-hi);
+      text-shadow: 0 0 44px #DFBE7233;
+    }
+    .hero em { font-style: normal; display: block; color: var(--gold); }
+
+    #intro { transition: opacity .45s ease, transform .45s ease; }
+    body[data-state="open"] #intro { opacity: 0; transform: translateY(-14px); pointer-events: none; }
+
+    /* ---------- O baú ---------- */
+    .chest-btn {
+      display: block; width: 100%; margin: 12px 0 0; padding: 0;
+      border: 0; background: none; color: inherit; cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .chest-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 10px; border-radius: 18px; }
+    .chest-btn[disabled] { cursor: default; }
+
+    .chest-stage { position: relative; perspective: 900px; padding-top: 54px; }
+
+    .beam {
+      position: absolute; left: 50%; bottom: 34%;
+      width: 300px; height: 330px; margin-left: -150px;
+      clip-path: polygon(41% 100%, 59% 100%, 100% 0%, 0% 0%);
+      background: linear-gradient(to top, #FFC45CD9, #FF9E3355 42%, transparent 88%);
+      filter: blur(13px); opacity: 0;
+      transform: scaleY(.25); transform-origin: bottom center;
+      transition: opacity .7s ease, transform .9s cubic-bezier(.2,.9,.25,1);
+      pointer-events: none;
+    }
+    body[data-state="open"] .beam { opacity: .82; transform: scaleY(1); }
+
+    .chest { position: relative; width: min(300px, 82%); margin: 0 auto; transform-style: preserve-3d; }
+    .chest svg { display: block; width: 100%; height: auto; }
+
+    .chest-lid {
+      position: relative; z-index: 1;
+      transform-origin: 50% 100%; transform: rotateX(0deg);
+      transition: transform 1s cubic-bezier(.34,1.3,.5,1);
+    }
+    body[data-state="open"] .chest-lid { transform: rotateX(-118deg); }
+
+    .mouth {
+      position: absolute; left: 6%; right: 6%; top: 26%; height: 26%; z-index: 2;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 50% 60%, var(--gold-hi) 0%, var(--ember) 38%, #B4550088 62%, transparent 76%);
+      filter: blur(6px); opacity: 0; transform: scale(.4);
+      transition: opacity .6s ease .15s, transform .8s cubic-bezier(.2,.9,.25,1) .15s;
+      pointer-events: none;
+    }
+    body[data-state="open"] .mouth { opacity: 1; transform: scale(1); }
+
+    .chest-body { position: relative; z-index: 3; margin-top: -3.5%; }
+
+    .shackle { transform-origin: 96px 38px; transition: transform .5s cubic-bezier(.3,1.5,.5,1), opacity .5s ease; }
+    body[data-state="unlocking"] .chest-body { animation: rattle .42s ease-in-out; }
+    @keyframes rattle {
+      0%,100%{transform:translateX(0)} 15%{transform:translateX(-4px)}
+      35%{transform:translateX(4px)} 55%{transform:translateX(-3px)} 78%{transform:translateX(2px)}
+    }
+    body[data-state="unlocking"] .shackle,
+    body[data-state="open"] .shackle { transform: rotate(-128deg) translateY(-3px); opacity: .55; }
+
+    .chest-glow {
+      position: absolute; left: 50%; bottom: -6%;
+      width: 120%; height: 46%; margin-left: -60%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 50% 50%, #C9821E66, transparent 70%);
+      filter: blur(16px); z-index: 0;
+    }
+
+    .pill-anchor {
+      position: absolute; left: 50%; bottom: 0; z-index: 4;
+      width: min(300px, 82%); max-width: 100%;
+      aspect-ratio: 260 / 207;
+      transform: translateX(-50%); pointer-events: none;
+    }
+    .pill {
+      position: absolute; left: 50%; bottom: 56%;
+      transform: translateX(-50%);
+      display: inline-flex; align-items: center; gap: .5em;
+      padding: 15px 26px; border-radius: 999px;
+      background: var(--go); color: #fff;
+      font-weight: 700; font-size: .95rem;
+      letter-spacing: .05em; text-transform: uppercase; white-space: nowrap;
+      box-shadow: 0 10px 30px #05140899, 0 0 0 5px #25B34B26;
+      transition: opacity .3s ease;
+      animation: nudge 2.4s ease-in-out infinite;
+    }
+    @keyframes nudge {
+      0%,100%{transform:translateX(-50%) translateY(0)}
+      50%{transform:translateX(-50%) translateY(-6px)}
+    }
+    .chest-btn:hover .pill { background: var(--go-hi); }
+    body[data-state="unlocking"] .pill,
+    body[data-state="open"] .pill { opacity: 0; animation: none; }
+
+    .hint {
+      margin: 22px 0 0; text-align: center;
+      font-family: var(--f-mono); font-size: .74rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--gold-deep); transition: opacity .3s ease;
+    }
+    body[data-state="unlocking"] .hint, body[data-state="open"] .hint { opacity: 0; }
+
+    /* ---------- Blocos do funil ---------- */
+    .step { margin-top: 30px; scroll-margin-top: 66px; }
+    .step[hidden] { display: none !important; }
+
+    .fade-up > * { animation: rise .7s cubic-bezier(.2,.8,.3,1) backwards; }
+    .fade-up > *:nth-child(1){animation-delay:.05s} .fade-up > *:nth-child(2){animation-delay:.14s}
+    .fade-up > *:nth-child(3){animation-delay:.23s} .fade-up > *:nth-child(4){animation-delay:.32s}
+    .fade-up > *:nth-child(5){animation-delay:.41s} .fade-up > *:nth-child(6){animation-delay:.50s}
+    @keyframes rise { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:translateY(0)} }
+
+    .unlocked {
+      margin: 0 0 12px; text-align: center;
+      font-family: var(--f-mono); font-size: .73rem;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--ember);
+    }
+
+    .h2 {
+      margin: 0 0 14px; text-align: center;
+      font-family: var(--f-display); font-weight: 800;
+      font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+      line-height: 1.02; letter-spacing: -.03em;
+      text-wrap: balance; color: var(--gold-hi);
+    }
+
+    .lead {
+      margin: 0 auto 26px; max-width: 34ch; text-align: center;
+      font-size: 1.02rem; color: #D6C49Ccc;
+    }
+    .lead strong { color: var(--gold); font-weight: 600; }
+
+    /* Voucher */
+    .voucher {
+      position: relative;
+      background: linear-gradient(170deg, var(--ink-3), var(--ink-2) 60%);
+      border: 1px solid var(--gold-deep); border-radius: 4px;
+      padding: 26px 22px 22px;
+      box-shadow: 0 22px 50px #00000080, inset 0 1px 0 #DFBE7226;
+    }
+    .code-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .code-label {
+      font-family: var(--f-mono); font-size: .68rem;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--gold-deep);
+    }
+    .code {
+      font-family: var(--f-mono); font-weight: 500; font-size: 1.12rem;
+      letter-spacing: .12em; color: var(--gold-hi);
+      padding: 5px 12px; border: 1px dashed var(--gold-deep);
+      border-radius: 3px; background: #DFBE720F;
+    }
+    .tear {
+      position: relative; height: 1px; margin: 22px -22px;
+      background-image: linear-gradient(to right, var(--gold-deep) 0 6px, transparent 6px 12px);
+      background-size: 12px 1px; opacity: .7;
+    }
+    .tear::before, .tear::after {
+      content: ""; position: absolute; top: 50%;
+      width: 18px; height: 18px; margin-top: -9px;
+      border-radius: 50%; background: var(--ink); border: 1px solid var(--gold-deep);
+    }
+    .tear::before { left: -10px; clip-path: inset(0 0 0 50%); }
+    .tear::after  { right: -10px; clip-path: inset(0 50% 0 0); }
+
+    .items { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
+    .items li { display: grid; grid-template-columns: 18px 1fr; gap: 12px; align-items: start; font-size: .97rem; color: #E4D5B4; }
+    .items svg { width: 18px; height: 18px; margin-top: 3px; color: var(--ember); }
+
+    .clock { margin-top: 22px; padding-top: 18px; border-top: 1px solid #8A642033; text-align: center; }
+    .clock[hidden] { display: none !important; }
+    .clock-label {
+      margin: 0 0 10px; font-family: var(--f-mono); font-size: .68rem;
+      letter-spacing: .17em; text-transform: uppercase; color: var(--text-mute);
+    }
+    .digits { display: flex; justify-content: center; gap: 10px; }
+    .unit { min-width: 62px; padding: 9px 6px 7px; background: #DFBE720D; border: 1px solid #8A642040; border-radius: 3px; }
+    .unit b {
+      display: block; font-family: var(--f-mono); font-weight: 500;
+      font-size: 1.6rem; line-height: 1;
+      font-variant-numeric: tabular-nums; color: var(--gold-hi);
+    }
+    .unit span {
+      display: block; margin-top: 5px; font-family: var(--f-mono);
+      font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-deep);
+    }
+
+    /* ---------- Qualificação ---------- */
+    .q-title {
+      margin: 0 0 6px; text-align: center;
+      font-family: var(--f-display); font-weight: 700;
+      font-size: 1.35rem; letter-spacing: -.02em; color: var(--gold-hi);
+    }
+    .q-sub { margin: 0 0 20px; text-align: center; font-size: .9rem; color: var(--text-mute); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .chip {
+      padding: 12px 18px; border-radius: 999px;
+      border: 1px solid #8A642066; background: #DFBE720A;
+      color: var(--gold-hi); font-family: var(--f-body);
+      font-size: .95rem; cursor: pointer;
+      transition: background .2s ease, border-color .2s ease, transform .15s ease;
+    }
+    .chip:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .chip:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .chip[aria-pressed="true"] {
+      background: var(--gold); border-color: var(--gold-hi);
+      color: #1A1206; font-weight: 600;
+    }
+
+    /* ---------- Formulário ---------- */
+    .field { margin-bottom: 16px; }
+    .field label {
+      display: block; margin-bottom: 7px;
+      font-family: var(--f-mono); font-size: .7rem;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--gold-deep);
+    }
+    .field input[type="text"], .field input[type="tel"] {
+      width: 100%; padding: 15px 16px;
+      background: #DFBE720A; color: var(--gold-hi);
+      border: 1px solid #8A642055; border-radius: 4px;
+      font-family: var(--f-body); font-size: 1.02rem;
+    }
+    .field input::placeholder { color: #8A7A5E88; }
+    .field input:focus { outline: none; border-color: var(--gold); background: #DFBE7214; }
+    .field input[aria-invalid="true"] { border-color: var(--err); }
+
+    .err { display: none; margin-top: 6px; font-size: .82rem; color: var(--err); }
+    .field[data-invalid="true"] .err { display: block; }
+
+    .consent { display: grid; grid-template-columns: 20px 1fr; gap: 11px; align-items: start; margin: 18px 0 4px; }
+    .consent input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--go); }
+    .consent label { font-size: .86rem; line-height: 1.5; color: #C4B08A; }
+    .consent a { color: var(--gold); }
+
+    .cta {
+      display: flex; align-items: center; justify-content: center; gap: .6em;
+      width: 100%; margin-top: 20px; padding: 19px 18px;
+      border: 0; border-radius: 999px;
+      background: var(--go); color: #fff;
+      font-family: var(--f-body); font-weight: 700;
+      font-size: clamp(.86rem, 4vw, 1.02rem); line-height: 1.25;
+      letter-spacing: .03em; text-transform: uppercase;
+      text-align: center; text-wrap: balance; text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 14px 34px #0A2E1499, 0 0 0 5px #25B34B24;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .cta:hover:not(:disabled) { background: var(--go-hi); transform: translateY(-2px); }
+    .cta:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 4px; }
+    .cta:disabled { background: #1E5E33; cursor: not-allowed; box-shadow: none; }
+    .cta svg { width: 20px; height: 20px; flex: none; }
+
+    .spin {
+      width: 17px; height: 17px; flex: none;
+      border: 2px solid #ffffff55; border-top-color: #fff;
+      border-radius: 50%; animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg) } }
+
+    .fine { margin: 16px auto 0; max-width: 40ch; text-align: center; font-size: .78rem; line-height: 1.5; color: #8A7A5Ecc; }
+
+    /* ---------- Sucesso ---------- */
+    .ok-badge {
+      width: 66px; height: 66px; margin: 0 auto 18px;
+      display: grid; place-items: center; border-radius: 50%;
+      background: #25B34B1F; border: 1px solid var(--go);
+    }
+    .ok-badge svg { width: 30px; height: 30px; color: var(--go-hi); }
+
+    .sound {
+      position: fixed; top: env(safe-area-inset-top, 0px); right: 0; z-index: 6;
+      margin: 12px; padding: 9px; width: 38px; height: 38px;
+      display: grid; place-items: center;
+      border: 1px solid #8A642055; border-radius: 50%;
+      background: #130E07cc; color: var(--gold-deep); cursor: pointer;
+    }
+    .sound:hover { color: var(--gold); }
+    .sound:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    .sound svg { width: 17px; height: 17px; }
+
+    .sr {
+      position: absolute; width: 1px; height: 1px; padding: 0;
+      margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ambient, .pill { animation: none; }
+      .chest-lid, .mouth, .beam, .shackle, #intro { transition-duration: .01ms; }
+      .fade-up > * { animation: none; }
+    }
+  </style>
+
+  <style>
+    :root { color-scheme: dark; padding-top: env(safe-area-inset-top,0px); padding-bottom: env(safe-area-inset-bottom,0px); }
+    * { box-sizing: border-box; }
+    img { max-width: 100%; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+
+<div class="ambient" aria-hidden="true"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="progress" aria-hidden="true"><i id="bar"></i></div>
+
+<button class="sound" id="btnSound" type="button" aria-pressed="true" aria-label="Desativar som">
+  <svg id="icoSound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>
+  </svg>
+</button>
+
+<main class="wrap">
+
+  <header id="intro">
+    <p class="eyebrow">Campanha <span id="campanha">Revelação de Outubro</span></p>
+    <h1 class="hero">Tem uma oportunidade <em>esperando você.</em></h1>
+  </header>
+
+  <button class="chest-btn" id="btnOpen" type="button" aria-label="Abrir o baú e revelar a oportunidade">
+    <div class="chest-stage">
+      <div class="beam" aria-hidden="true"></div>
+      <div class="chest">
+        <div class="chest-glow" aria-hidden="true"></div>
+
+        <svg class="chest-lid" viewBox="0 0 260 92" aria-hidden="true">
+          <defs>
+            <linearGradient id="woodLid" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#4A3418"/><stop offset=".55" stop-color="#2B1E0B"/><stop offset="1" stop-color="#191104"/>
+            </linearGradient>
+            <linearGradient id="band" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#6B4A14"/><stop offset=".4" stop-color="#E9CB80"/>
+              <stop offset=".52" stop-color="#F8E9BC"/><stop offset="1" stop-color="#5A4016"/>
+            </linearGradient>
+            <clipPath id="lidClip"><path d="M8 90 V56 A122 52 0 0 1 252 56 V90 Z"/></clipPath>
+          </defs>
+          <path d="M8 90 V56 A122 52 0 0 1 252 56 V90 Z" fill="url(#woodLid)"/>
+          <g clip-path="url(#lidClip)">
+            <rect x="46" y="0" width="17" height="92" fill="url(#band)" opacity=".9"/>
+            <rect x="197" y="0" width="17" height="92" fill="url(#band)" opacity=".9"/>
+            <rect x="0" y="78" width="260" height="14" fill="url(#band)" opacity=".95"/>
+            <rect x="86" y="0" width="2" height="92" fill="#000" opacity=".3"/>
+            <rect x="130" y="0" width="2" height="92" fill="#000" opacity=".3"/>
+            <rect x="172" y="0" width="2" height="92" fill="#000" opacity=".3"/>
+          </g>
+          <path d="M8 90 V56 A122 52 0 0 1 252 56 V90" fill="none" stroke="#8A6420" stroke-width="3"/>
+        </svg>
+
+        <div class="mouth" aria-hidden="true"></div>
+
+        <svg class="chest-body" viewBox="0 0 260 124" aria-hidden="true">
+          <defs>
+            <linearGradient id="woodBody" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3A2914"/><stop offset=".45" stop-color="#241907"/><stop offset="1" stop-color="#120C03"/>
+            </linearGradient>
+            <clipPath id="bodyClip"><rect x="8" y="4" width="244" height="112" rx="9"/></clipPath>
+          </defs>
+          <rect x="8" y="4" width="244" height="112" rx="9" fill="url(#woodBody)"/>
+          <g clip-path="url(#bodyClip)">
+            <rect x="46" y="0" width="17" height="124" fill="url(#band)" opacity=".9"/>
+            <rect x="197" y="0" width="17" height="124" fill="url(#band)" opacity=".9"/>
+            <rect x="0" y="96" width="260" height="20" fill="url(#band)" opacity=".95"/>
+            <rect x="86" y="0" width="2" height="124" fill="#000" opacity=".3"/>
+            <rect x="130" y="0" width="2" height="124" fill="#000" opacity=".3"/>
+            <rect x="172" y="0" width="2" height="124" fill="#000" opacity=".3"/>
+            <rect x="8" y="4" width="244" height="7" fill="#000" opacity=".45"/>
+          </g>
+          <rect x="8" y="4" width="244" height="112" rx="9" fill="none" stroke="#8A6420" stroke-width="3"/>
+          <g>
+            <path class="shackle" d="M96 40 V32 a16 16 0 0 1 32 0 v8" fill="none" stroke="#E9CB80" stroke-width="7" stroke-linecap="round"/>
+            <rect x="94" y="38" width="36" height="42" rx="6" fill="url(#band)" stroke="#5A3E10" stroke-width="2"/>
+            <circle cx="112" cy="54" r="6" fill="#140D03"/>
+            <path d="M109 56 h6 l2 14 h-10 Z" fill="#140D03"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="pill-anchor" aria-hidden="true">
+        <span class="pill">🎁 Clique e descubra</span>
+      </div>
+    </div>
+  </button>
+
+  <p class="hint">Toque no baú para abrir</p>
+
+  <!-- ETAPA 2 — a revelação -->
+  <section id="reveal" class="step fade-up" hidden aria-live="polite">
+    <p class="unlocked">✦ Você desbloqueou uma oportunidade</p>
+    <h2 class="h2">Seu novo sorriso não pode começar sem você.</h2>
+    <p class="lead">
+      A <strong id="clinica">[NOME DA CLÍNICA]</strong> reservou um atendimento
+      para quem realmente quer dar esse primeiro passo.
+    </p>
+
+    <div class="voucher">
+      <div class="code-row">
+        <span class="code-label">Seu código</span>
+        <span class="code" id="codigo">REVELA-OUT</span>
+      </div>
+      <div class="tear" aria-hidden="true"></div>
+      <ul class="items" id="itens"></ul>
+
+      <div class="clock" id="clock" hidden>
+        <p class="clock-label">Esta reserva vale até</p>
+        <div class="digits">
+          <div class="unit"><b id="dd">00</b><span>dias</span></div>
+          <div class="unit"><b id="hh">00</b><span>horas</span></div>
+          <div class="unit"><b id="mm">00</b><span>min</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ETAPA 3 — qualificação -->
+  <section id="qualify" class="step fade-up" hidden>
+    <h2 class="q-title">O que você mais quer resolver?</h2>
+    <p class="q-sub">Escolha uma opção para o dentista já chegar preparado.</p>
+    <div class="chips" id="chips" role="group" aria-label="Tratamento de interesse"></div>
+  </section>
+
+  <!-- ETAPA 4 — captura -->
+  <section id="capture" class="step fade-up" hidden>
+    <h2 class="q-title">Quase lá. Para onde enviamos?</h2>
+    <p class="q-sub">Dois campos e a equipe já entra em contato.</p>
+
+    <form id="form" name="lead-odonto" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="lead-odonto">
+      <p class="sr"><label>Não preencha: <input name="bot-field"></label></p>
+
+      <input type="hidden" name="Tratamento"  id="f-trat">
+      <input type="hidden" name="Prioridade"  id="f-prio">
+      <input type="hidden" name="Codigo"      id="f-cod">
+      <input type="hidden" name="Campanha"    id="f-camp">
+      <input type="hidden" name="Origem"      id="f-src">
+      <input type="hidden" name="Midia"       id="f-med">
+      <input type="hidden" name="Anuncio"     id="f-cnt">
+      <input type="hidden" name="Termo"       id="f-trm">
+      <input type="hidden" name="Pagina"      id="f-url">
+
+      <div class="field" id="wrap-nome">
+        <label for="nome">Seu nome</label>
+        <input type="text" id="nome" name="Nome" autocomplete="given-name" placeholder="Como podemos te chamar?" required>
+        <p class="err">Por favor, informe seu nome.</p>
+      </div>
+
+      <div class="field" id="wrap-fone">
+        <label for="fone">WhatsApp</label>
+        <input type="tel" id="fone" name="WhatsApp" autocomplete="tel" inputmode="numeric" placeholder="(11) 91234-5678" required>
+        <p class="err">Informe um WhatsApp válido com DDD.</p>
+      </div>
+
+      <div class="consent" id="wrap-lgpd">
+        <input type="checkbox" id="lgpd" name="Consentimento LGPD" value="sim" required>
+        <label for="lgpd">
+          Autorizo o contato por WhatsApp e telefone sobre este atendimento, conforme a LGPD.
+          Meus dados não serão compartilhados com terceiros.
+        </label>
+      </div>
+      <p class="err" id="err-lgpd" style="margin-top:2px">É preciso autorizar o contato para continuar.</p>
+
+      <button type="submit" class="cta" id="btnSend">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.38a9.86 9.86 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.1.81.83-3.03-.2-.31a8.19 8.19 0 0 1-1.26-4.39c0-4.54 3.7-8.23 8.23-8.23 2.2 0 4.26.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24Zm4.52-6.17c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.13-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.15-.24-.02-.38.1-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.48-.4-.42-.55-.43h-.48c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.2 3.72.59.25 1.05.4 1.4.52.59.18 1.13.16 1.55.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+        <span id="sendTxt">Falar no WhatsApp agora</span>
+      </button>
+    </form>
+
+    <p class="fine">Seus dados ficam só com a clínica e são usados apenas para este atendimento.</p>
+  </section>
+
+  <!-- ETAPA 5 — sucesso -->
+  <section id="done" class="step fade-up" hidden aria-live="polite">
+    <div class="ok-badge" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m20 6-11 11-5-5"/></svg>
+    </div>
+    <h2 class="h2">Reserva confirmada!</h2>
+    <p class="lead" id="doneTxt">
+      Já recebemos seus dados. Estamos abrindo o WhatsApp para você falar com a equipe agora.
+    </p>
+    <a class="cta" id="btnWa" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.38a9.86 9.86 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.1.81.83-3.03-.2-.31a8.19 8.19 0 0 1-1.26-4.39c0-4.54 3.7-8.23 8.23-8.23 2.2 0 4.26.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24Zm4.52-6.17c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.53.06-.25-.13-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.38-1.72-.15-.24-.02-.38.1-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.48-.4-.42-.55-.43h-.48c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.2 3.72.59.25 1.05.4 1.4.52.59.18 1.13.16 1.55.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+      <span>Abrir o WhatsApp</span>
+    </a>
+  </section>
+
+</main>
+
+<script>
+(() => {
+  'use strict';
+
+  /* ==============================================================
+     CONFIG — tudo que muda de clínica para clínica fica aqui.
+     ============================================================== */
+  const CONFIG = {
+    campanha: 'Revelação de Outubro',
+    clinica:  '[NOME DA CLÍNICA]',
+    codigo:   'REVELA-OUT',
+
+    // DDI + DDD + número, só dígitos.
+    whatsapp: '5511999999999',
+
+    // O que está "dentro do baú".
+    // ATENÇÃO CFO: nada de preço, desconto, "grátis", forma de pagamento,
+    // superlativo ("o melhor") ou promessa de resultado. Descreva SERVIÇO.
+    itens: [
+      'Avaliação clínica completa com documentação digital',
+      'Plano de tratamento personalizado, apresentado no mesmo dia',
+      'Prioridade na agenda desta semana',
+    ],
+
+    // Opções de qualificação. 'prio' ordena o atendimento da equipe.
+    tratamentos: [
+      { label: 'Implante ou prótese',   prio: 'alta'  },
+      { label: 'Lentes e facetas',      prio: 'alta'  },
+      { label: 'Estou com dor',         prio: 'alta'  },
+      { label: 'Aparelho ou alinhador', prio: 'media' },
+      { label: 'Clareamento',           prio: 'media' },
+      { label: 'Limpeza e prevenção',   prio: 'baixa' },
+      { label: 'Ainda não sei',         prio: 'baixa' },
+    ],
+
+    // Prazo REAL da campanha, ex.: '2026-10-31T23:59:59'.
+    // Deixe null e o contador simplesmente não aparece.
+    // Nunca use contador que reinicia sozinho: é urgência falsa.
+    prazo: null,
+
+    // Nome do formulário no painel do Netlify.
+    formName: 'lead-odonto',
+  };
+  /* ============================================================== */
+
+  const $ = id => document.getElementById(id);
+  const body = document.body;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let soundOn = true;
+  let escolha = null;
+
+  /* ---------- rastreamento: dataLayer + Meta Pixel ---------- */
+  function track(evento, dados) {
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(Object.assign({ event: evento }, dados || {}));
+    } catch (_) {}
+    try {
+      if (typeof window.fbq === 'function') {
+        if (evento === 'lead_enviado') window.fbq('track', 'Lead', dados || {});
+        else window.fbq('trackCustom', evento, dados || {});
+      }
+    } catch (_) {}
+  }
+
+  /* ---------- UTMs: de onde veio esse lead ---------- */
+  const qs = new URLSearchParams(location.search);
+  const utm = k => qs.get(k) || '';
+  $('f-src').value  = utm('utm_source')   || document.referrer || 'direto';
+  $('f-med').value  = utm('utm_medium');
+  $('f-cnt').value  = utm('utm_content')  || utm('utm_campaign');
+  $('f-trm').value  = utm('utm_term')     || utm('fbclid') || utm('gclid');
+  $('f-url').value  = location.href;
+  $('f-cod').value  = CONFIG.codigo;
+  $('f-camp').value = CONFIG.campanha;
+
+  /* ---------- monta a página a partir da CONFIG ---------- */
+  $('campanha').textContent = CONFIG.campanha;
+  $('clinica').textContent  = CONFIG.clinica;
+  $('codigo').textContent   = CONFIG.codigo;
+  document.forms.namedItem('lead-odonto').setAttribute('name', CONFIG.formName);
+  $('form').querySelector('[name="form-name"]').value = CONFIG.formName;
+
+  $('itens').innerHTML = CONFIG.itens.map(t =>
+    '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 6-11 11-5-5"/></svg>' +
+    '<span>' + t + '</span></li>'
+  ).join('');
+
+  $('chips').innerHTML = CONFIG.tratamentos.map((t, i) =>
+    '<button type="button" class="chip" role="button" aria-pressed="false" ' +
+    'data-prio="' + t.prio + '" data-i="' + i + '">' + t.label + '</button>'
+  ).join('');
+
+  /* ---------- progresso do funil ---------- */
+  const bar = $('bar');
+  const setProgress = pct => { bar.style.width = pct + '%'; };
+
+  function mostrar(id, pct) {
+    const el = $(id);
+    el.hidden = false;
+    el.classList.remove('fade-up'); void el.offsetWidth; el.classList.add('fade-up');
+    if (pct != null) setProgress(pct);
+    setTimeout(() => el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' }), 200);
+  }
+
+  /* ---------- partículas ---------- */
+  const canvas = $('fx'), ctx = canvas.getContext('2d');
+  let W = 0, H = 0;
+  function size() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  size(); window.addEventListener('resize', size);
+
+  const GOLDS = ['#F8E9BC', '#DFBE72', '#FFC45C', '#FF9E33', '#C9821E'];
+  const shards = [], embers = [];
+
+  for (let i = 0; i < 24 && !reduced; i++) embers.push({
+    x: Math.random() * W, y: Math.random() * H,
+    r: Math.random() * 1.6 + .5, vy: -(Math.random() * .22 + .07),
+    a: Math.random() * .28 + .06, tw: Math.random() * Math.PI * 2,
+  });
+
+  function burst() {
+    const r = $('btnOpen').getBoundingClientRect();
+    const cx = r.left + r.width / 2, cy = r.top + r.height * .52;
+    for (let i = 0; i < 150; i++) {
+      const ang = -Math.PI / 2 + (Math.random() - .5) * 1.9;
+      const sp = Math.random() * 13 + 4;
+      shards.push({
+        x: cx + (Math.random() - .5) * 90, y: cy + (Math.random() - .5) * 18,
+        vx: Math.cos(ang) * sp * .62, vy: Math.sin(ang) * sp,
+        s: Math.random() * 6 + 2.5, rot: Math.random() * Math.PI,
+        vr: (Math.random() - .5) * .34, life: 1,
+        decay: Math.random() * .008 + .005,
+        c: GOLDS[(Math.random() * GOLDS.length) | 0],
+      });
+    }
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    for (const e of embers) {
+      e.y += e.vy; e.tw += .022;
+      if (e.y < -8) { e.y = H + 8; e.x = Math.random() * W; }
+      ctx.globalAlpha = e.a * (.55 + .45 * Math.sin(e.tw));
+      ctx.fillStyle = '#DFBE72';
+      ctx.beginPath(); ctx.arc(e.x, e.y, e.r, 0, Math.PI * 2); ctx.fill();
+    }
+    for (let i = shards.length - 1; i >= 0; i--) {
+      const p = shards[i];
+      p.vy += .17; p.vx *= .992; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life -= p.decay;
+      if (p.life <= 0 || p.y > H + 60) { shards.splice(i, 1); continue; }
+      ctx.save(); ctx.globalAlpha = Math.max(0, Math.min(1, p.life));
+      ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      ctx.fillStyle = p.c; ctx.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2); ctx.restore();
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(frame);
+  }
+  if (!reduced) requestAnimationFrame(frame);
+
+  /* ---------- som ---------- */
+  let audio = null;
+  function tone(f, start, dur, type, vol) {
+    const o = audio.createOscillator(), g = audio.createGain();
+    o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(.0001, audio.currentTime + start);
+    g.gain.exponentialRampToValueAtTime(vol, audio.currentTime + start + .012);
+    g.gain.exponentialRampToValueAtTime(.0001, audio.currentTime + start + dur);
+    o.connect(g); g.connect(audio.destination);
+    o.start(audio.currentTime + start); o.stop(audio.currentTime + start + dur + .05);
+  }
+  function playUnlock() {
+    if (!soundOn) return;
+    try {
+      audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+      if (audio.state === 'suspended') audio.resume();
+      tone(110, 0, .22, 'square', .07);
+      [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => tone(f, .42 + i * .075, .55, 'sine', .11));
+    } catch (_) {}
+  }
+
+  const btnSound = $('btnSound'), icoSound = $('icoSound');
+  btnSound.addEventListener('click', () => {
+    soundOn = !soundOn;
+    btnSound.setAttribute('aria-pressed', String(soundOn));
+    btnSound.setAttribute('aria-label', soundOn ? 'Desativar som' : 'Ativar som');
+    icoSound.innerHTML = soundOn
+      ? '<path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>'
+      : '<path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="m17 9 4 6"/><path d="m21 9-4 6"/>';
+  });
+
+  /* ---------- ETAPA 1 -> 2 : abrir o baú ---------- */
+  let aberto = false;
+  $('btnOpen').addEventListener('click', () => {
+    if (aberto) return;
+    aberto = true;
+    $('btnOpen').disabled = true;
+
+    if (navigator.vibrate) { try { navigator.vibrate([12, 60, 22]); } catch (_) {} }
+    playUnlock();
+    track('bau_aberto', { campanha: CONFIG.campanha });
+
+    if (reduced) {
+      body.dataset.state = 'open';
+      mostrar('reveal', 25); setTimeout(() => mostrar('qualify', 40), 300);
+      return;
+    }
+    body.dataset.state = 'unlocking';
+    setTimeout(() => { body.dataset.state = 'open'; burst(); }, 430);
+    setTimeout(() => mostrar('reveal', 25), 1150);
+    setTimeout(() => { $('qualify').hidden = false; setProgress(40); }, 1700);
+  });
+
+  /* ---------- ETAPA 3 : qualificação ---------- */
+  $('chips').addEventListener('click', e => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    $('chips').querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', 'false'));
+    chip.setAttribute('aria-pressed', 'true');
+
+    escolha = CONFIG.tratamentos[+chip.dataset.i];
+    $('f-trat').value = escolha.label;
+    $('f-prio').value = escolha.prio;
+    track('tratamento_escolhido', { tratamento: escolha.label, prioridade: escolha.prio });
+
+    mostrar('capture', 65);
+    setTimeout(() => { try { $('nome').focus({ preventScroll: true }); } catch (_) {} }, 900);
+  });
+
+  /* ---------- máscara de telefone ---------- */
+  const fone = $('fone');
+  fone.addEventListener('input', () => {
+    let v = fone.value.replace(/\D/g, '').slice(0, 11);
+    if (v.length > 6)      v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+    else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+    else if (v.length)     v = '(' + v;
+    fone.value = v;
+  });
+
+  /* ---------- ETAPA 4 : envio ---------- */
+  const form = $('form'), btnSend = $('btnSend'), sendTxt = $('sendTxt');
+
+  function valida() {
+    let ok = true;
+    const nome = $('nome'), digitos = fone.value.replace(/\D/g, '');
+
+    const setErr = (wrap, campo, ruim) => {
+      wrap.dataset.invalid = ruim ? 'true' : 'false';
+      if (campo) campo.setAttribute('aria-invalid', ruim ? 'true' : 'false');
+      if (ruim) ok = false;
+    };
+    setErr($('wrap-nome'), nome, nome.value.trim().length < 2);
+    setErr($('wrap-fone'), fone, digitos.length < 10);
+    $('err-lgpd').style.display = $('lgpd').checked ? 'none' : 'block';
+    if (!$('lgpd').checked) ok = false;
+    return ok;
+  }
+
+  function linkWhats() {
+    const nome = $('nome').value.trim().split(/\s+/)[0] || '';
+    const msg =
+      'Olá! Sou ' + nome + '. Abri o baú da ' + CONFIG.campanha +
+      ' e quero garantir meu horário.\n' +
+      'Interesse: ' + (escolha ? escolha.label : 'ainda não sei') + '\n' +
+      'Código: ' + CONFIG.codigo;
+    return 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg);
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!valida()) return;
+
+    btnSend.disabled = true;
+    sendTxt.textContent = 'Enviando...';
+    btnSend.querySelector('svg').outerHTML = '<span class="spin" aria-hidden="true"></span>';
+
+    // Grava o lead no Netlify Forms. Se falhar (rede, preview fora do
+    // Netlify), seguimos para o WhatsApp assim mesmo: melhor um lead
+    // no WhatsApp do que nenhum lead.
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString(),
+      });
+    } catch (_) {}
+
+    track('lead_enviado', {
+      tratamento: escolha ? escolha.label : '',
+      prioridade: escolha ? escolha.prio : '',
+      campanha: CONFIG.campanha,
+    });
+
+    const url = linkWhats();
+    $('btnWa').href = url;
+    $('capture').hidden = true;
+    mostrar('done', 100);
+    // Abre o WhatsApp; se o navegador bloquear, o botão da tela fica lá.
+    setTimeout(() => { try { window.open(url, '_blank', 'noopener'); } catch (_) {} }, 600);
+  });
+
+  /* ---------- contador: só com prazo real ---------- */
+  if (CONFIG.prazo) {
+    const fim = new Date(CONFIG.prazo);
+    if (!isNaN(fim) && fim > new Date()) {
+      $('clock').hidden = false;
+      const tick = () => {
+        const diff = Math.max(0, fim - new Date());
+        const t = Math.floor(diff / 1000);
+        $('dd').textContent = String(Math.floor(t / 86400)).padStart(2, '0');
+        $('hh').textContent = String(Math.floor((t % 86400) / 3600)).padStart(2, '0');
+        $('mm').textContent = String(Math.floor((t % 3600) / 60)).padStart(2, '0');
+      };
+      tick(); setInterval(tick, 30000);
+    }
+  }
+
+  setProgress(8);
+})();
+</script>
+
+</body>
+</html>
